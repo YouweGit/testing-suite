@@ -5,15 +5,15 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Tests;
+namespace Youwe\PHPTestingSuite\Composer\Tests;
 
-use Mediact\TestingSuite\Composer\ProjectTypeResolver;
+use Youwe\PHPTestingSuite\Composer\ProjectTypeResolver;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
-use Mediact\TestingSuite\Composer\ConfigResolver;
+use Youwe\PHPTestingSuite\Composer\ConfigResolver;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\ConfigResolver
+ * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\ConfigResolver
  * @SuppressWarnings(PHPMD)
  */
 class ConfigResolverTest extends TestCase

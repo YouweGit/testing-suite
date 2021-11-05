@@ -5,17 +5,17 @@
  * https://www.Mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Tests;
+namespace Youwe\PHPTestingSuite\Composer\Tests;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
-use Mediact\TestingSuite\Composer\Installer\InstallerInterface;
-use Mediact\TestingSuite\Composer\Plugin;
+use Youwe\PHPTestingSuite\Composer\Installer\InstallerInterface;
+use Youwe\PHPTestingSuite\Composer\Plugin;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\Plugin
+ * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\Plugin
  * @SuppressWarnings(PHPMD)
  */
 class PluginTest extends TestCase

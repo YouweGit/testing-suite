@@ -5,12 +5,12 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Installer;
+namespace Youwe\PHPTestingSuite\Composer\Installer;
 
 use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
-use Mediact\TestingSuite\Composer\ConfigResolver;
+use Youwe\PHPTestingSuite\Composer\ConfigResolver;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)

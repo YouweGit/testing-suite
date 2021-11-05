@@ -5,15 +5,15 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Tests;
+namespace Youwe\PHPTestingSuite\Composer\Tests;
 
 use Mediact\FileMapping\FileMappingReaderInterface;
-use Mediact\TestingSuite\Composer\ProjectTypeResolver;
+use Youwe\PHPTestingSuite\Composer\ProjectTypeResolver;
 use PHPUnit\Framework\TestCase;
-use Mediact\TestingSuite\Composer\MappingResolver;
+use Youwe\PHPTestingSuite\Composer\MappingResolver;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\MappingResolver
+ * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\MappingResolver
  */
 class MappingResolverTest extends TestCase
 {

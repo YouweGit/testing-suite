@@ -5,11 +5,11 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Installer;
+namespace Youwe\PHPTestingSuite\Composer\Installer;
 
 use Composer\IO\IOInterface;
 use Mediact\Composer\FileInstaller as ComposerFileInstaller;
-use Mediact\TestingSuite\Composer\MappingResolver;
+use Youwe\PHPTestingSuite\Composer\MappingResolver;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)

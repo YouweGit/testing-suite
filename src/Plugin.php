@@ -1,12 +1,12 @@
 <?php
 
-namespace Mediact\TestingSuite\Composer;
+namespace Youwe\PHPTestingSuite\Composer;
 
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
-use Mediact\TestingSuite\Composer\Installer\InstallerInterface;
+use Youwe\PHPTestingSuite\Composer\Installer\InstallerInterface;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)

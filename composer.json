@@ -1,14 +1,14 @@
 {
-    "name": "mediact/testing-suite",
-    "description": "Contains MediaCT's default testing packages.",
+    "name": "youwe/php-testing-suite",
+    "description": "Contains Youwe's default testing packages for php.",
     "type": "composer-plugin",
     "license": "MIT",
     "prefer-stable": true,
     "minimum-stability": "stable",
     "authors": [
         {
-            "name": "MediaCT B.V.",
-            "email": "contact@mediact.nl"
+            "name": "Youwe B.V.",
+            "email": "support@youweagency.com"
         },
         {
             "name": "Len Lorijn",
@@ -17,10 +17,14 @@
         {
             "name": "Jan-Marten de Boer",
             "role": "developer"
+        },
+        {
+            "name": "Leon Helmus",
+            "role": "developer"
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "composer-plugin-api": "^1.1 || ^2.0",
         "enlightn/security-checker": "^1.5",
         "kint-php/kint": "@stable",
@@ -28,7 +32,6 @@
         "mediact/coding-standard-phpstorm": "@stable",
         "mediact/composer-dependency-installer": "^1.0",
         "mediact/composer-file-installer": "^1.0",
-        "mediact/composer-unclog-plugin": "^1.0",
         "phpro/grumphp": ">=0.19 <1.0",
         "phpstan/phpstan": "@stable",
         "phpunit/phpunit": "@stable",
@@ -42,22 +45,22 @@
         "sensiolabs/security-checker": "*"
     },
     "bin": [
-        "bin/mediact-testing-suite"
+        "bin/youwe-testing-suite"
     ],
     "extra": {
         "grumphp": {
             "config-default-path": "grumphp.yml"
         },
-        "class": "Mediact\\TestingSuite\\Composer\\Plugin"
+        "class": "Youwe\\PHPTestingSuite\\Composer\\Plugin"
     },
     "autoload": {
         "psr-4": {
-            "Mediact\\TestingSuite\\Composer\\": "src"
+            "Youwe\\PHPTestingSuite\\Composer\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Mediact\\TestingSuite\\Composer\\Tests\\": "tests"
+            "Youwe\\PHPTestingSuite\\Composer\\Tests\\": "tests"
         }
     },
     "archive": {

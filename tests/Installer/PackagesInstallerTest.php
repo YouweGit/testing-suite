@@ -5,19 +5,19 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Tests\Installer;
+namespace Youwe\PHPTestingSuite\Composer\Tests\Installer;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Package\Link;
 use Composer\Package\Package;
 use Mediact\Composer\DependencyInstaller\DependencyInstaller;
-use Mediact\TestingSuite\Composer\ProjectTypeResolver;
+use Youwe\PHPTestingSuite\Composer\ProjectTypeResolver;
 use PHPUnit\Framework\TestCase;
-use Mediact\TestingSuite\Composer\Installer\PackagesInstaller;
+use Youwe\PHPTestingSuite\Composer\Installer\PackagesInstaller;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\Installer\PackagesInstaller
+ * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\Installer\PackagesInstaller
  * @SuppressWarnings(PHPMD)
  */
 class PackagesInstallerTest extends TestCase

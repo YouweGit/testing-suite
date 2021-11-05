@@ -5,7 +5,7 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer;
+namespace Youwe\PHPTestingSuite\Composer;
 
 use Composer\Composer;
 

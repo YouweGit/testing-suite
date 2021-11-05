@@ -5,14 +5,14 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Tests\Factory;
+namespace Youwe\PHPTestingSuite\Composer\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
-use Mediact\TestingSuite\Composer\Factory\ProcessFactory;
+use Youwe\PHPTestingSuite\Composer\Factory\ProcessFactory;
 use Symfony\Component\Process\Process;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\Factory\ProcessFactory
+ * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\Factory\ProcessFactory
  */
 class ProcessFactoryTest extends TestCase
 {

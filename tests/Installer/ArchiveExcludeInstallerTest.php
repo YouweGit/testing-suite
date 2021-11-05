@@ -5,21 +5,21 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Tests\Installer;
+namespace Youwe\PHPTestingSuite\Composer\Tests\Installer;
 
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
 use Mediact\FileMapping\FileMappingInterface;
 use Mediact\FileMapping\FileMappingReaderInterface;
-use Mediact\TestingSuite\Composer\MappingResolver;
+use Youwe\PHPTestingSuite\Composer\MappingResolver;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Mediact\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
+use Youwe\PHPTestingSuite\Composer\Installer\ArchiveExcludeInstaller;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\Installer\ArchiveExcludeInstaller
+ * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\Installer\ArchiveExcludeInstaller
  * @SuppressWarnings(PHPMD)
  */
 class ArchiveExcludeInstallerTest extends TestCase

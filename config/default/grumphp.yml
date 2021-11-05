@@ -1,5 +1,5 @@
 parameters:
-  # Default settings for testing suite tasks
+  # Default settings for php testing suite tasks
   composer.strict: true
 
   jsonlint.detect_key_conflicts: true
@@ -55,7 +55,7 @@ parameters:
 
 grumphp:
   extensions:
-    - Mediact\TestingSuite\Composer\GrumPHP\ParameterFixExtension
+    - Youwe\PHPTestingSuite\Composer\GrumPHP\ParameterFixExtension
 
   ascii:
     failed: ~

@@ -5,7 +5,7 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Factory;
+namespace Youwe\PHPTestingSuite\Composer\Factory;
 
 use Symfony\Component\Process\Process;
 

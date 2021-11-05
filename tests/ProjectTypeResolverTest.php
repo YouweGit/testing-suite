@@ -5,16 +5,16 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Tests;
+namespace Youwe\PHPTestingSuite\Composer\Tests;
 
 use Composer\Config;
 use Composer\Package\RootPackageInterface;
 use Composer\Composer;
-use Mediact\TestingSuite\Composer\ProjectTypeResolver;
+use Youwe\PHPTestingSuite\Composer\ProjectTypeResolver;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\ProjectTypeResolver
+ * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\ProjectTypeResolver
  */
 class ProjectTypeResolverTest extends TestCase
 {

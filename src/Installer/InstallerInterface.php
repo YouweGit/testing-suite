@@ -5,7 +5,7 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Installer;
+namespace Youwe\PHPTestingSuite\Composer\Installer;
 
 interface InstallerInterface
 {

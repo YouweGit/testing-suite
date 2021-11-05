@@ -5,13 +5,13 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Installer;
+namespace Youwe\PHPTestingSuite\Composer\Installer;
 
 use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
 use Mediact\FileMapping\FileMappingInterface;
-use Mediact\TestingSuite\Composer\MappingResolver;
+use Youwe\PHPTestingSuite\Composer\MappingResolver;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)
@@ -33,7 +33,6 @@ class ArchiveExcludeInstaller implements InstallerInterface
 
     /** @var array */
     private $defaults = [
-        '/bitbucket-pipelines.yml',
         '/docker-compose.yml',
         '/examples',
         '/example',

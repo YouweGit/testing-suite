@@ -5,12 +5,12 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Installer;
+namespace Youwe\PHPTestingSuite\Composer\Installer;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Mediact\Composer\DependencyInstaller\DependencyInstaller;
-use Mediact\TestingSuite\Composer\ProjectTypeResolver;
+use Youwe\PHPTestingSuite\Composer\ProjectTypeResolver;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)

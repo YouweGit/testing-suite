@@ -5,16 +5,16 @@
  * https://www.mediact.nl
  */
 
-namespace Mediact\TestingSuite\Composer\Tests\Installer;
+namespace Youwe\PHPTestingSuite\Composer\Tests\Installer;
 
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
-use Mediact\TestingSuite\Composer\ConfigResolver;
+use Youwe\PHPTestingSuite\Composer\ConfigResolver;
 use PHPUnit\Framework\TestCase;
-use Mediact\TestingSuite\Composer\Installer\ConfigInstaller;
+use Youwe\PHPTestingSuite\Composer\Installer\ConfigInstaller;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\Installer\ConfigInstaller
+ * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\Installer\ConfigInstaller
  * @SuppressWarnings(PHPMD)
  */
 class ConfigInstallerTest extends TestCase
