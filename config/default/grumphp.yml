@@ -55,7 +55,7 @@ parameters:
 
 grumphp:
   extensions:
-    - Youwe\PHPTestingSuite\Composer\GrumPHP\ParameterFixExtension
+    - Youwe\TestingSuite\Composer\GrumPHP\ParameterFixExtension
 
   ascii:
     failed: ~

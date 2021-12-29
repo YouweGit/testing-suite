@@ -1,10 +1,10 @@
 {
-    "name": "youwe/php-testing-suite",
+    "name": "youwe/testing-suite",
     "description": "Contains Youwe's default testing packages for php.",
     "type": "composer-plugin",
     "license": "MIT",
     "prefer-stable": true,
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Youwe B.V.",
@@ -28,15 +28,37 @@
         "composer-plugin-api": "^1.1 || ^2.0",
         "enlightn/security-checker": "^1.5",
         "kint-php/kint": "@stable",
-        "mediact/coding-standard": "@stable",
-        "mediact/coding-standard-phpstorm": "@stable",
-        "mediact/composer-dependency-installer": "^1.0",
-        "mediact/composer-file-installer": "^1.0",
+        "mediact/coding-standard": "dev-feature/OTPBBBBBZP-117",
+        "mediact/coding-standard-phpstorm": "dev-feature/OTPBBBBBZP-117",
+        "mediact/composer-dependency-installer": "dev-feature/OTPBBBBBZP-117",
+        "mediact/composer-file-installer": "dev-feature/OTPBBBBBZP-117",
         "phpro/grumphp": ">=0.19 <1.0",
         "phpstan/phpstan": "@stable",
         "phpunit/phpunit": "@stable",
         "php-parallel-lint/php-parallel-lint": "^1.2"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/coding-standard"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/coding-standard-phpstorm"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/composer-dependency-installer"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/composer-file-installer"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/file-mapping"
+        }
+    ],
     "require-dev": {
         "composer/composer": "@stable",
         "mikey179/vfsstream": "@stable"
@@ -51,16 +73,16 @@
         "grumphp": {
             "config-default-path": "grumphp.yml"
         },
-        "class": "Youwe\\PHPTestingSuite\\Composer\\Plugin"
+        "class": "Youwe\\TestingSuite\\Composer\\Plugin"
     },
     "autoload": {
         "psr-4": {
-            "Youwe\\PHPTestingSuite\\Composer\\": "src"
+            "Youwe\\TestingSuite\\Composer\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Youwe\\PHPTestingSuite\\Composer\\Tests\\": "tests"
+            "Youwe\\TestingSuite\\Composer\\Tests\\": "tests"
         }
     },
     "archive": {
@@ -73,5 +95,11 @@
             "/phpmd.xml",
             "/phpunit.xml"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "mediact/coding-standard-phpstorm": true,
+            "phpro/grumphp": true
+        }
     }
 }

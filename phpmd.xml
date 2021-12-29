@@ -5,5 +5,5 @@
          xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
          xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
     <description>PHPMD</description>
-    <rule ref="./vendor/mediact/coding-standard/src/MediaCT/phpmd.xml" />
+    <rule ref="./vendor/mediact/coding-standard/src/Global/phpmd.xml" />
 </ruleset>

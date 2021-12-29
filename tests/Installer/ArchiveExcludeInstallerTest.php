@@ -1,25 +1,27 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Youwe\PHPTestingSuite\Composer\Tests\Installer;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer\Tests\Installer;
 
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
-use Mediact\FileMapping\FileMappingInterface;
-use Mediact\FileMapping\FileMappingReaderInterface;
-use Youwe\PHPTestingSuite\Composer\MappingResolver;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Youwe\PHPTestingSuite\Composer\Installer\ArchiveExcludeInstaller;
+use Youwe\FileMapping\FileMappingInterface;
+use Youwe\FileMapping\FileMappingReaderInterface;
+use Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
+use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
- * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\Installer\ArchiveExcludeInstaller
+ * @coversDefaultClass \Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller
  * @SuppressWarnings(PHPMD)
  */
 class ArchiveExcludeInstallerTest extends TestCase

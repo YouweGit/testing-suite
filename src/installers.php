@@ -1,20 +1,22 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-use Mediact\Composer\FileInstaller;
-use Mediact\FileMapping\UnixFileMappingReader;
-use Youwe\PHPTestingSuite\Composer\Factory\ProcessFactory;
-use Youwe\PHPTestingSuite\Composer\Installer\ArchiveExcludeInstaller;
-use Youwe\PHPTestingSuite\Composer\Installer\ConfigInstaller;
-use Youwe\PHPTestingSuite\Composer\Installer\FilesInstaller;
-use Youwe\PHPTestingSuite\Composer\Installer\PackagesInstaller;
-use Youwe\PHPTestingSuite\Composer\MappingResolver;
-use Youwe\PHPTestingSuite\Composer\ProjectTypeResolver;
-use Youwe\PHPTestingSuite\Composer\ConfigResolver;
+declare(strict_types=1);
+
+use Youwe\Composer\FileInstaller;
+use Youwe\FileMapping\UnixFileMappingReader;
+use Youwe\TestingSuite\Composer\ConfigResolver;
+use Youwe\TestingSuite\Composer\Factory\ProcessFactory;
+use Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
+use Youwe\TestingSuite\Composer\Installer\ConfigInstaller;
+use Youwe\TestingSuite\Composer\Installer\FilesInstaller;
+use Youwe\TestingSuite\Composer\Installer\PackagesInstaller;
+use Youwe\TestingSuite\Composer\MappingResolver;
+use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
  * @var Composer\Composer       $composer
@@ -33,5 +35,5 @@ return [
     new FilesInstaller($mappingResolver, $fileInstaller, $io),
     new ArchiveExcludeInstaller($mappingResolver, $io),
     new PackagesInstaller($composer, $typeResolver, $io),
-    new ConfigInstaller($configResolver, $io)
+    new ConfigInstaller($configResolver)
 ];

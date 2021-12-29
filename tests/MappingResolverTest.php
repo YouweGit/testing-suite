@@ -1,19 +1,21 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Youwe\PHPTestingSuite\Composer\Tests;
+declare(strict_types=1);
 
-use Mediact\FileMapping\FileMappingReaderInterface;
-use Youwe\PHPTestingSuite\Composer\ProjectTypeResolver;
+namespace Youwe\TestingSuite\Composer\Tests;
+
 use PHPUnit\Framework\TestCase;
-use Youwe\PHPTestingSuite\Composer\MappingResolver;
+use Youwe\FileMapping\FileMappingReaderInterface;
+use Youwe\TestingSuite\Composer\MappingResolver;
+use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
- * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\MappingResolver
+ * @coversDefaultClass \Youwe\TestingSuite\Composer\MappingResolver
  */
 class MappingResolverTest extends TestCase
 {

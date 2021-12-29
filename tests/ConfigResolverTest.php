@@ -1,19 +1,21 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Youwe\PHPTestingSuite\Composer\Tests;
+declare(strict_types=1);
 
-use Youwe\PHPTestingSuite\Composer\ProjectTypeResolver;
+namespace Youwe\TestingSuite\Composer\Tests;
+
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
-use Youwe\PHPTestingSuite\Composer\ConfigResolver;
+use Youwe\TestingSuite\Composer\ConfigResolver;
+use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
- * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\ConfigResolver
+ * @coversDefaultClass \Youwe\TestingSuite\Composer\ConfigResolver
  * @SuppressWarnings(PHPMD)
  */
 class ConfigResolverTest extends TestCase

@@ -1,11 +1,13 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Youwe\PHPTestingSuite\Composer\Installer;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer\Installer;
 
 interface InstallerInterface
 {

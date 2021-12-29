@@ -1,20 +1,22 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Youwe\PHPTestingSuite\Composer\Tests\Installer;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer\Tests\Installer;
 
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
-use Youwe\PHPTestingSuite\Composer\ConfigResolver;
 use PHPUnit\Framework\TestCase;
-use Youwe\PHPTestingSuite\Composer\Installer\ConfigInstaller;
+use Youwe\TestingSuite\Composer\ConfigResolver;
+use Youwe\TestingSuite\Composer\Installer\ConfigInstaller;
 
 /**
- * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\Installer\ConfigInstaller
+ * @coversDefaultClass \Youwe\TestingSuite\Composer\Installer\ConfigInstaller
  * @SuppressWarnings(PHPMD)
  */
 class ConfigInstallerTest extends TestCase
@@ -28,10 +30,9 @@ class ConfigInstallerTest extends TestCase
     public function testInstall(): void
     {
         $resolver = $this->createMock(ConfigResolver::class);
-        $io       = $this->createMock(IOInterface::class);
         $file     = $this->createMock(JsonFile::class);
 
-        $installer = new ConfigInstaller($resolver, $io, $file);
+        $installer = new ConfigInstaller($resolver, $file);
 
         $resolverOutput = [
             'sort-packages' => true

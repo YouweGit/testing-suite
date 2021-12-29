@@ -1,20 +1,22 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Youwe\PHPTestingSuite\Composer\Tests;
+declare(strict_types=1);
 
+namespace Youwe\TestingSuite\Composer\Tests;
+
+use Composer\Composer;
 use Composer\Config;
 use Composer\Package\RootPackageInterface;
-use Composer\Composer;
-use Youwe\PHPTestingSuite\Composer\ProjectTypeResolver;
 use PHPUnit\Framework\TestCase;
+use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
- * @coversDefaultClass \Youwe\PHPTestingSuite\Composer\ProjectTypeResolver
+ * @coversDefaultClass \Youwe\TestingSuite\Composer\ProjectTypeResolver
  */
 class ProjectTypeResolverTest extends TestCase
 {
