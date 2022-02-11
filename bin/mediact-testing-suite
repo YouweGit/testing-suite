@@ -1,7 +1,7 @@
 #!/bin/bash
 COMPOSER=$(which composer.phar || which composer)
 VENDOR=$($COMPOSER config vendor-dir)
-SCRIPTDIR="$VENDOR/youwe/php-testing-suite/bin/"
+SCRIPTDIR="$VENDOR/youwe/testing-suite/bin/"
 if [ ! -d "$SCRIPTDIR" ]
 then
   SCRIPTDIR=$(dirname "${BASH_SOURCE[0]}")
