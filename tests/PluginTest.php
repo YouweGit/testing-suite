@@ -1,21 +1,23 @@
 <?php
 
 /**
- * Copyright Mediact. All rights reserved.
- * https://www.Mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\TestingSuite\Composer\Tests;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer\Tests;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
-use Mediact\TestingSuite\Composer\Installer\InstallerInterface;
-use Mediact\TestingSuite\Composer\Plugin;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
+use Youwe\TestingSuite\Composer\Installer\InstallerInterface;
+use Youwe\TestingSuite\Composer\Plugin;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\Plugin
+ * @coversDefaultClass \Youwe\TestingSuite\Composer\Plugin
  * @SuppressWarnings(PHPMD)
  */
 class PluginTest extends TestCase

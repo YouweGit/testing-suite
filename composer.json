@@ -1,14 +1,14 @@
 {
-    "name": "mediact/testing-suite",
-    "description": "Contains MediaCT's default testing packages.",
+    "name": "youwe/testing-suite",
+    "description": "Contains Youwe's default testing packages for php.",
     "type": "composer-plugin",
     "license": "MIT",
     "prefer-stable": true,
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "authors": [
         {
-            "name": "MediaCT B.V.",
-            "email": "contact@mediact.nl"
+            "name": "Youwe B.V.",
+            "email": "support@youweagency.com"
         },
         {
             "name": "Len Lorijn",
@@ -17,23 +17,48 @@
         {
             "name": "Jan-Marten de Boer",
             "role": "developer"
+        },
+        {
+            "name": "Leon Helmus",
+            "role": "developer"
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "composer-plugin-api": "^1.1 || ^2.0",
         "enlightn/security-checker": "^1.5",
         "kint-php/kint": "@stable",
-        "mediact/coding-standard": "@stable",
-        "mediact/coding-standard-phpstorm": "@stable",
-        "mediact/composer-dependency-installer": "^1.0",
-        "mediact/composer-file-installer": "^1.0",
-        "mediact/composer-unclog-plugin": "^1.0",
+        "youwe/coding-standard": "dev-master",
+        "youwe/coding-standard-phpstorm": "dev-master",
+        "youwe/composer-dependency-installer": "dev-master",
+        "youwe/composer-file-installer": "dev-master",
         "phpro/grumphp": ">=0.19 <1.0",
         "phpstan/phpstan": "@stable",
         "phpunit/phpunit": "@stable",
         "php-parallel-lint/php-parallel-lint": "^1.2"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/coding-standard"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/coding-standard-phpstorm"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/composer-dependency-installer"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/composer-file-installer"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/YouweGit/file-mapping"
+        }
+    ],
     "require-dev": {
         "composer/composer": "@stable",
         "mikey179/vfsstream": "@stable"
@@ -42,22 +67,22 @@
         "sensiolabs/security-checker": "*"
     },
     "bin": [
-        "bin/mediact-testing-suite"
+        "bin/youwe-testing-suite"
     ],
     "extra": {
         "grumphp": {
             "config-default-path": "grumphp.yml"
         },
-        "class": "Mediact\\TestingSuite\\Composer\\Plugin"
+        "class": "Youwe\\TestingSuite\\Composer\\Plugin"
     },
     "autoload": {
         "psr-4": {
-            "Mediact\\TestingSuite\\Composer\\": "src"
+            "Youwe\\TestingSuite\\Composer\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Mediact\\TestingSuite\\Composer\\Tests\\": "tests"
+            "Youwe\\TestingSuite\\Composer\\Tests\\": "tests"
         }
     },
     "archive": {
@@ -70,5 +95,11 @@
             "/phpmd.xml",
             "/phpunit.xml"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "mediact/coding-standard-phpstorm": true,
+            "phpro/grumphp": true
+        }
     }
 }

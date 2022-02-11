@@ -1,15 +1,17 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\TestingSuite\Composer\Installer;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer\Installer;
 
 use Composer\IO\IOInterface;
-use Mediact\Composer\FileInstaller as ComposerFileInstaller;
-use Mediact\TestingSuite\Composer\MappingResolver;
+use Youwe\Composer\FileInstaller as ComposerFileInstaller;
+use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)

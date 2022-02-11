@@ -1,17 +1,19 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\TestingSuite\Composer\Installer;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer\Installer;
 
 use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
-use Mediact\FileMapping\FileMappingInterface;
-use Mediact\TestingSuite\Composer\MappingResolver;
+use Youwe\FileMapping\FileMappingInterface;
+use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)
@@ -33,7 +35,6 @@ class ArchiveExcludeInstaller implements InstallerInterface
 
     /** @var array */
     private $defaults = [
-        '/bitbucket-pipelines.yml',
         '/docker-compose.yml',
         '/examples',
         '/example',

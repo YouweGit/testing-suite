@@ -1,21 +1,22 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-use Mediact\Composer\FileInstaller;
-use Mediact\FileMapping\UnixFileMappingReader;
-use Mediact\TestingSuite\Composer\Factory\ProcessFactory;
-use Mediact\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
-use Mediact\TestingSuite\Composer\Installer\ConfigInstaller;
-use Mediact\TestingSuite\Composer\Installer\FilesInstaller;
-use Mediact\TestingSuite\Composer\Installer\PackagesInstaller;
-use Mediact\TestingSuite\Composer\Installer\PipelinesInstaller;
-use Mediact\TestingSuite\Composer\MappingResolver;
-use Mediact\TestingSuite\Composer\ProjectTypeResolver;
-use Mediact\TestingSuite\Composer\ConfigResolver;
+declare(strict_types=1);
+
+use Youwe\Composer\FileInstaller;
+use Youwe\FileMapping\UnixFileMappingReader;
+use Youwe\TestingSuite\Composer\ConfigResolver;
+use Youwe\TestingSuite\Composer\Factory\ProcessFactory;
+use Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
+use Youwe\TestingSuite\Composer\Installer\ConfigInstaller;
+use Youwe\TestingSuite\Composer\Installer\FilesInstaller;
+use Youwe\TestingSuite\Composer\Installer\PackagesInstaller;
+use Youwe\TestingSuite\Composer\MappingResolver;
+use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
  * @var Composer\Composer       $composer
@@ -34,6 +35,5 @@ return [
     new FilesInstaller($mappingResolver, $fileInstaller, $io),
     new ArchiveExcludeInstaller($mappingResolver, $io),
     new PackagesInstaller($composer, $typeResolver, $io),
-    new PipelinesInstaller($fileInstaller, $io, $processFactory, $typeResolver),
-    new ConfigInstaller($configResolver, $io)
+    new ConfigInstaller($configResolver)
 ];

@@ -1,16 +1,18 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\TestingSuite\Composer\Installer;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer\Installer;
 
 use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
-use Mediact\TestingSuite\Composer\ConfigResolver;
+use Youwe\TestingSuite\Composer\ConfigResolver;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)
@@ -24,23 +26,17 @@ class ConfigInstaller implements InstallerInterface
     /** @var ConfigResolver */
     private $resolver;
 
-    /** @var IOInterface */
-    private $io;
-
     /**
      * Constructor.
      *
      * @param ConfigResolver $resolver
-     * @param IOInterface    $io
      * @param JsonFile|null  $file
      */
     public function __construct(
         ConfigResolver $resolver,
-        IOInterface $io,
         JsonFile $file = null
     ) {
         $this->resolver = $resolver;
-        $this->io       = $io;
         $this->file     = $file ?? new JsonFile(Factory::getComposerFile());
     }
 

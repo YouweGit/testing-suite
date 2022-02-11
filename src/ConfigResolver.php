@@ -1,11 +1,13 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\TestingSuite\Composer;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer;
 
 class ConfigResolver
 {

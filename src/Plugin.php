@@ -1,12 +1,19 @@
 <?php
 
-namespace Mediact\TestingSuite\Composer;
+/**
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
+ */
+
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer;
 
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
-use Mediact\TestingSuite\Composer\Installer\InstallerInterface;
+use Youwe\TestingSuite\Composer\Installer\InstallerInterface;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)

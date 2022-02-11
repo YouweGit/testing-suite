@@ -1,23 +1,25 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\TestingSuite\Composer\Tests\Installer;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer\Tests\Installer;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Composer\Package\Link;
 use Composer\Package\Package;
-use Mediact\Composer\DependencyInstaller\DependencyInstaller;
-use Mediact\TestingSuite\Composer\ProjectTypeResolver;
 use PHPUnit\Framework\TestCase;
-use Mediact\TestingSuite\Composer\Installer\PackagesInstaller;
+use Youwe\Composer\DependencyInstaller\DependencyInstaller;
+use Youwe\TestingSuite\Composer\Installer\PackagesInstaller;
+use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\Installer\PackagesInstaller
+ * @coversDefaultClass \Youwe\TestingSuite\Composer\Installer\PackagesInstaller
  * @SuppressWarnings(PHPMD)
  */
 class PackagesInstallerTest extends TestCase

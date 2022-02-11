@@ -1,18 +1,20 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
-namespace Mediact\TestingSuite\Composer\Tests\Factory;
+declare(strict_types=1);
+
+namespace Youwe\TestingSuite\Composer\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
-use Mediact\TestingSuite\Composer\Factory\ProcessFactory;
 use Symfony\Component\Process\Process;
+use Youwe\TestingSuite\Composer\Factory\ProcessFactory;
 
 /**
- * @coversDefaultClass \Mediact\TestingSuite\Composer\Factory\ProcessFactory
+ * @coversDefaultClass \Youwe\TestingSuite\Composer\Factory\ProcessFactory
  */
 class ProcessFactoryTest extends TestCase
 {

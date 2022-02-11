@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Copyright MediaCT. All rights reserved.
- * https://www.mediact.nl
+ * Copyright Youwe. All rights reserved.
+ * https://www.youweagency.com
  */
 
 declare(strict_types=1);
 
-namespace Mediact\TestingSuite\Composer\GrumPHP;
+namespace Youwe\TestingSuite\Composer\GrumPHP;
 
 use GrumPHP\Extension\ExtensionInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

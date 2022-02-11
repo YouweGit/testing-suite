@@ -1,14 +1,14 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mediact/testing-suite/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mediact/testing-suite/?branch=master)
 
-# MediaCT Testing Suite
+# Youwe Testing Suite
 
-This package serves as an umbrella package for several of MediaCT's testing 
+This package serves as an umbrella package for several of Youwe's testing 
 packages.
 
 # Installation
 
 ```
-composer require mediact/testing-suite --dev
+composer require youwe/testing-suite --dev
 ```
 
 # Usage
@@ -29,18 +29,18 @@ The following components are part of the testing suite.
 ## Coding style validation (PHPCS)
 
 The coding style is validated using PHPCS and uses the 
-[MediaCT Coding Standard](https://github.com/mediact/coding-standard).
+[Youwe Coding Standard](https://github.com/YouweGit/coding-standard).
 
 During the installation of the testing suite a file called `phpcs.xml` is added to
 the root of the repository which refers to the coding standard. To make
 adjustments to the coding standard this file can be edited and committed.
 
-Depending on the composer type of the project an other standard will be used:
+Depending on the composer type of the project another standard will be used:
 
-- `magento-module`: [MediaCT Coding Standard Magento1](https://github.com/mediact/coding-standard-magento1)
-- `magento2-module`: [MediaCT Coding Standard Magento2](https://github.com/mediact/coding-standard-magento2)
-- `magento-project`: [MediaCT Coding Standard Magento1](https://github.com/mediact/coding-standard-magento1)
-- `magento2-project`: [MediaCT Coding Standard Magento2](https://github.com/mediact/coding-standard-magento2)
+- `magento-module`: [Youwe Coding Standard Magento1](https://github.com/YouweGit/coding-standard-magento1)
+- `magento2-module`: [Youwe Coding Standard Magento2](https://github.com/YouweGit/coding-standard-magento2)
+- `magento-project`: [Youwe Coding Standard Magento1](https://github.com/YouweGit/coding-standard-magento1)
+- `magento2-project`: [Youwe Coding Standard Magento2](https://github.com/YouweGit/coding-standard-magento2)
 
 ### Overriding the type
 
@@ -56,7 +56,7 @@ The configurations looks like the following:
 ```json
 {
   "config": {
-    "mediact-testing-suite": {
+    "youwe-testing-suite": {
       "type": "magento2"
     }
   }
@@ -126,7 +126,7 @@ The recommended way to get the correct binaries is by installing the MediaCT
 Coding Standard globally.
 
 ```
-composer global require mediact/coding-standard
+composer global require youwe/coding-standard
 ```
 
 The package will be installed in the home directory of composer. The location
