@@ -19,7 +19,7 @@ class ProjectTypeResolver
     /**
      * The key from the composer configuration which contains other configuration.
      */
-    public const COMPOSER_CONFIG_KEY = 'mediact-testing-suite';
+    public const COMPOSER_CONFIG_KEY = 'youwe-testing-suite';
 
     /**
      * The key in the configuration, which determines the overwrite for the type.
