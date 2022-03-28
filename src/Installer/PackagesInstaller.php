@@ -37,13 +37,13 @@ class PackagesInstaller implements InstallerInterface
         'magento1' => [
             [
                 'name' => 'youwe/coding-standard-magento1',
-                'version' => 'dev-master'
+                'version' => '@stable'
             ]
         ],
         'magento2' => [
             [
                 'name' => 'youwe/coding-standard-magento2',
-                'version' => 'dev-master'
+                'version' => '@stable'
             ]
         ],
         'laravel' => [

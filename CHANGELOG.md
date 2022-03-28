@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Vendor name from Mediact to Youwe.
+- `grumphp.yml` now uses `securitychecker_enlightn` instead of `securitychecker` which caused an error with
+  new version of grumphp.
 
 ### Removed
 - bitbucket pipeline file. This will be added by a different module.

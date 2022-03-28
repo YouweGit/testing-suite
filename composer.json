@@ -4,11 +4,11 @@
     "type": "composer-plugin",
     "license": "MIT",
     "prefer-stable": true,
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Youwe B.V.",
-            "email": "support@youweagency.com"
+            "email": "info@youweagency.com"
         },
         {
             "name": "Len Lorijn",
@@ -28,37 +28,15 @@
         "composer-plugin-api": "^1.1 || ^2.0",
         "enlightn/security-checker": "^1.5",
         "kint-php/kint": "@stable",
-        "youwe/coding-standard": "dev-master",
-        "youwe/coding-standard-phpstorm": "dev-master",
-        "youwe/composer-dependency-installer": "dev-master",
-        "youwe/composer-file-installer": "dev-master",
-        "phpro/grumphp": ">=0.19 <1.0",
+        "youwe/coding-standard": "~3.3.0",
+        "youwe/coding-standard-phpstorm": "~2.3.0",
+        "youwe/composer-dependency-installer": "~1.2.0",
+        "youwe/composer-file-installer": "~1.2.0",
+        "phpro/grumphp": "@stable",
         "phpstan/phpstan": "@stable",
         "phpunit/phpunit": "@stable",
         "php-parallel-lint/php-parallel-lint": "^1.2"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/coding-standard"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/coding-standard-phpstorm"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/composer-dependency-installer"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/composer-file-installer"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/YouweGit/file-mapping"
-        }
-    ],
     "require-dev": {
         "composer/composer": "@stable",
         "mikey179/vfsstream": "@stable"
@@ -97,8 +75,9 @@
         ]
     },
     "config": {
+        "sort-packages": true,
         "allow-plugins": {
-            "mediact/coding-standard-phpstorm": true,
+            "youwe/coding-standard-phpstorm": true,
             "phpro/grumphp": true
         }
     }

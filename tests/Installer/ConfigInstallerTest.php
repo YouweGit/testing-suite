@@ -77,7 +77,7 @@ class ConfigInstallerTest extends TestCase
                 [
                     'extra' => [
                         'grumphp' => [
-                            'config-default-path' => 'vendor/mediact/testing-suite/config/default/grumphp.yml'
+                            'config-default-path' => 'vendor/youwe/testing-suite/config/default/grumphp.yml'
                         ]
                     ]
                 ]
