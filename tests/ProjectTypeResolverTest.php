@@ -31,7 +31,7 @@ class ProjectTypeResolverTest extends TestCase
      * @covers ::__construct
      * @covers ::resolve
      */
-    public function testToString(string $packageType, string $expected)
+    public function testToString(string $packageType, string $expected): void
     {
         $composer = $this->createMock(Composer::class);
         $package  = $this->createMock(RootPackageInterface::class);
@@ -46,12 +46,6 @@ class ProjectTypeResolverTest extends TestCase
             ->expects(self::once())
             ->method('getConfig')
             ->willReturn($config);
-
-        $config
-            ->expects(self::once())
-            ->method('has')
-            ->with(ProjectTypeResolver::COMPOSER_CONFIG_KEY)
-            ->willReturn(false);
 
         $package
             ->expects(self::once())
@@ -68,7 +62,7 @@ class ProjectTypeResolverTest extends TestCase
      * @covers ::__construct
      * @covers ::resolve
      */
-    public function testToStringOverwrite()
+    public function testToStringOverwrite(): void
     {
         $composer = $this->createMock(Composer::class);
         $config   = $this->createMock(Config::class);
@@ -85,13 +79,13 @@ class ProjectTypeResolverTest extends TestCase
         $config
             ->expects(self::once())
             ->method('has')
-            ->with(ProjectTypeResolver::COMPOSER_CONFIG_KEY)
+            ->with('youwe-testing-suite')
             ->willReturn(true);
 
         $config
             ->expects(self::once())
             ->method('get')
-            ->with(ProjectTypeResolver::COMPOSER_CONFIG_KEY)
+            ->with('youwe-testing-suite')
             ->willReturn(['type' => 'magento2']);
 
         $decider = new ProjectTypeResolver($composer);

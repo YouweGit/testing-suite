@@ -48,4 +48,9 @@ class MappingResolver
             ...$files
         );
     }
+
+    public function getTypeResolver(): ProjectTypeResolver
+    {
+        return $this->typeResolver;
+    }
 }

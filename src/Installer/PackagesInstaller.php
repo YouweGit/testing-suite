@@ -82,7 +82,7 @@ class PackagesInstaller implements InstallerInterface
      *
      * @return void
      */
-    public function install()
+    public function install(): void
     {
         $type = $this->typeResolver->resolve();
         if (!isset($this->mapping[$type])) {

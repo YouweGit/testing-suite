@@ -19,7 +19,10 @@ class ProjectTypeResolver
     /**
      * The key from the composer configuration which contains other configuration.
      */
-    public const COMPOSER_CONFIG_KEY = 'youwe-testing-suite';
+    public const COMPOSER_CONFIG_KEYS = [
+        'youwe-testing-suite',
+        'mediact-testing-suite'
+    ];
 
     /**
      * The key in the configuration, which determines the overwrite for the type.
@@ -60,10 +63,12 @@ class ProjectTypeResolver
     {
         $config = $this->composer->getConfig();
 
-        if ($config->has(static::COMPOSER_CONFIG_KEY)) {
-            $configNode = $config->get(static::COMPOSER_CONFIG_KEY);
-            if (isset($configNode[static::COMPOSER_CONFIG_TYPE_KEY])) {
-                return $configNode[static::COMPOSER_CONFIG_TYPE_KEY];
+        foreach (static::COMPOSER_CONFIG_KEYS as $key) {
+            if ($config->has($key)) {
+                $configNode = $config->get($key);
+                if (isset($configNode[static::COMPOSER_CONFIG_TYPE_KEY])) {
+                    return $configNode[static::COMPOSER_CONFIG_TYPE_KEY];
+                }
             }
         }
 
