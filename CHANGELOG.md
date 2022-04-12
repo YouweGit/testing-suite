@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Versions of packages required are now not using `@stable` anymore.
+- Versions of packages can now be updated.
 
 ## 2.10.0 - 2021-03-10
 ### Added

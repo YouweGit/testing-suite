@@ -42,20 +42,9 @@ class PackagesInstallerTest extends TestCase
         array $expected = null
     ) {
         $composer     = $this->createMock(Composer::class);
-        $package      = $this->createMock(Package::class);
         $typeResolver = $this->createMock(ProjectTypeResolver::class);
         $depInstaller = $this->createMock(DependencyInstaller::class);
         $io           = $this->createMock(IOInterface::class);
-
-        $composer
-            ->expects(self::any())
-            ->method('getPackage')
-            ->willReturn($package);
-
-        $package
-            ->expects(self::any())
-            ->method('getRequires')
-            ->willReturn($requires);
 
         $typeResolver
             ->expects(self::any())
@@ -99,7 +88,7 @@ class PackagesInstallerTest extends TestCase
                 $this->createLinkMocks(
                     ['foo/bar', 'youwe/coding-standard-magento1']
                 ),
-                null
+                [['youwe/coding-standard-magento1']]
             ],
             [
                 'magento2',

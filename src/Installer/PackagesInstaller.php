@@ -38,19 +38,22 @@ class PackagesInstaller implements InstallerInterface
         'magento1' => [
             [
                 'name' => 'youwe/coding-standard-magento1',
-                'version' => '^1.3.0'
+                'version' => '^1.3.0',
+                'dev' => true
             ]
         ],
         'magento2' => [
             [
                 'name' => 'youwe/coding-standard-magento2',
-                'version' => '^1.7.0'
+                'version' => '^1.7.0',
+                'dev' => true
             ]
         ],
         'laravel' => [
             [
                 'name' => 'elgentos/laravel-coding-standard',
-                'version' => '^1.0.0'
+                'version' => '^1.0.0',
+                'dev' => true
             ]
         ]
     ];
@@ -91,7 +94,7 @@ class PackagesInstaller implements InstallerInterface
         }
 
         foreach ($this->mapping[$type] as $package) {
-            if (!$this->isPackageRequired($package['name'])) {
+            if (!$this->isPackageRequired($package['name'], $package['version'])) {
                 $this->io->write(
                     sprintf('Requiring package %s', $package['name'])
                 );
@@ -111,10 +114,16 @@ class PackagesInstaller implements InstallerInterface
      *
      * @return bool
      */
-    private function isPackageRequired(string $packageName): bool
+    private function isPackageRequired(string $packageName, string $version): bool
     {
         foreach ($this->composer->getPackage()->getRequires() as $require) {
-            if ($require->getTarget() === $packageName) {
+            if ($require->getTarget() === $packageName && $require->getPrettyConstraint() === $version) {
+                return true;
+            }
+        }
+
+        foreach ($this->composer->getPackage()->getDevRequires() as $devRequire) {
+            if ($devRequire->getTarget() === $packageName && $devRequire->getPrettyConstraint() === $version) {
                 return true;
             }
         }

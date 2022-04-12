@@ -72,12 +72,16 @@ class FilesInstaller implements InstallerInterface
     /**
      * @param FileMappingInterface $unixFileMapping
      *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     *
      * @return void
      */
     private function resolveYouwePathing(FileMappingInterface $unixFileMapping): void
     {
-        if ($this->mappingResolver->getTypeResolver()->resolve() === 'magento2') {
-            if ($unixFileMapping->getRelativeDestination() === "phpcs.xml") {
+        $name = $unixFileMapping->getRelativeDestination();
+
+        if ($this->mappingResolver->getTypeResolver()->resolve() === 'magento2' && !in_array($name, ['grumphp.yml'])) {
+            if ($name === "phpcs.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     [
@@ -86,7 +90,7 @@ class FilesInstaller implements InstallerInterface
                     ],
                     './vendor/youwe/coding-standard-magento2/src/Magento2'
                 );
-            } elseif ($unixFileMapping->getRelativeDestination() === "phpmd.xml") {
+            } elseif ($name === "phpmd.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     [
@@ -97,7 +101,7 @@ class FilesInstaller implements InstallerInterface
                 );
             }
         } elseif ($this->mappingResolver->getTypeResolver()->resolve() === 'magento') {
-            if ($unixFileMapping->getRelativeDestination() === "phpcs.xml") {
+            if ($name === "phpcs.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     ['./vendor/mediact/coding-standard-magento1/src/MediactMagento1'],
@@ -105,19 +109,19 @@ class FilesInstaller implements InstallerInterface
                 );
             }
         } else {
-            if ($unixFileMapping->getRelativeDestination() === "phpcs.xml") {
+            if ($name === "phpcs.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     ['./vendor/mediact/coding-standard/src/MediaCT'],
                     './vendor/youwe/coding-standard/src/Global'
                 );
-            } elseif ($unixFileMapping->getRelativeDestination() === "phpmd.xml") {
+            } elseif ($name === "phpmd.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     ['./vendor/mediact/coding-standard/src/MediaCT/phpmd.xml'],
                     './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
                 );
-            } elseif ($unixFileMapping->getRelativeDestination() === "grumphp.yml") {
+            } elseif ($name === "grumphp.yml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     ['vendor/mediact/testing-suite/config/default/grumphp.yml'],
