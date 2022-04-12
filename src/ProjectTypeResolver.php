@@ -42,6 +42,8 @@ class ProjectTypeResolver
         'laravel-project' => 'laravel',
     ];
 
+    public const DEFAULT_PROJECT_TYPE = 'default';
+
     /**
      * Constructor.
      *
@@ -76,6 +78,6 @@ class ProjectTypeResolver
 
         return array_key_exists($packageType, $this->mapping)
             ? $this->mapping[$packageType]
-            : 'default';
+            : self::DEFAULT_PROJECT_TYPE;
     }
 }
