@@ -12,6 +12,7 @@ namespace Youwe\TestingSuite\Composer\Installer;
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Youwe\Composer\DependencyInstaller\DependencyInstaller;
+use Youwe\TestingSuite\Composer\MappingResolver;
 use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
@@ -33,23 +34,26 @@ class PackagesInstaller implements InstallerInterface
 
     /** @var array */
     private $mapping = [
-        'default' => [],
+        MappingResolver::DEFAULT_MAPPING_TYPE => [],
         'magento1' => [
             [
                 'name' => 'youwe/coding-standard-magento1',
-                'version' => '@stable'
+                'version' => '^1.3.0',
+                'dev' => true
             ]
         ],
         'magento2' => [
             [
                 'name' => 'youwe/coding-standard-magento2',
-                'version' => '@stable'
+                'version' => '^1.7.0',
+                'dev' => true
             ]
         ],
         'laravel' => [
             [
                 'name' => 'elgentos/laravel-coding-standard',
-                'version' => '@stable'
+                'version' => '^1.0.0',
+                'dev' => true
             ]
         ]
     ];
@@ -82,7 +86,7 @@ class PackagesInstaller implements InstallerInterface
      *
      * @return void
      */
-    public function install()
+    public function install(): void
     {
         $type = $this->typeResolver->resolve();
         if (!isset($this->mapping[$type])) {
@@ -90,7 +94,7 @@ class PackagesInstaller implements InstallerInterface
         }
 
         foreach ($this->mapping[$type] as $package) {
-            if (!$this->isPackageRequired($package['name'])) {
+            if (!$this->isPackageRequired($package['name'], $package['version'])) {
                 $this->io->write(
                     sprintf('Requiring package %s', $package['name'])
                 );
@@ -110,10 +114,16 @@ class PackagesInstaller implements InstallerInterface
      *
      * @return bool
      */
-    private function isPackageRequired(string $packageName): bool
+    private function isPackageRequired(string $packageName, string $version): bool
     {
         foreach ($this->composer->getPackage()->getRequires() as $require) {
-            if ($require->getTarget() === $packageName) {
+            if ($require->getTarget() === $packageName && $require->getPrettyConstraint() === $version) {
+                return true;
+            }
+        }
+
+        foreach ($this->composer->getPackage()->getDevRequires() as $devRequire) {
+            if ($devRequire->getTarget() === $packageName && $devRequire->getPrettyConstraint() === $version) {
                 return true;
             }
         }

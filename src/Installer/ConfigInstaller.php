@@ -45,7 +45,7 @@ class ConfigInstaller implements InstallerInterface
      *
      * @return void
      */
-    public function install()
+    public function install(): void
     {
         $definition = $this->file->read();
         $config     = $definition['config'] ?? [];

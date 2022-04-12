@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.11.0 - 2022-04-10
+### Fixed
+- Old pathing to Mediact pathing in files `phpcs.xml`, `phpmd.xml` & `grumphp.yml` will now be replaced by 
+  Youwe pathing to prevent error of phpcs/phpmd/grumphp.
+
+### Changed
+- Versions of packages required are now not using `@stable` anymore.
+- Versions of packages can now be updated.
 
 ## 2.10.0 - 2021-03-10
 ### Added

@@ -72,7 +72,7 @@ class ArchiveExcludeInstaller implements InstallerInterface
      *
      * @return void
      */
-    public function install()
+    public function install(): void
     {
         $definition = $this->file->read();
         $excluded   = $definition['archive']['exclude'] ?? [];

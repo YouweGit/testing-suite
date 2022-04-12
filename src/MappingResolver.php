@@ -17,6 +17,8 @@ class MappingResolver
     /** @var ProjectTypeResolver */
     private $typeResolver;
 
+    public const DEFAULT_MAPPING_TYPE = 'default';
+
     /**
      * Constructor.
      *
@@ -47,5 +49,10 @@ class MappingResolver
             getcwd(),
             ...$files
         );
+    }
+
+    public function getTypeResolver(): ProjectTypeResolver
+    {
+        return $this->typeResolver;
     }
 }

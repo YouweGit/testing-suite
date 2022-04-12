@@ -21,7 +21,7 @@ use Youwe\TestingSuite\Composer\Installer\FilesInstaller;
 use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
- * @coversDefaultClass \Youwe\TestingSuite\Composer\Installer\FilesInstaller
+ * @coversDefaultClass FilesInstaller
  * @SuppressWarnings(PHPMD)
  */
 class FilesInstallerTest extends TestCase
