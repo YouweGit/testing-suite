@@ -1,0 +1,15 @@
+name: Testing Suite
+on: [push]
+jobs:
+  PHP-8-1:
+    runs-on: srcoder/development-php:php81-fpm
+    steps:
+      - run: ./testing-suite.sh
+  PHP-8-0:
+    runs-on: srcoder/development-php:php80-fpm
+    steps:
+      - run: ./testing-suite.sh
+  PHP-7-4:
+    runs-on: srcoder/development-php:php74-fpm
+    steps:
+      - run: ./testing-suite.sh

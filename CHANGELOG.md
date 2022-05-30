@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.12 - 2022-05-30
+### Added
+- PHP 8 compatibility.
+- GitHub Actions Workflow to run testing-suite for PHP 7.4, 8.0 and 8.1.
+
 ## 2.11.1 - 2022-04-10
 ### Changed
 - Minimum stability to test require packages in a project.
