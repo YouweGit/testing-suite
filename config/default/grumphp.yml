@@ -54,9 +54,6 @@ parameters:
   git_blacklist.match_word: false
 
 grumphp:
-  extensions:
-    - Youwe\TestingSuite\Composer\GrumPHP\ParameterFixExtension
-
   ascii:
     failed: ~
     succeeded: ~
