@@ -78,7 +78,6 @@
         "sort-packages": true,
         "allow-plugins": {
             "youwe/coding-standard-phpstorm": true,
-            "phpro/grumphp": true,
             "phpro/grumphp-shim": true
         }
     }
