@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.13 - 2022-08-02
+### Changed
+- Dependency `phpro/grumphp` now we prefer `phpro/grumphp-shim` which is a `phar`
+  package which is not dependent on dependencies of the project the testing suite
+  is installed in.
+
+### Removed
+- Extension Youwe\TestingSuite\Composer\GrumPHP\ParameterFixExtension since we now prefer 
+  `phpro/grumphp-shim` over `phpro/grumphp`. This extension is used to resolve env
+  variables in tasks and since we do not do that it's removed.
+
 ## 2.12 - 2022-05-30
 ### Added
 - PHP 8 compatibility.
