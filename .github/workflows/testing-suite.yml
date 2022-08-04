@@ -1,3 +1,5 @@
+name: Testing Suite
+on: [push]
 jobs:
   PHP:
     strategy:
