@@ -4,7 +4,11 @@ jobs:
   PHP:
     strategy:
       matrix:
-        image: [srcoder/development-php:php74-fpm, srcoder/development-php:php80-fpm, srcoder/development-php:php81-fpm]
+        image: [
+          'srcoder/development-php:php74-fpm',
+          'srcoder/development-php:php80-fpm',
+          'srcoder/development-php:php81-fpm'
+        ]
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}
