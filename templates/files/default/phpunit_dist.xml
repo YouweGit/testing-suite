@@ -3,8 +3,10 @@
           bootstrap="vendor/autoload.php"
           cacheResult="false">
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
+        <coverage processUncoveredFilesFromWhitelist="true">
+            <include>
+                <directory suffix=".php">src</directory>
+            <include>
+        </coverage>
     </filter>
 </phpunit>
