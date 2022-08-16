@@ -1,15 +1,23 @@
 name: Testing Suite
 on: [push]
 jobs:
-  PHP-8-1:
-    runs-on: srcoder/development-php:php81-fpm
+  PHP:
+    strategy:
+      matrix:
+        image: [
+          'srcoder/development-php:php74-fpm',
+          'srcoder/development-php:php80-fpm',
+          'srcoder/development-php:php81-fpm'
+        ]
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.image }}
     steps:
-      - run: ./testing-suite.sh
-  PHP-8-0:
-    runs-on: srcoder/development-php:php80-fpm
-    steps:
-      - run: ./testing-suite.sh
-  PHP-7-4:
-    runs-on: srcoder/development-php:php74-fpm
-    steps:
-      - run: ./testing-suite.sh
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Testing Suite
+        run: |
+          composer2 install --dev --prefer-dist --no-scripts --no-progress --optimize-autoloader --no-interaction -vvv
+          composer2 show
+          composer2 exec -v grumphp run
+        shell: bash
