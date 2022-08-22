@@ -1,13 +1,12 @@
 # Project Type Detector
 
+@TODO: rewrite this section.
+
 The type for a project can be overridden in the composer.json `config` node by
 adding `testing-suite-type` to the configuration.
 This will allow the use of standards for a different type.
-The allowed values for this node are:
-- magento1
-- magento2
-- default
-@TODO add full list
+
+Full list of supported project types can be found [over here](../../README.md#supported-project-types)
 
 The configurations can be set like this:
 ```json
