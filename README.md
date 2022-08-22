@@ -27,10 +27,10 @@ composer packages. It does so both locally and in CI/CD. For this, it leverages
 - [YamlLint](docs/components/yamllint.md)
 - [Coding Standards (PHPCS)](docs/components/phpcs.md)
 - [Mess Detector (PHPMD)](docs/components/phpmd.md)
-- [Static code analysis (PHPStan)](docs/components/phpstan.md)
+- [Find bugs before they reach production (PHPStan)](docs/components/phpstan.md)
 - [Execute Unit tests (PHPUnit)](docs/components/phpunit.md)
-- [PHPlint](docs/components/yamllint.md)
-- [ESLint, Find and fix problems in your JavaScript code](docs/components/eslint.md)
+- [PHP Lint](docs/components/phplint.md)
+- [Find and fix problems in your JavaScript code (ESLint)](docs/components/eslint.md)
 - [Enlighten Security Checker](docs/components/security-checker.md)
 
 ## Installation
@@ -56,7 +56,7 @@ vendor/bin/grumphp run
 The testing suite is also automatically run at each git commit using a git
 commit hook.
 
-### CI/DC Integration examples
+### CI/CD Integration examples
 
 - [Bitbucket Pipelines](docs/examples/bitbucket-pipelines.md)
 - [GitHub Actions](docs/examples/github-actions.md)
