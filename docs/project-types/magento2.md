@@ -1,0 +1,2 @@
+- `magento2-project`: [Youwe Coding Standard Magento2](https://github.com/YouweGit/coding-standard-magento2)
+- `magento2-module`: [Youwe Coding Standard Magento2](https://github.com/YouweGit/coding-standard-magento2)

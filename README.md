@@ -2,18 +2,53 @@
 
 # Youwe Testing Suite
 
-This package serves as an umbrella package for several of Youwe's testing 
-packages.
+## Introduction
 
-# Installation
+Youwe Testing Suite is an all-in-one solution for doing static code analysis on 
+composer packages/projects. It does so both locally and in CI/CD. For this,
+Testing-suite leverages [GrumPHP](https://github.com/phpro/grumphp) with 
+predefined default configurations per project type.
 
+## Features
+
+- [Project Type detector](docs/features/project-type-detector.md)
+- [PHP storm configuration](docs/features/php-storm-integration.md)
+
+## Supported project types
+
+- Default (`default`)
+- Laravel (`laravel`)
+- [Magento 1](docs/project-types/magento1.md) (`magento1`)
+- [Magento 2](docs/project-types/magento2.md) (`magento2`)
+
+## Included analysis tools
+
+- [Composer file validation](docs/components/composer.md)
+- [JSON Lint](docs/components/jsonlint.md)
+- [YamlLint](docs/components/yamllint.md)
+- [Coding Standards (PHPCS)](docs/components/phpcs.md)
+- [Mess Detector (PHPMD)](docs/components/phpmd.md)
+- [Find bugs before they reach production (PHPStan)](docs/components/phpstan.md)
+- [Execute Unit tests (PHPUnit)](docs/components/phpunit.md)
+- [PHP Lint](docs/components/phplint.md)
+- [Find and fix problems in your JavaScript code (ESLint)](docs/components/eslint.md)
+- [Enlighten Security Checker](docs/components/security-checker.md)
+
+## Installation
+
+Testing suite is supposed to be installed as a composer `dev` dependency.
+Within any project just run the command below to install the package:
 ```
 composer require youwe/testing-suite --dev
 ```
+If a project-type is detected, standards will be applied (otherwise a wizard will
+be opened)
 
-# Usage
+## Usage
 
-The testing suite can be run through the GrumPHP command.
+### Locally
+
+The testing suite can be run manually through the GrumPHP command.
 
 ```
 vendor/bin/grumphp run
@@ -22,136 +57,11 @@ vendor/bin/grumphp run
 The testing suite is also automatically run at each git commit using a git
 commit hook.
 
-# Components
+### CI/CD Integration examples
 
-The following components are part of the testing suite.
+- [Bitbucket Pipelines](docs/examples/bitbucket-pipelines.md)
+- [GitHub Actions](docs/examples/github-actions.md)
 
-## Coding style validation (PHPCS)
+## Changelog
 
-The coding style is validated using PHPCS and uses the 
-[Youwe Coding Standard](https://github.com/YouweGit/coding-standard).
-
-During the installation of the testing suite a file called `phpcs.xml` is added to
-the root of the repository which refers to the coding standard. To make
-adjustments to the coding standard this file can be edited and committed.
-
-Depending on the composer type of the project another standard will be used:
-
-- `magento-module`: [Youwe Coding Standard Magento1](https://github.com/YouweGit/coding-standard-magento1)
-- `magento2-module`: [Youwe Coding Standard Magento2](https://github.com/YouweGit/coding-standard-magento2)
-- `magento-project`: [Youwe Coding Standard Magento1](https://github.com/YouweGit/coding-standard-magento1)
-- `magento2-project`: [Youwe Coding Standard Magento2](https://github.com/YouweGit/coding-standard-magento2)
-
-### Overriding the type
-
-The type for a project can be overridden in the composer.json `config` node by 
-adding `testing-suite-type` to the configuration.
-This will allow the use of standards for a different type.
-The allowed values for this node are:
-- magento1
-- magento2
-- default
-
-The configurations looks like the following:
-```json
-{
-  "config": {
-    "youwe-testing-suite": {
-      "type": "magento2"
-    }
-  }
-}
-```
-
-This can be helpful when development is done in the `app/code` folder and force 
-the testing suite to automatically select the correct standards.
-
-## Coding complexity validation (PHPMD)
-
-The complexity of the code is validated using PHPMD. A file called `phpmd.xml`
-is added during the installation of the testing suite.
-
-## Static code analysis (PHPStan)
-
-Static code analysis is executed using PHPStan. A file called `phpstan.neon`
-is added during the installation of the testing suite.
-
-## Unit tests (PHPUnit)
-
-Unit tests are executed using PHPUnit. A file called `phpunit.xml` is added
-during the installation of the testing suite.
-
-The unit tests are expected to be in a directory called `tests`. The code is
-expected to be in a directory called `src`.
-
-## Bitbucket Pipelines
-
-When the project is hosted on Bitbucket a 
-[Pipelines](https://bitbucket.org/product/features/pipelines) script will be
-installed. The scripts supports a callback that will be called before 
-`composer install` is executed. This callback can be used to add credentials
-to composer. To enable the callback go to **Bitbucket Settings > Pipelines >
-Environment Variables** and add an environment variable called 
-`COMPOSER_PRE_INSTALL_CALLBACK`.
-
-Example to add basic authentication for repo.example.com:
-
-```
-composer config --global http-basic.repo.example.com $YOUR_USER $YOUR_PASSWORD
-```
-
-## ESLint
-Javascript linting for Magento 1 and Magento 2 projects is executed using 
-[ESLint](https://eslint.org/). Two files called `.eslintrc.json` and 
-`.eslintignore` are added to the root of the repository which contains the 
-coding standards and files excluded from analysis.
-
-A third file called `package.json` is added which contains the needed npm 
-modules. Run `npm install` after the installation in order to enable ESLint:
-
-```shell
-npm install
-```
-
-# Integration with PHPStorm
-
-When the testing suite is installed in a PHPStorm environment it automatically
-configures PHPStorm to use the correct coding style. 
-
-To enable PHPCS and PHPMD inspections in PHPStorm the correct binaries need
-to be configured. This is a global setting in PHPStorm and can therefore not
-be configured by the testing suite.
-
-The recommended way to get the correct binaries is by installing the MediaCT 
-Coding Standard globally.
-
-```
-composer global require youwe/coding-standard
-```
-
-The package will be installed in the home directory of composer. The location
-of this directory can be found using the following command:
-
-```
-composer global config home
-```
-
-Open PHPStorm and go to __Settings > Languages & Frameworks > PHP > Code Sniffer__.
- 
-Choose "Local" for the development environment and fill in the full path to
-`<composer_home_directory>/vendor/bin/phpcs`.
-
-Then go to __Settings > Languages & Frameworks > PHP > Mess Detector__.
-
-Choose "Local" for the development environment and fill in the full path to
-`<composer_home_directory>/vendor/bin/phpmd`.
-
-After these adjustments the coding style and complexity will be validated
-while typing in PHPStorm.
-
-To enable ESLint open PHPStorm and go to 
-__Settings > Languages & Frameworks > Javascript > Code Quality Tools > ESLint__.
-
-Enable ESLint by checking `Enabled`. Then set the `Node interpreter` 
-to `Project` and `Configuration file` to `Automatic Search`.
-
+See the [Changelog](CHANGELOG.md) file for all changes.
