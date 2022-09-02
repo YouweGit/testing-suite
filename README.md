@@ -5,8 +5,9 @@
 ## Introduction
 
 Youwe Testing Suite is an all-in-one solution for doing static code analysis on 
-composer packages. It does so both locally and in CI/CD. For this, it leverages 
-[GrumPHP](https://github.com/phpro/grumphp) with default configurations.
+composer packages/projects. It does so both locally and in CI/CD. For this,
+Testing-suite leverages [GrumPHP](https://github.com/phpro/grumphp) with 
+predefined default configurations per project type.
 
 ## Features
 
