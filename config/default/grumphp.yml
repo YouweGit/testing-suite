@@ -20,7 +20,7 @@ parameters:
   yamllint.parse_constant: true
 
   phpcs.standard: ./phpcs.xml
-  phpcs.triggered_by: [php]
+  phpcs.triggered_by: [php,phtml]
 
   phplint.exclude: ['vendor']
   phplint.jobs: ~
