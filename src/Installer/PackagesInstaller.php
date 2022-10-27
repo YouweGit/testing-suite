@@ -45,7 +45,7 @@ class PackagesInstaller implements InstallerInterface
         'magento2' => [
             [
                 'name' => 'youwe/coding-standard-magento2',
-                'version' => '^1.7.0',
+                'version' => '^2.0.0',
                 'dev' => true
             ]
         ],

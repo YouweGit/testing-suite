@@ -86,18 +86,20 @@ class FilesInstaller implements InstallerInterface
                     $unixFileMapping->getDestination(),
                     [
                         './vendor/mediact/coding-standard-magento2/src/MediactMagento2',
-                        './vendor/mediact/coding-standard/src/MediaCT'
+                        './vendor/mediact/coding-standard/src/MediaCT',
+                        './vendor/youwe/coding-standard-magento2/src/Magento2'
                     ],
-                    './vendor/youwe/coding-standard-magento2/src/Magento2'
+                    'YouweMagento2'
                 );
             } elseif ($name === "phpmd.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     [
                         './vendor/mediact/coding-standard-magento2/src/MediactMagento2/phpmd.xml',
-                        './vendor/mediact/coding-standard/src/MediaCT/phpmd.xml'
+                        './vendor/mediact/coding-standard/src/MediaCT/phpmd.xml',
+                        './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
                     ],
-                    './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
+                    './vendor/youwe/coding-standard-magento2/src/YouweMagento2/phpmd.xml'
                 );
             }
         } elseif ($this->mappingResolver->getTypeResolver()->resolve() === 'magento') {
@@ -118,8 +120,11 @@ class FilesInstaller implements InstallerInterface
             } elseif ($name === "phpmd.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
-                    ['./vendor/mediact/coding-standard/src/MediaCT/phpmd.xml'],
-                    './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
+                    [
+                        './vendor/mediact/coding-standard/src/MediaCT/phpmd.xml',
+                        './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
+                    ],
+                    './vendor/youwe/coding-standard/src/Global/phpmd.xml'
                 );
             } elseif ($name === "grumphp.yml") {
                 $this->updatePath(

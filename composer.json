@@ -32,9 +32,9 @@
         "phpro/grumphp-shim": "^1.13",
         "phpstan/phpstan": "@stable",
         "phpunit/phpunit": "@stable",
-        "youwe/coding-standard": "^3.3.0",
+        "youwe/coding-standard": "^3.5.0",
         "youwe/coding-standard-phpstorm": "^2.3.0",
-        "youwe/composer-dependency-installer": "^1.3.0",
+        "youwe/composer-dependency-installer": "^1.4.0",
         "youwe/composer-file-installer": "^1.2.0"
     },
     "require-dev": {
@@ -78,7 +78,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "youwe/coding-standard-phpstorm": true,
-            "phpro/grumphp-shim": true
+            "phpro/grumphp-shim": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     }
 }

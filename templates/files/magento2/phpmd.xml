@@ -6,5 +6,5 @@
          xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
     <description>PHPMD</description>
     <!--<exclude-pattern>path/to/exclude/*</exclude-pattern>-->
-    <rule ref="./vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml" />
+    <rule ref="./vendor/youwe/coding-standard-magento2/src/YouweMagento2/phpmd.xml" />
 </ruleset>
