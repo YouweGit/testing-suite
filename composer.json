@@ -78,7 +78,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "youwe/coding-standard-phpstorm": true,
-            "phpro/grumphp-shim": true
+            "phpro/grumphp-shim": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     }
 }
