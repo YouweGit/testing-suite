@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - New pathing for `phpcs.xml` file.
 - Added updated code styling for project type `Magento2`.
+- Support for `phtml` in project type `Magento2`. 
+  The phtml files will only be checked based on Magento2 code standards.
+
+### Changed
+- Project type `default`/`magento` use correct index replaced `excludes_analyse` with `excludePaths` for `phpstan.neon` file.
+- Project type `default` use correct tags for `phpunit_dist.xml`.
+- Updated dependency to `youwe/composer-dependency-installer`
 
 ### Changed
 - Phpcs will now also check files `phtml`. If not preferred behaviour overwrite

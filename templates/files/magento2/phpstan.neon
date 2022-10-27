@@ -1,4 +1,6 @@
 parameters:
+  excludePaths:
+#    - %rootDir%/../../../path/to/exclude/*
   ignoreErrors:
     - '#(class|type) [A-z]*\\TestFramework#i'
     - '#(class|type) [A-z]*\\\S*Factory#i'

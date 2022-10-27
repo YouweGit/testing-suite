@@ -2,9 +2,9 @@
       xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
           bootstrap="vendor/autoload.php"
           cacheResult="false">
-    <coverage processUncoveredFilesFromWhitelist="true">
-        <include>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
-        <include>
-    </coverage>
+        </whitelist>
+    </filter>
 </phpunit>
