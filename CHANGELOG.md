@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.15.0
+### Added
+- Support for project type `pimcore` in project type resolvers.
+- Separate configuration file for project type `magento2`.
+  The magento2 configuration file updates the trigger_by and blacklist config for magento2-specific system constructs.
+- Separate configuration file for project type `pimcore`.
+  The pimcore configuration overrides default trigger_by configuration to check the git blacklist on twig templates.
+ 
+
+### Changed
+- Project type resolver can now look for pimcore projects.
+- The local grumphp.yml file will automatically point to the new magento2-specific config file after a composer install.
+- The default grumphp.yml template no longer contains references to magento specific system constructs.
+- The default phpcs.xml file now references a relative ruleset instead of an absolute path.
+
 ## 2.14.0
 ### Added
 - New pathing for `phpcs.xml` file.

@@ -40,6 +40,7 @@ class ProjectTypeResolver
         'magento-project' => 'magento2',
         'alumio-project'  => 'alumio',
         'laravel-project' => 'laravel',
+        'pimcore-project' => 'pimcore'
     ];
 
     public const DEFAULT_PROJECT_TYPE = 'default';

@@ -45,11 +45,18 @@ parameters:
 
   git_blacklist.keywords:
     - "die("
+    - "dd("
     - "var_dump("
+    - "console.log("
+    - "alert("
+    - "print_r("
+    - "phpinfo();"
     - "exit;"
-    - "Magento\\\\Framework\\\\App\\\\ObjectManager"
+    - "<<<<<"
+    - "====="
+    - "<?php echo"
+  git_blacklist.triggered_by: [ 'php', 'js' ]
   git_blacklist.whitelist_patterns: []
-  git_blacklist.triggered_by: [ 'php' ]
   git_blacklist.regexp_type: G
   git_blacklist.match_word: false
 

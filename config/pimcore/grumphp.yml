@@ -1,0 +1,6 @@
+imports:
+  - resource: '../default/grumphp.yml'
+
+# Extend git triggers with common pimcore constructs
+parameters:
+  git_blacklist.triggered_by: [ 'php', 'js', 'twig' ]
