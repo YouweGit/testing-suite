@@ -80,7 +80,7 @@ class FilesInstaller implements InstallerInterface
     {
         $name = $unixFileMapping->getRelativeDestination();
 
-        if ($this->mappingResolver->getTypeResolver()->resolve() === 'magento2' && !in_array($name, ['grumphp.yml'])) {
+        if ($this->mappingResolver->getTypeResolver()->resolve() === 'magento2') {
             if ($name === "phpcs.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
@@ -100,6 +100,15 @@ class FilesInstaller implements InstallerInterface
                         './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
                     ],
                     './vendor/youwe/coding-standard-magento2/src/YouweMagento2/phpmd.xml'
+                );
+            } elseif ($name === "grumphp.yml") {
+                $this->updatePath(
+                    $unixFileMapping->getDestination(),
+                    [
+                        'vendor/mediact/testing-suite/config/default/grumphp.yml',
+                        'vendor/youwe/testing-suite/config/default/grumphp.yml'
+                    ],
+                    'vendor/youwe/testing-suite/config/magento2/grumphp.yml'
                 );
             }
         } elseif ($this->mappingResolver->getTypeResolver()->resolve() === 'magento') {

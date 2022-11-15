@@ -1,0 +1,20 @@
+imports:
+  - resource: '../default/grumphp.yml'
+
+# Extend git blacklist and triggers with Magento constructs
+parameters:
+  git_blacklist.keywords:
+    - "die("
+    - "dd("
+    - "var_dump("
+    - "console.log("
+    - "alert("
+    - "print_r("
+    - "phpinfo("
+    - "exit;"
+    - "<<<<<"
+    - ">>>>>"
+    - "====="
+    - "<?php echo"
+    - "Magento\\\\Framework\\\\App\\\\ObjectManager"
+  git_blacklist.triggered_by: [ 'php', 'js', 'phtml' ]

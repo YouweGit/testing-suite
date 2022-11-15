@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.15.0
+### Added
+- Project type resolver can now look for pimcore projects.
+  - Pimcore projects have their own [git blacklist](docs/components/git-blacklist.md) configuration.
+  - In the future, the pimcore coding standard will have its own package for `phpcs.xml` and `phpmd.xml` rulesets.
+- `grumphp.yml` file for `pimcore` projects.
+  - This file falls back on the default configuration and inherits all properties, except for the blacklist triggers. 
+- [Git blacklist](docs/components/git-blacklist.md) documentation.
+
+### Changed
+- The magento2 `grumphp.yml` file is split off from the default configuration.
+  - The `grumphp.yml` that's part of a project will automatically point to the new magento2-specific config file.
+  - The new file falls back on the default configuration, and overrides the git blacklist keywords and triggers.
+  - The magento specific constructs are also removed from the default `grumphp.yml` template.
+- The default `phpcs.xml` file now references a relative ruleset instead of an absolute path.
+
 ## 2.14.0
 ### Added
 - New pathing for `phpcs.xml` file.
