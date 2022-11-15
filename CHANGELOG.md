@@ -6,18 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 2.15.0
 ### Added
-- Support for project type `pimcore` in project type resolvers.
-- Separate configuration file for project type `magento2`.
-  The magento2 configuration file updates the trigger_by and blacklist config for magento2-specific system constructs.
-- Separate configuration file for project type `pimcore`.
-  The pimcore configuration overrides default trigger_by configuration to check the git blacklist on twig templates.
- 
+- Project type resolver can now look for pimcore projects.
+  - Pimcore projects have their own [git blacklist](docs/components/git-blacklist.md) configuration.
+  - In the future, the pimcore coding standard will have its own package for `phpcs.xml` and `phpmd.xml` rulesets.
+- `grumphp.yml` file for `pimcore` projects.
+  - This file falls back on the default configuration and inherits all properties, except for the blacklist triggers. 
+- [Git blacklist](docs/components/git-blacklist.md) documentation.
 
 ### Changed
-- Project type resolver can now look for pimcore projects.
-- The local grumphp.yml file will automatically point to the new magento2-specific config file after a composer install.
-- The default grumphp.yml template no longer contains references to magento specific system constructs.
-- The default phpcs.xml file now references a relative ruleset instead of an absolute path.
+- The magento2 `grumphp.yml` file is split off from the default configuration.
+  - The `grumphp.yml` that's part of a project will automatically point to the new magento2-specific config file.
+  - The new file falls back on the default configuration, and overrides the git blacklist keywords and triggers.
+  - The magento specific constructs are also removed from the default `grumphp.yml` template.
+- The default `phpcs.xml` file now references a relative ruleset instead of an absolute path.
 
 ## 2.14.0
 ### Added

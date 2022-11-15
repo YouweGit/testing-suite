@@ -20,9 +20,11 @@ predefined default configurations per project type.
 - Laravel (`laravel`)
 - [Magento 1](docs/project-types/magento1.md) (`magento1`)
 - [Magento 2](docs/project-types/magento2.md) (`magento2`)
+- Pimcore (`pimcore`)
 
 ## Included analysis tools
 
+- [Git blacklist](docs/components/git-blacklist.md)
 - [Composer file validation](docs/components/composer.md)
 - [JSON Lint](docs/components/jsonlint.md)
 - [YamlLint](docs/components/yamllint.md)

@@ -50,9 +50,10 @@ parameters:
     - "console.log("
     - "alert("
     - "print_r("
-    - "phpinfo();"
+    - "phpinfo("
     - "exit;"
     - "<<<<<"
+    - ">>>>>"
     - "====="
     - "<?php echo"
   git_blacklist.triggered_by: [ 'php', 'js' ]
