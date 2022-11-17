@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<ruleset name="PHPMD"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+    <description>PHPMD</description>
+    <!-- @TODO: Offload to separate coding-standard-pimcore package, and add common pimcore conventions there -->
+
+    <!--<exclude-pattern>path/to/exclude/*</exclude-pattern>-->
+
+    <!-- Taken from Global ruleset since we can't modify a referenced rule without overwriting it completely.
+         See: https://github.com/phpmd/phpmd/issues/39 -->
+    <rule ref="rulesets/cleancode.xml">
+        <exclude name="ElseExpression"/>
+        <exclude name="StaticAccess"/>
+        <exclude name="BooleanArgumentFlag"/>
+    </rule>
+
+    <rule ref="rulesets/codesize.xml"/>
+
+    <rule ref="rulesets/design.xml">
+        <exclude name="CouplingBetweenObjects"/>
+    </rule>
+
+    <rule ref="rulesets/design.xml/CouplingBetweenObjects">
+        <properties>
+            <property name="maximum" value="20"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/naming.xml">
+        <exclude name="ShortVariable"/>
+        <exclude name="LongVariable"/>
+        <exclude name="ShortClassName"/>
+        <exclude name="LongClassName"/>
+        <exclude name="ShortMethodName" />
+    </rule>
+
+    <rule ref="rulesets/naming.xml/LongVariable">
+        <properties>
+            <property name="maximum" value="30"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/unusedcode.xml">
+        <exclude name="UnusedFormalParameter"/>
+        <exclude name="UnusedLocalVariable"/>
+    </rule>
+    <!-- End of global ruleset -->
+
+    <!-- Global rule extension to allow 'up' function name for migrations -->
+    <rule ref="rulesets/naming.xml/ShortMethodName">
+        <properties>
+            <property name="exceptions" value="up" />
+        </properties>
+    </rule>
+</ruleset>

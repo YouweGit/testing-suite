@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.16.0
+### Fixed
+- Testing suite no longer breaks during installation when composer project type is set to `pimcore-project`.
+
+### Added
+- `phpcs.xml`, `phpmd.xml` and `phpstan.neon` files are now automatically installed in a local `pimcore-project` if they don't exist yet.
+
 ## 2.15.0
 ### Added
 - Project type resolver can now look for pimcore projects.
