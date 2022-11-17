@@ -1,0 +1,3 @@
+{pimcore/,}phpcs.xml
+{pimcore/,}phpmd.xml
+{pimcore/,}phpstan.neon
