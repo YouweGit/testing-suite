@@ -17,4 +17,5 @@ parameters:
     - "====="
     - "<?php echo"
     - "Magento\\\\Framework\\\\App\\\\ObjectManager"
+  git_blacklist.match_word: true
   git_blacklist.triggered_by: [ 'php', 'js', 'phtml' ]
