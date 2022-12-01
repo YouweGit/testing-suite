@@ -51,6 +51,7 @@ parameters:
     - "alert("
     - "print_r("
     - "phpinfo("
+    - "exit("
     - "exit;"
     - "<<<<<"
     - ">>>>>"
@@ -59,7 +60,7 @@ parameters:
   git_blacklist.triggered_by: [ 'php', 'js' ]
   git_blacklist.whitelist_patterns: []
   git_blacklist.regexp_type: G
-  git_blacklist.match_word: false
+  git_blacklist.match_word: true
 
 grumphp:
   ascii:
