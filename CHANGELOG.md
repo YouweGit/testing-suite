@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.16.1
+### Changed
+- Git blacklist now matches on words instead of characters by default.
+- The git blacklist configuration for rejecting accidentally commited merge conflicts now properly reflects the
+full set of characters used by git.
+
+### Fixed
+- Resolved issue where the updated git blacklist configuration would provide a false positive result
+on functions ending with `add()` or `odd()` due to checks on dump and die `dd()` statements.
+
+### Added
+- Git blacklist now checks for `exit()` usage.
+
 ## 2.16.0
 ### Fixed
 - Testing suite no longer breaks during installation when composer project type is set to `pimcore-project`.
