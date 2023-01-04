@@ -44,7 +44,7 @@ Within any project just run the command below to install the package:
 composer require youwe/testing-suite --dev
 ```
 If a project-type is detected, standards will be applied (otherwise a wizard will
-be opened)
+be opened).
 
 ## Usage
 
