@@ -14,6 +14,7 @@ use Youwe\TestingSuite\Composer\Factory\ProcessFactory;
 use Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
 use Youwe\TestingSuite\Composer\Installer\ConfigInstaller;
 use Youwe\TestingSuite\Composer\Installer\FilesInstaller;
+use Youwe\TestingSuite\Composer\Installer\LegacyFilesExceptionsInstaller;
 use Youwe\TestingSuite\Composer\Installer\PackagesInstaller;
 use Youwe\TestingSuite\Composer\MappingResolver;
 use Youwe\TestingSuite\Composer\ProjectTypeResolver;
@@ -35,5 +36,6 @@ return [
     new FilesInstaller($mappingResolver, $fileInstaller, $io),
     new ArchiveExcludeInstaller($mappingResolver, $io),
     new PackagesInstaller($composer, $typeResolver, $io),
-    new ConfigInstaller($configResolver)
+    new ConfigInstaller($configResolver),
+    new LegacyFilesExceptionsInstaller($io, $typeResolver)
 ];
