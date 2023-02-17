@@ -28,12 +28,12 @@ predefined default configurations per project type.
 - [Composer file validation](docs/components/composer.md)
 - [JSON Lint](docs/components/jsonlint.md)
 - [YamlLint](docs/components/yamllint.md)
-- [Coding Standards (PHPCS)](docs/components/phpcs.md)
-- [Mess Detector (PHPMD)](docs/components/phpmd.md)
-- [Find bugs before they reach production (PHPStan)](docs/components/phpstan.md)
-- [Execute Unit tests (PHPUnit)](docs/components/phpunit.md)
+- [PHPCS (Coding Standards)](docs/components/phpcs.md)
+- [PHPMD (Mess Detector)](docs/components/phpmd.md)
+- [PHPStan (Find bugs before they reach production)](docs/components/phpstan.md)
+- [PHPUnit (Execute Unit tests)](docs/components/phpunit.md)
 - [PHP Lint](docs/components/phplint.md)
-- [Find and fix problems in your JavaScript code (ESLint)](docs/components/eslint.md)
+- [ESLint (Find and fix problems in your JavaScript code)](docs/components/eslint.md)
 - [Enlighten Security Checker](docs/components/security-checker.md)
 
 ## Installation
