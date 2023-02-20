@@ -1,5 +1,7 @@
 # Git commit keyword validation
 
+Official documentation for [Git Blacklist](https://github.com/phpro/grumphp/blob/master/doc/tasks/git_blacklist.md)
+
 ## Purpose
 Every commit, blacklisted phrases are scanned within scanned files containing a specified file extension.\
 The purpose of these checks is to prevent committing production-breaking or sensative system information.

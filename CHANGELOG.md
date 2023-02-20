@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.16.2
+### Changed
+- `alert(` was removed from the git blacklist as it conflicts with PSR3, see
+  [#18](https://github.com/YouweGit/testing-suite/issues/18)
+
 ## 2.16.1
 ### Changed
 - Git blacklist now matches on words instead of characters by default.

@@ -48,7 +48,6 @@ parameters:
     - "dd("
     - "var_dump("
     - "console.log("
-    - "alert("
     - "print_r("
     - "phpinfo("
     - "exit("
