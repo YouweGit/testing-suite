@@ -47,7 +47,17 @@ class PackagesInstaller implements InstallerInterface
                 'name' => 'youwe/coding-standard-magento2',
                 'version' => '^2.0.0',
                 'dev' => true
-            ]
+            ],
+            [
+                'name' => 'phpstan/extension-installer',
+                'version' => '^1.3',
+                'dev' => true
+            ],
+            [
+                'name' => 'bitexpert/phpstan-magento',
+                'version' => '^0.30.1',
+                'dev' => true
+            ],
         ],
         'laravel' => [
             [
