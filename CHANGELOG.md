@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.17
+### Added
+- BitExpert PHP stan module for Magento 2 projects.
+
 ## 2.16.2
 ### Changed
 - `alert(` was removed from the git blacklist as it conflicts with PSR3, see
