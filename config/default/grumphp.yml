@@ -60,6 +60,7 @@ parameters:
   git_blacklist.whitelist_patterns: []
   git_blacklist.regexp_type: G
   git_blacklist.match_word: true
+  git_blacklist.ignore_patterns: []
 
 grumphp:
   ascii:
@@ -83,6 +84,7 @@ grumphp:
       triggered_by: '%git_blacklist.triggered_by%'
       regexp_type: '%git_blacklist.regexp_type%'
       match_word: '%git_blacklist.match_word%'
+      ignore_patterns: '%git_blacklist.ignore_patterns%'
 
     xmllint:
       load_from_net: '%xmllint.load_from_net%'
