@@ -45,6 +45,7 @@
         "sensiolabs/security-checker": "*"
     },
     "bin": [
+        "bin/youwe-container-detected-exec",
         "bin/youwe-testing-suite"
     ],
     "extra": {
