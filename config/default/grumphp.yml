@@ -67,6 +67,9 @@ grumphp:
     failed: ~
     succeeded: ~
 
+  git_hook_variables:
+    EXEC_GRUMPHP_COMMAND: vendor/bin/youwe-container-detected-exec
+
   parallel:
     enabled: true
 

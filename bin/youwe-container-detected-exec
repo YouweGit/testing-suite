@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ -z "${IS_DDEV_PROJECT-}" ] \
+    && [ -z "${YOUWE_BYPASS_DDEV-}" ] \
+    && [ -f .ddev/config.yaml ] \
+    && which ddev >/dev/null
+then
+    # - We're not already running within DDev (in that case $IS_DDEV_PROJECT equals true)
+    # - The YOUWE_BYPASS_DDEV flag isn't set by the user
+    # - We found the .ddev/config.yaml file, indicating this project runs in DDev
+    # - We found the DDev binary, indicating we're not on a build server
+    ddev exec "$@"
+    exit $?
+fi
+
+exec "$@"
+exit $?

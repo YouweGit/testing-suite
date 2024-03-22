@@ -55,9 +55,36 @@ The testing suite can be run manually through the GrumPHP command.
 ```
 vendor/bin/grumphp run
 ```
+or for DDev projects
+```
+ddev exec vendor/bin/grumphp run
+```
 
-The testing suite is also automatically run at each git commit using a git
+### Git commit hook
+
+The testing suite is automatically run at each git commit using a git
 commit hook.
+
+This git commit hook will automatically detect DDev projects and will
+run GrumPHP within the DDev container if needed. This behaviour can
+be disabled:
+
+- on individual basis via an environment variable: 
+```
+YOUWE_BYPASS_DDEV=1 git commit
+```
+- on project basis via the `grumphp.yml` configuration file:
+```
+imports:
+  - resource: 'vendor/youwe/testing-suite/config/your-project-type/grumphp.yml'
+
+grumphp:
+  git_hook_variables:
+    # Disable DDev detection by restoring to default `exec`
+    # See https://github.com/phpro/grumphp/blob/v2.x/doc/parameters.md for more options
+    EXEC_GRUMPHP_COMMAND: exec
+```
+After changing your `grumphp.yml`, run `vendor/bin/grumphp git:init` to update the git commit hook.
 
 ### CI/CD Integration examples
 
