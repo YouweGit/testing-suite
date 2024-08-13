@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.19
 ### Added
 - Option to add/edit whitelist or ignore patterns to yamllint.
-- Skip Bamboo files by default, since they don't comply with yaml.
 
 ## 2.18
 ### Added
