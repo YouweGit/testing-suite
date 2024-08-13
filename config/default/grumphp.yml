@@ -18,6 +18,8 @@ parameters:
     - /^pdepend.xml$/
 
   yamllint.parse_constant: true
+  yamllint.whitelist_patterns: []
+  yamllint.ignore_patterns: []
 
   phpcs.standard: ./phpcs.xml
   phpcs.triggered_by: [php,phtml]
@@ -99,6 +101,8 @@ grumphp:
 
     yamllint:
       parse_constant: '%yamllint.parse_constant%'
+      whitelist_patterns: '%yamllint.whitelist_patterns%'
+      ignore_patterns: '%yamllint.ignore_patterns%'
 
     phpcs:
       standard: '%phpcs.standard%'
