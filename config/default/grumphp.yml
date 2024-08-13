@@ -18,9 +18,8 @@ parameters:
     - /^pdepend.xml$/
 
   yamllint.parse_constant: true
-  yamllint.whitelist_patterns: [ ]
-  yamllint.ignore_patterns:
-    - /^bamboo-specs\/(.*)/
+  yamllint.whitelist_patterns: []
+  yamllint.ignore_patterns: []
 
   phpcs.standard: ./phpcs.xml
   phpcs.triggered_by: [php,phtml]
