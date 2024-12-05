@@ -55,7 +55,7 @@ class PackagesInstaller implements InstallerInterface
             ],
             [
                 'name' => 'bitexpert/phpstan-magento',
-                'version' => '^0.30.1',
+                'version' => '~0.30',
                 'dev' => true
             ],
         ],
