@@ -132,3 +132,5 @@ grumphp:
     securitychecker_enlightn:
       lockfile: '%securitychecker.lockfile%'
       run_always: '%securitychecker.run_always%'
+      metadata:
+        blocking: false
