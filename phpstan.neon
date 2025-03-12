@@ -1,5 +1,6 @@
 parameters:
   excludePaths:
     - src/installers.php
+    - tests/*
   ignoreErrors:
     - '#Property Mediact\\TestingSuite\\Composer\\Installer\\ConfigInstaller::\$io is never read, only written\.#'

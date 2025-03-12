@@ -27,7 +27,7 @@ $typeResolver    = new ProjectTypeResolver($composer);
 $mappingResolver = new MappingResolver($typeResolver);
 $configResolver  = new ConfigResolver($typeResolver);
 $fileInstaller   = new FileInstaller(
-    new UnixFileMappingReader('', '')
+    new UnixFileMappingReader('', ''),
 );
 $processFactory  = new ProcessFactory();
 
@@ -35,5 +35,5 @@ return [
     new FilesInstaller($mappingResolver, $fileInstaller, $io),
     new ArchiveExcludeInstaller($mappingResolver, $io),
     new PackagesInstaller($composer, $typeResolver, $io),
-    new ConfigInstaller($configResolver)
+    new ConfigInstaller($configResolver),
 ];

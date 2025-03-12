@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - Unreleased
+### Added
+- Added `phpunit/phpunit` to suggested dependencies in `composer.json`.
+- Added `youwe/coding-standard-phpstorm` to suggested dependencies in `composer.json`.
+- Added support to honor upstream version constraints
+- Github action for php 8.3 and php 8.4 to run unit tests against PHPUnit 12.
+- Testing suite now attempts to install phpunit upstream if it isn't available yet
+  - Existing upstream versions are honored if already installed
+  - Upstream projects not having phpunit installed will install phpunit with an @stable version
+
+### Changed
+- Unit tests as part of the testing suite are rewritten for PHPUnit 12
+- Updated GitHub Action workflows to support PHP 8.1, 8.2, and 8.3.
+- `composer.json`: Dropped support for PHP < 8.1.
+- Moved phpunit from require to require-dev
+- Changed PHPMD suppressions in docblocks to quote the rule name, due to changes in later versions of PHPStan that create false positives on these docblocks if not quoted.
+
+### Removed
+- Removed support for EOL PHP versions. Projects running PHP < 8.1 can stick to version 2 of the testing-suite.
+- Removed support for Composer 1. Projects still relying on Composer 1 can stick to version 2 of the testing-suite.
+- Removed `youwe/coding-standard-phpstorm` as dependency (it is still listed in suggest)
+- Removed `phpunit/phpunit` as direct dependency (it is still in require-dev and installed upstream through the `youwe/dependency-installer`)
+- Github actions for php < 8.1
+
 ## 2.19.1
 ### Changed
 - `^0.30` restricts updates to only versions within the `0.30.x` range, preventing upgrades to 0.32.0 for

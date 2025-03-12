@@ -40,14 +40,14 @@ class MappingResolver
             __DIR__ . '/../templates/mapping/files',
             sprintf(
                 __DIR__ . '/../templates/mapping/project/%s',
-                $this->typeResolver->resolve()
-            )
+                $this->typeResolver->resolve(),
+            ),
         ];
 
         return new UnixFileMappingReader(
             __DIR__ . '/../templates/files',
             getcwd(),
-            ...$files
+            ...$files,
         );
     }
 

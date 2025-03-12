@@ -9,27 +9,24 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Tests\Factory;
 
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;
 use Youwe\TestingSuite\Composer\Factory\ProcessFactory;
 
 /**
- * @coversDefaultClass \Youwe\TestingSuite\Composer\Factory\ProcessFactory
+ * @phpcs:disable GlobalPhpUnit.Coverage.CoversTag.CoversTagMissing
  */
+#[CoversMethod(ProcessFactory::class, 'create')]
 class ProcessFactoryTest extends TestCase
 {
-    /**
-     * @return void
-     *
-     * @covers ::create
-     */
-    public function testCreate()
+    public function testCreate(): void
     {
         $factory = new ProcessFactory();
 
         $this->assertInstanceOf(
             Process::class,
-            $factory->create('foo')
+            $factory->create('foo'),
         );
     }
 }

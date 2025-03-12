@@ -10,21 +10,21 @@ declare(strict_types=1);
 namespace Youwe\TestingSuite\Composer\Tests;
 
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Youwe\TestingSuite\Composer\ConfigResolver;
 use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
- * @coversDefaultClass \Youwe\TestingSuite\Composer\ConfigResolver
- * @SuppressWarnings(PHPMD)
+ * @phpcs:disable GlobalPhpUnit.Coverage.CoversTag.CoversTagMissing
  */
+#[CoversMethod(ConfigResolver::class, '__construct')]
+#[CoversMethod(ConfigResolver::class, 'resolve')]
 class ConfigResolverTest extends TestCase
 {
     /**
-     * @return void
-     *
-     * @covers ::__construct
-     * @covers ::resolve
+     * @throws Exception
      */
     public function testResolve(): void
     {
@@ -33,7 +33,7 @@ class ConfigResolverTest extends TestCase
         $filesystem = vfsStream::setup(
             sha1(__METHOD__),
             null,
-            [$jsonFile => $jsonData]
+            [$jsonFile => $jsonData],
         );
         $template   = $filesystem->url() . '/%s.json';
 

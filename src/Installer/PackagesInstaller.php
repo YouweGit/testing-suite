@@ -16,7 +16,7 @@ use Youwe\TestingSuite\Composer\MappingResolver;
 use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
- * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings("PHPMD.ShortVariable")
  */
 class PackagesInstaller implements InstallerInterface
 {
@@ -33,39 +33,40 @@ class PackagesInstaller implements InstallerInterface
     private $io;
 
     /** @var array */
-    private $mapping = [
-        MappingResolver::DEFAULT_MAPPING_TYPE => [],
+    public $mapping = [
+        MappingResolver::DEFAULT_MAPPING_TYPE => [
+            'phpunit/phpunit' => [
+                'version' => '@stable',
+                'updateDependencies' => true,
+                'allowVersionOverride' => false,
+            ],
+        ],
         'magento1' => [
-            [
-                'name' => 'youwe/coding-standard-magento1',
+            'youwe/coding-standard-magento1' => [
                 'version' => '^1.3.0',
-                'dev' => true
-            ]
+                'updateDependencies' => true,
+            ],
         ],
         'magento2' => [
-            [
-                'name' => 'youwe/coding-standard-magento2',
+            'youwe/coding-standard-magento2' => [
                 'version' => '^2.0.0',
-                'dev' => true
+                'updateDependencies' => true,
             ],
-            [
-                'name' => 'phpstan/extension-installer',
+            'phpstan/extension-installer' => [
                 'version' => '^1.3',
-                'dev' => true
+                'updateDependencies' => true,
             ],
-            [
-                'name' => 'bitexpert/phpstan-magento',
+            'bitexpert/phpstan-magento' => [
                 'version' => '~0.30',
-                'dev' => true
+                'updateDependencies' => true,
             ],
         ],
         'laravel' => [
-            [
-                'name' => 'elgentos/laravel-coding-standard',
+            'elgentos/laravel-coding-standard' => [
                 'version' => '^1.0.0',
-                'dev' => true
-            ]
-        ]
+                'updateDependencies' => true,
+            ],
+        ],
     ];
 
     /**
@@ -81,8 +82,8 @@ class PackagesInstaller implements InstallerInterface
         Composer $composer,
         ProjectTypeResolver $typeResolver,
         IOInterface $io,
-        DependencyInstaller $installer = null,
-        array $mapping = null
+        ?DependencyInstaller $installer = null,
+        ?array $mapping = null,
     ) {
         $this->composer     = $composer;
         $this->typeResolver = $typeResolver;
@@ -99,19 +100,21 @@ class PackagesInstaller implements InstallerInterface
     public function install(): void
     {
         $type = $this->typeResolver->resolve();
-        if (!isset($this->mapping[$type])) {
-            return;
-        }
+        $projectTypePackages = $this->mapping[$type] ?? [];
+        $packagesToInstall = array_replace_recursive($this->mapping[MappingResolver::DEFAULT_MAPPING_TYPE], $projectTypePackages);
 
-        foreach ($this->mapping[$type] as $package) {
-            if (!$this->isPackageRequired($package['name'], $package['version'])) {
+        foreach ($packagesToInstall as $name => $package) {
+            if (!$this->isPackageRequired($name, $package['version'])) {
                 $this->io->write(
-                    sprintf('Requiring package %s', $package['name'])
+                    sprintf('Requiring package %s', $name)
                 );
 
                 $this->installer->installPackage(
-                    $package['name'],
-                    $package['version']
+                    $name,
+                    $package['version'],
+                    $package['dev'] ?? true,
+                    $package['updateDependencies'] ?? false,
+                    $package['allowVersionOverride'] ?? true,
                 );
             }
         }
@@ -121,6 +124,7 @@ class PackagesInstaller implements InstallerInterface
      * Whether a package has been required.
      *
      * @param string $packageName
+     * @param string $version
      *
      * @return bool
      */

@@ -12,25 +12,23 @@ namespace Youwe\TestingSuite\Composer\Tests;
 use Composer\Composer;
 use Composer\Config;
 use Composer\Package\RootPackageInterface;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\TestWith;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
-/**
- * @coversDefaultClass \Youwe\TestingSuite\Composer\ProjectTypeResolver
- */
+#[CoversMethod(ProjectTypeResolver::class, '__construct')]
+#[CoversMethod(ProjectTypeResolver::class, 'resolve')]
 class ProjectTypeResolverTest extends TestCase
 {
     /**
-     * @param string $packageType
-     * @param string $expected
-     *
-     * @return void
-     *
-     * @dataProvider dataProvider
-     *
-     * @covers ::__construct
-     * @covers ::resolve
+     * @throws Exception
      */
+    #[TestWith(['some-type', 'default'])]
+    #[TestWith(['magento-module', 'magento1'])]
+    #[TestWith(['magento2-module', 'magento2'])]
+    #[TestWith(['alumio-project', 'alumio'])]
     public function testToString(string $packageType, string $expected): void
     {
         $composer = $this->createMock(Composer::class);
@@ -56,12 +54,6 @@ class ProjectTypeResolverTest extends TestCase
         $this->assertEquals($expected, $decider->resolve());
     }
 
-    /**
-     * @return void
-     *
-     * @covers ::__construct
-     * @covers ::resolve
-     */
     public function testToStringOverwrite(): void
     {
         $composer = $this->createMock(Composer::class);
@@ -90,18 +82,5 @@ class ProjectTypeResolverTest extends TestCase
 
         $decider = new ProjectTypeResolver($composer);
         $this->assertEquals('magento2', $decider->resolve());
-    }
-
-    /**
-     * @return array
-     */
-    public function dataProvider(): array
-    {
-        return [
-            ['some-type', 'default'],
-            ['magento-module', 'magento1'],
-            ['magento2-module', 'magento2'],
-            ['alumio-project', 'alumio'],
-        ];
     }
 }
