@@ -9,21 +9,22 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Tests;
 
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Youwe\FileMapping\FileMappingReaderInterface;
 use Youwe\TestingSuite\Composer\MappingResolver;
 use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
- * @coversDefaultClass \Youwe\TestingSuite\Composer\MappingResolver
+ * @phpcs:disable GlobalPhpUnit.Coverage.CoversTag.CoversTagMissing
  */
+#[CoversMethod(MappingResolver::class, '__construct')]
+#[CoversMethod(MappingResolver::class, 'resolve')]
 class MappingResolverTest extends TestCase
 {
     /**
-     * @return void
-     *
-     * @covers ::__construct
-     * @covers ::resolve
+     * @throws Exception
      */
     public function testResolve()
     {

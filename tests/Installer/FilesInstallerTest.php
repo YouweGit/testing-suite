@@ -12,7 +12,9 @@ namespace Youwe\TestingSuite\Composer\Tests\Installer;
 use Composer\IO\IOInterface;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Youwe\Composer\FileInstaller;
 use Youwe\FileMapping\FileMappingInterface;
@@ -21,27 +23,21 @@ use Youwe\TestingSuite\Composer\Installer\FilesInstaller;
 use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
- * @coversDefaultClass FilesInstaller
- * @SuppressWarnings(PHPMD)
+ * @phpcs:disable GlobalPhpUnit.Coverage.CoversTag.CoversTagMissing
  */
+#[CoversMethod(FileInstaller::class, '__construct')]
+#[CoversMethod(FileInstaller::class, 'install')]
 class FilesInstallerTest extends TestCase
 {
     /**
-     * @param array $existingFiles
-     * @param array $files
-     * @param int   $expectedInstalls
-     *
-     * @return void
-     * @dataProvider dataProvider
-     *
-     * @covers ::__construct
-     * @covers ::install
+     * @throws Exception
      */
+    #[DataProvider('dataProvider')]
     public function testInstall(
         array $existingFiles,
         array $files,
-        int $expectedInstalls
-    ) {
+        int $expectedInstalls,
+    ): void {
         $filesystem    = $this->createFilesystem($existingFiles);
         $reader        = $this->createReaderMock($files, $filesystem->url());
         $resolver      = $this->createMock(MappingResolver::class);
@@ -61,10 +57,7 @@ class FilesInstallerTest extends TestCase
         $installer->install();
     }
 
-    /**
-     * @return array
-     */
-    public function dataProvider(): array
+    public static function dataProvider(): array
     {
         return [
             [
@@ -74,22 +67,18 @@ class FilesInstallerTest extends TestCase
                 [
                     'foo-file.txt',
                     'bar-file.txt',
-                    'baz-file.txt'
+                    'baz-file.txt',
                 ],
                 2
-            ]
+            ],
         ];
     }
 
     /**
-     * @param array  $files
-     * @param string $destination
-     *
-     * @return FileMappingReaderInterface
+     * @throws Exception
      */
     private function createReaderMock(array $files, string $destination): FileMappingReaderInterface
     {
-        /** @var FileMappingReaderInterface|MockObject $mock */
         $mock = $this->createMock(FileMappingReaderInterface::class);
 
         $valids   = array_fill(0, count($files), true);
@@ -97,7 +86,6 @@ class FilesInstallerTest extends TestCase
 
         $mappings = array_map(
             function (string $file) use ($destination): FileMappingInterface {
-                /** @var FileMappingInterface|MockObject $mapping */
                 $mapping = $this->createMock(FileMappingInterface::class);
                 $mapping
                     ->expects(self::any())
@@ -127,17 +115,12 @@ class FilesInstallerTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @param array $files
-     *
-     * @return vfsStreamDirectory
-     */
     private function createFilesystem(array $files): vfsStreamDirectory
     {
         return vfsStream::setup(
             sha1(__METHOD__),
             null,
-            array_map('strval', array_flip($files))
+            array_map('strval', array_flip($files)),
         );
     }
 }

@@ -21,7 +21,7 @@ class ProjectTypeResolver
      */
     public const COMPOSER_CONFIG_KEYS = [
         'youwe-testing-suite',
-        'mediact-testing-suite'
+        'mediact-testing-suite',
     ];
 
     /**
@@ -40,7 +40,7 @@ class ProjectTypeResolver
         'magento-project' => 'magento2',
         'alumio-project'  => 'alumio',
         'laravel-project' => 'laravel',
-        'pimcore-project' => 'pimcore'
+        'pimcore-project' => 'pimcore',
     ];
 
     public const DEFAULT_PROJECT_TYPE = 'default';
@@ -51,7 +51,7 @@ class ProjectTypeResolver
      * @param Composer   $composer
      * @param array|null $mapping
      */
-    public function __construct(Composer $composer, array $mapping = null)
+    public function __construct(Composer $composer, ?array $mapping = null)
     {
         $this->composer = $composer;
         $this->mapping  = $mapping ?? $this->mapping;

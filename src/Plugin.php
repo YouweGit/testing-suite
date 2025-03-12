@@ -16,7 +16,7 @@ use Composer\Plugin\PluginInterface;
 use Youwe\TestingSuite\Composer\Installer\InstallerInterface;
 
 /**
- * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings("PHPMD.ShortVariable")
  */
 class Plugin implements PluginInterface, EventSubscriberInterface
 {
@@ -44,7 +44,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     public function activate(Composer $composer, IOInterface $io)
     {
         $this->addInstallers(
-            ...include __DIR__ . '/installers.php'
+            ...include __DIR__ . '/installers.php',
         );
     }
 
@@ -105,11 +105,11 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     {
         return [
             'post-install-cmd' => [
-                'install'
+                'install',
             ],
             'post-update-cmd' => [
-                'install'
-            ]
+                'install',
+            ],
         ];
     }
 }
