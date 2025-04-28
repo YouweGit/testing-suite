@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ruleset name="PHPMD"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 https://pmd.sourceforge.io/ruleset_xml_schema.xsd">
+    <description>PHPMD rules for Magento 2 projects.</description>
+
+    <!-- Taken from Global ruleset since we can't modify a referenced rule without overwriting it completely.
+         See: https://github.com/phpmd/phpmd/issues/39 -->
+    <rule ref="rulesets/cleancode.xml">
+        <!-- Even though else statements can be rewritten to be avoided, this rule to always block else statements is a bit
+        extreme to enforce in standards. Rule can still be adopted on project-level if needed. -->
+        <exclude name="ElseExpression"/>
+        <!-- We should not assume all code is OOP based, and static usage is not inherently bad outside OOP/SOLID contexts. -->
+        <exclude name="StaticAccess"/>
+        <!-- Boolean flags are sometimes needed to preserve e.g. backwards compatibility. We don't want to enforce this in a blanket
+         statement / default rule but if projects want to enforce this they are free to do so. -->
+        <exclude name="BooleanArgumentFlag"/>
+    </rule>
+
+    <rule ref="rulesets/codesize.xml" />
+    <rule ref="rulesets/design.xml" />
+    <rule ref="rulesets/unusedcode.xml" />
+    <rule ref="rulesets/naming.xml" />
+
+    <rule ref="rulesets/naming.xml/LongVariable">
+        <properties>
+            <!-- 20 limit is hard to make descriptive, plus has historically been 30 so also for better backwards compatibility support -->
+            <property name="maximum" value="30"/>
+        </properties>
+    </rule>
+    <!-- End of global ruleset -->
+
+    <!-- Increase maximum amount of coupling, because magento constructor injection can become quite extreme and is mostly an adobe issue to fix -->
+    <rule ref="rulesets/design.xml">
+        <exclude name="CouplingBetweenObjects"/>
+    </rule>
+
+    <rule ref="rulesets/design.xml/CouplingBetweenObjects">
+        <properties>
+            <property name="maximum" value="20"/>
+        </properties>
+    </rule>
+
+</ruleset>

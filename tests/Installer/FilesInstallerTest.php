@@ -38,22 +38,22 @@ class FilesInstallerTest extends TestCase
         array $files,
         int $expectedInstalls,
     ): void {
-        $filesystem    = $this->createFilesystem($existingFiles);
-        $reader        = $this->createReaderMock($files, $filesystem->url());
-        $resolver      = $this->createMock(MappingResolver::class);
-        $io            = $this->createMock(IOInterface::class);
-        $fileInstaller = $this->createMock(FileInstaller::class);
+        $filesystem = $this->createFilesystem($existingFiles);
+        $readerMock = $this->createReaderMock($files, $filesystem->url());
+        $resolverMock = $this->createMock(MappingResolver::class);
+        $ioMock = $this->createMock(IOInterface::class);
+        $fileInstallerMock = $this->createMock(FileInstaller::class);
 
-        $resolver
+        $resolverMock
             ->expects(self::once())
             ->method('resolve')
-            ->willReturn($reader);
+            ->willReturn($readerMock);
 
-        $fileInstaller
+        $fileInstallerMock
             ->expects(self::exactly($expectedInstalls))
             ->method('installFile');
 
-        $installer = new FilesInstaller($resolver, $fileInstaller, $io);
+        $installer = new FilesInstaller($resolverMock, $fileInstallerMock, $ioMock);
         $installer->install();
     }
 

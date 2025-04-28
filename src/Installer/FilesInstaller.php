@@ -81,6 +81,7 @@ class FilesInstaller implements InstallerInterface
         $name = $unixFileMapping->getRelativeDestination();
 
         if ($this->mappingResolver->getTypeResolver()->resolve() === 'magento2') {
+            // Reference updates for Magento 2 projects
             if ($name === "phpcs.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
@@ -88,8 +89,9 @@ class FilesInstaller implements InstallerInterface
                         './vendor/mediact/coding-standard-magento2/src/MediactMagento2',
                         './vendor/mediact/coding-standard/src/MediaCT',
                         './vendor/youwe/coding-standard-magento2/src/Magento2',
+                        'YouweMagento2'
                     ],
-                    'YouweMagento2',
+                    './vendor/youwe/testing-suite/config/magento2',
                 );
             } elseif ($name === "phpmd.xml") {
                 $this->updatePath(
@@ -98,8 +100,9 @@ class FilesInstaller implements InstallerInterface
                         './vendor/mediact/coding-standard-magento2/src/MediactMagento2/phpmd.xml',
                         './vendor/mediact/coding-standard/src/MediaCT/phpmd.xml',
                         './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml',
+                        './vendor/youwe/coding-standard-magento2/src/YouweMagento2/phpmd.xml'
                     ],
-                    './vendor/youwe/coding-standard-magento2/src/YouweMagento2/phpmd.xml',
+                    './vendor/youwe/testing-suite/config/magento2/phpmd.xml',
                 );
             } elseif ($name === "grumphp.yml") {
                 $this->updatePath(
@@ -109,16 +112,6 @@ class FilesInstaller implements InstallerInterface
                         'vendor/youwe/testing-suite/config/default/grumphp.yml',
                     ],
                     'vendor/youwe/testing-suite/config/magento2/grumphp.yml',
-                );
-            }
-        } elseif ($this->mappingResolver->getTypeResolver()->resolve() === 'magento') {
-            if ($name === "phpcs.xml") {
-                $this->updatePath(
-                    $unixFileMapping->getDestination(),
-                    [
-                        './vendor/mediact/coding-standard-magento1/src/MediactMagento1',
-                    ],
-                    './vendor/youwe/coding-standard-magento1/src/Magento1',
                 );
             }
         } else {

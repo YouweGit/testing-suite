@@ -1,12 +1,9 @@
-# Project Type Detector
-
-@TODO: rewrite this section.
-
+# Project Type Detection
 The type for a project can be overridden in the composer.json `config` node by
 adding `testing-suite-type` to the configuration.
 This will allow the use of standards for a different type.
 
-Full list of supported project types can be found [over here](../../README.md#supported-project-types)
+Full list of supported project types can be found [here](../../README.md#supported-project-types)
 
 The configurations can be set like this:
 ```json
@@ -19,5 +16,6 @@ The configurations can be set like this:
 }
 ```
 
-For Magento Projects this can be helpful when development is done in the `app/code`
-folder and force the testing suite to automatically select the correct standards.
+The project type is also used to determine which rulesets to load, additional
+package dependencies to install upstream, or how to update references upstream after
+a ruleset change.

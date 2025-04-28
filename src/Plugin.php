@@ -17,6 +17,7 @@ use Youwe\TestingSuite\Composer\Installer\InstallerInterface;
 
 /**
  * @SuppressWarnings("PHPMD.ShortVariable")
+ * @SuppressWarnings("PHPMD.UnusedFormalParameter") to allow for hooks in implemented interface methods
  */
 class Plugin implements PluginInterface, EventSubscriberInterface
 {

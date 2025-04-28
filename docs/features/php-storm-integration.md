@@ -1,5 +1,6 @@
 # PHPStorm Integration
 
+### The basics
 When the testing suite is installed in a PHPStorm environment it automatically
 configures PHPStorm to use the correct coding style.
 
@@ -39,3 +40,8 @@ __Settings > Languages & Frameworks > Javascript > Code Quality Tools > ESLint__
 
 Enable ESLint by checking `Enabled`. Then set the `Node interpreter`
 to `Project` and `Configuration file` to `Automatic Search`.
+
+### Additional features
+An extra package [youwe/coding-standard-phpstorm](https://github.com/YouweGit/coding-standard-phpstorm)
+is available to extend phpstorm and automatically configure some of the inspection profiles,
+as well as extend PHPStorm with some standard (Magento 2) file templates to help with (Magento 2) boilerplate.

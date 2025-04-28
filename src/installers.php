@@ -10,7 +10,6 @@ declare(strict_types=1);
 use Youwe\Composer\FileInstaller;
 use Youwe\FileMapping\UnixFileMappingReader;
 use Youwe\TestingSuite\Composer\ConfigResolver;
-use Youwe\TestingSuite\Composer\Factory\ProcessFactory;
 use Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
 use Youwe\TestingSuite\Composer\Installer\ConfigInstaller;
 use Youwe\TestingSuite\Composer\Installer\FilesInstaller;
@@ -29,7 +28,6 @@ $configResolver  = new ConfigResolver($typeResolver);
 $fileInstaller   = new FileInstaller(
     new UnixFileMappingReader('', ''),
 );
-$processFactory  = new ProcessFactory();
 
 return [
     new FilesInstaller($mappingResolver, $fileInstaller, $io),

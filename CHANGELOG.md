@@ -8,25 +8,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added `phpunit/phpunit` to suggested dependencies in `composer.json`.
 - Added `youwe/coding-standard-phpstorm` to suggested dependencies in `composer.json`.
-- Added support to honor upstream version constraints
+- Added support to honor upstream version constraints.
 - Github action for php 8.3 and php 8.4 to run unit tests against PHPUnit 12.
-- Testing suite now attempts to install phpunit upstream if it isn't available yet
-  - Existing upstream versions are honored if already installed
-  - Upstream projects not having phpunit installed will install phpunit with an @stable version
+- Testing suite now attempts to install phpunit upstream if it isn't available yet.
+  - Existing upstream versions are honored if already installed.
+  - Upstream projects not having phpunit installed will install phpunit with an @stable version.
+- Added support for Drupal configuration and templates.
+- Migration docs for migration from v2 to v3 of the testing suite.
 
 ### Changed
-- Unit tests as part of the testing suite are rewritten for PHPUnit 12
-- Updated GitHub Action workflows to support PHP 8.1, 8.2, and 8.3.
+- Unit tests as part of the testing suite are rewritten for PHPUnit 12.
+- Updated GitHub Action workflows to support PHP 8.1, 8.2, 8.3, and 8.4
 - `composer.json`: Dropped support for PHP < 8.1.
-- Moved phpunit from require to require-dev
+- Moved phpunit from require to require-dev.
 - Changed PHPMD suppressions in docblocks to quote the rule name, due to changes in later versions of PHPStan that create false positives on these docblocks if not quoted.
+- Moved existing project-type specific rulesets from inner dependencies to testing-suite package.
+- Simplified PHPMD rulesets with rationale behind rule changes.
+- Updated remote schema location URL for phpmd rulesets to prevent redirecting which may cause flaky builds.
 
 ### Removed
 - Removed support for EOL PHP versions. Projects running PHP < 8.1 can stick to version 2 of the testing-suite.
 - Removed support for Composer 1. Projects still relying on Composer 1 can stick to version 2 of the testing-suite.
-- Removed `youwe/coding-standard-phpstorm` as dependency (it is still listed in suggest)
-- Removed `phpunit/phpunit` as direct dependency (it is still in require-dev and installed upstream through the `youwe/dependency-installer`)
-- Github actions for php < 8.1
+- Removed `youwe/coding-standard-phpstorm` as dependency (it is still listed in suggest).
+- Removed `phpunit/phpunit` as direct dependency (it is still in require-dev and installed upstream through the `youwe/dependency-installer`).
+- Github actions for php < 8.1.
+- Dependency on seperated coding style packages to simplify development and remove overhead.
+- Dropped support for Laravel and Magento 1.
+- Dropped inner dependencies on coding-standard, coding-standard-magento2, and coding-standard-phpstorm packages.
 
 ## 2.19.1
 ### Changed
@@ -126,7 +134,7 @@ on functions ending with `add()` or `odd()` due to checks on dump and die `dd()`
 ## 2.12 - 2022-05-30
 ### Added
 - PHP 8 compatibility.
-- GitHub Actions Workflow to run testing-suite for PHP 7.4, 8.0 and 8.1.
+- GitHub Actions Workflow to run testing-suite for PHP 7.4, 8.0, and 8.1.
 
 ## 2.11.1 - 2022-04-10
 ### Changed

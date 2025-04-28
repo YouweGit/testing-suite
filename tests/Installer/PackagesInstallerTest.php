@@ -32,19 +32,19 @@ class PackagesInstallerTest extends TestCase
      */
     public function testCanInstallWithMocks(): void
     {
-        $composer     = $this->createMock(Composer::class);
-        $typeResolver = $this->createMock(ProjectTypeResolver::class);
-        $depInstaller = $this->createMock(DependencyInstaller::class);
-        $io           = $this->createMock(IOInterface::class);
+        $composerMock = $this->createMock(Composer::class);
+        $typeRresolverMock = $this->createMock(ProjectTypeResolver::class);
+        $depInstallerMock = $this->createMock(DependencyInstaller::class);
+        $ioMock = $this->createMock(IOInterface::class);
 
         $installer = new PackagesInstaller(
-            $composer,
-            $typeResolver,
-            $io,
-            $depInstaller,
+            $composerMock,
+            $typeRresolverMock,
+            $ioMock,
+            $depInstallerMock,
         );
 
-        $depInstaller
+        $depInstallerMock
             ->expects($this->atLeastOnce())
             ->method('installPackage');
 
@@ -56,15 +56,15 @@ class PackagesInstallerTest extends TestCase
      */
     public function testCanMergeDefaultPackagesWhenInstalling(): void
     {
-        $composer     = $this->createMock(Composer::class);
-        $typeResolver = $this->createMock(ProjectTypeResolver::class);
-        $depInstaller = $this->createMock(DependencyInstaller::class);
-        $io           = $this->createMock(IOInterface::class);
+        $composerMock = $this->createMock(Composer::class);
+        $typeResolverMock = $this->createMock(ProjectTypeResolver::class);
+        $depInstallerMock = $this->createMock(DependencyInstaller::class);
+        $ioMock = $this->createMock(IOInterface::class);
 
         // Simulate magento 1 project
-        $typeResolver
+        $typeResolverMock
             ->method('resolve')
-            ->willReturn('magento1');
+            ->willReturn('foobar');
 
         $mapping = [
             MappingResolver::DEFAULT_MAPPING_TYPE => [
@@ -75,8 +75,9 @@ class PackagesInstallerTest extends TestCase
                     'allowVersionOverride' => false,
                 ],
             ],
-            'magento1' => [
-                'youwe/coding-standard-magento1' => [
+            // Fictional package to test merging for the 'foobar' project type.
+            'foobar' => [
+                'foo/bar-foobar' => [
                     'version' => '^1.3.0',
                     'dev' => true,
                     'updateDependencies' => false,
@@ -86,14 +87,14 @@ class PackagesInstallerTest extends TestCase
         ];
 
         $installer = new PackagesInstaller(
-            $composer,
-            $typeResolver,
-            $io,
-            $depInstaller,
+            $composerMock,
+            $typeResolverMock,
+            $ioMock,
+            $depInstallerMock,
             $mapping
         );
 
-        $depInstaller
+        $depInstallerMock
             ->expects($this->exactly(2))
             ->method('installPackage')
             ->willReturnCallback(
@@ -110,7 +111,7 @@ class PackagesInstallerTest extends TestCase
                     }
 
                     if ($calls === 2) {
-                        $this->assertEquals('youwe/coding-standard-magento1', $package);
+                        $this->assertEquals('foo/bar-foobar', $package);
                         $this->assertEquals('^1.3.0', $version);
                         $this->assertTrue($dev);
                         $this->assertFalse($updateDependencies);
@@ -128,10 +129,10 @@ class PackagesInstallerTest extends TestCase
 
     public function testCanMergeRecursivelyWhenInstalling(): void
     {
-        $composer     = $this->createMock(Composer::class);
-        $typeResolver = $this->createMock(ProjectTypeResolver::class);
-        $depInstaller = $this->createMock(DependencyInstaller::class);
-        $io           = $this->createMock(IOInterface::class);
+        $composerMock = $this->createMock(Composer::class);
+        $typeResolverMock = $this->createMock(ProjectTypeResolver::class);
+        $depInstallerMock = $this->createMock(DependencyInstaller::class);
+        $ioMock = $this->createMock(IOInterface::class);
 
         $mapping = [
             MappingResolver::DEFAULT_MAPPING_TYPE => [
@@ -151,19 +152,19 @@ class PackagesInstallerTest extends TestCase
             ],
         ];
 
-        $typeResolver
+        $typeResolverMock
             ->method('resolve')
             ->willReturn('magento2');
 
         $installer = new PackagesInstaller(
-            $composer,
-            $typeResolver,
-            $io,
-            $depInstaller,
+            $composerMock,
+            $typeResolverMock,
+            $ioMock,
+            $depInstallerMock,
             $mapping,
         );
 
-        $depInstaller
+        $depInstallerMock
             ->expects($this->exactly(1))
             ->method('installPackage')
             ->with('phpunit/phpunit', '^10.6.5', false, true, true);
@@ -173,23 +174,23 @@ class PackagesInstallerTest extends TestCase
 
     public function testPhpUnitIsInstalledForUnknownProjectType(): void
     {
-        $composer     = $this->createMock(Composer::class);
-        $typeResolver = $this->createMock(ProjectTypeResolver::class);
-        $depInstaller = $this->createMock(DependencyInstaller::class);
-        $io           = $this->createMock(IOInterface::class);
+        $composerMock = $this->createMock(Composer::class);
+        $typeResolverMock = $this->createMock(ProjectTypeResolver::class);
+        $depInstallerMock = $this->createMock(DependencyInstaller::class);
+        $ioMock = $this->createMock(IOInterface::class);
 
-        $typeResolver
+        $typeResolverMock
             ->method('resolve')
             ->willReturn('foobar');
 
         $installer = new PackagesInstaller(
-            $composer,
-            $typeResolver,
-            $io,
-            $depInstaller,
+            $composerMock,
+            $typeResolverMock,
+            $ioMock,
+            $depInstallerMock,
         );
 
-        $depInstaller
+        $depInstallerMock
             ->expects($this->exactly(1))
             ->method('installPackage')
             ->with('phpunit/phpunit', '@stable', true, true, false);
