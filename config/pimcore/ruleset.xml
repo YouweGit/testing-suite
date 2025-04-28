@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="Youwe/Pimcore">
+    <description>Youwe coding standard extensions for sniffing code in Pimcore projects.</description>
+
+    <!-- Use default Youwe coding standards for PHP projects. -->
+    <rule ref="../default" />
+
+    <!-- Pimcore specific exclusions -->
+    <exclude-pattern>*/bin/*</exclude-pattern>
+    <exclude-pattern>*/install-profiles/*</exclude-pattern>
+    <exclude-pattern>*/public/*</exclude-pattern>
+    <exclude-pattern>*/var/*</exclude-pattern>
+</ruleset>

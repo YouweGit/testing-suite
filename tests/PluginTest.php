@@ -70,7 +70,7 @@ class PluginTest extends TestCase
     {
         $plugin = new Plugin();
 
-        foreach (Plugin::getSubscribedEvents() as $event => $methods) {
+        foreach (Plugin::getSubscribedEvents() as $methods) {
             foreach ($methods as $method) {
                 $this->assertTrue(method_exists($plugin, $method));
             }

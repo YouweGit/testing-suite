@@ -41,17 +41,7 @@ class PackagesInstaller implements InstallerInterface
                 'allowVersionOverride' => false,
             ],
         ],
-        'magento1' => [
-            'youwe/coding-standard-magento1' => [
-                'version' => '^1.3.0',
-                'updateDependencies' => true,
-            ],
-        ],
         'magento2' => [
-            'youwe/coding-standard-magento2' => [
-                'version' => '^2.0.0',
-                'updateDependencies' => true,
-            ],
             'phpstan/extension-installer' => [
                 'version' => '^1.3',
                 'updateDependencies' => true,
@@ -60,12 +50,10 @@ class PackagesInstaller implements InstallerInterface
                 'version' => '~0.30',
                 'updateDependencies' => true,
             ],
-        ],
-        'laravel' => [
-            'elgentos/laravel-coding-standard' => [
-                'version' => '^1.0.0',
+            'magento/magento-coding-standard' => [
+                'version' => '@stable',
                 'updateDependencies' => true,
-            ],
+            ]
         ],
     ];
 
@@ -85,11 +73,11 @@ class PackagesInstaller implements InstallerInterface
         ?DependencyInstaller $installer = null,
         ?array $mapping = null,
     ) {
-        $this->composer     = $composer;
+        $this->composer = $composer;
         $this->typeResolver = $typeResolver;
-        $this->io           = $io;
-        $this->installer    = $installer ?? new DependencyInstaller();
-        $this->mapping      = $mapping ?? $this->mapping;
+        $this->io = $io;
+        $this->installer = $installer ?? new DependencyInstaller();
+        $this->mapping = $mapping ?? $this->mapping;
     }
 
     /**
@@ -101,7 +89,10 @@ class PackagesInstaller implements InstallerInterface
     {
         $type = $this->typeResolver->resolve();
         $projectTypePackages = $this->mapping[$type] ?? [];
-        $packagesToInstall = array_replace_recursive($this->mapping[MappingResolver::DEFAULT_MAPPING_TYPE], $projectTypePackages);
+        $packagesToInstall = array_replace_recursive(
+            $this->mapping[MappingResolver::DEFAULT_MAPPING_TYPE],
+            $projectTypePackages,
+        );
 
         foreach ($packagesToInstall as $name => $package) {
             if (!$this->isPackageRequired($name, $package['version'])) {

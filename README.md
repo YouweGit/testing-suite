@@ -11,16 +11,15 @@ predefined default configurations per project type.
 
 ## Features
 
-- [Project Type detector](docs/features/project-type-detector.md)
+- [Project Type detector](docs/features/project-type-detection.md)
 - [PHP storm configuration](docs/features/php-storm-integration.md)
 
 ## Supported project types
 
 - Default (`default`)
-- Laravel (`laravel`)
-- [Magento 1](docs/project-types/magento1.md) (`magento1`)
 - [Magento 2](docs/project-types/magento2.md) (`magento2`)
 - Pimcore (`pimcore`)
+- Drupal (`drupal`)
 
 ## Included analysis tools
 

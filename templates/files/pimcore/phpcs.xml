@@ -5,12 +5,30 @@
          xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
          xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
     <description>PHPCS</description>
-
-    <!--<exclude-pattern type="relative">^/path/to/exclude/*</exclude-pattern>-->
-
-    <!-- @TODO: Offload to separate coding-standard-pimcore package, and add common pimcore conventions there -->
-    <rule ref="Youwe"/>
-
+    <rule ref="./vendor/youwe/testing-suite/config/pimcore"/>
     <!-- Append arg -s to phpcs to display the name of failed sniffs -->
     <arg value="s"/>
+
+    <exclude-pattern>*/bin/*</exclude-pattern>
+    <exclude-pattern>*/deploy/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>*/install-profiles/*</exclude-pattern>
+    <exclude-pattern>*/public/*</exclude-pattern>
+
+    <!-- Can't exclude */var/* since ddev and docker typically run in /var/www/html so we need to be more specific. -->
+    <exclude-pattern>*/var/admin/*</exclude-pattern>
+    <exclude-pattern>*/var/application-logger/*</exclude-pattern>
+    <exclude-pattern>*/var/bundles/*</exclude-pattern>
+    <exclude-pattern>*/var/cache/*</exclude-pattern>
+    <exclude-pattern>*/var/classes/*</exclude-pattern>
+    <exclude-pattern>*/var/config/*</exclude-pattern>
+    <exclude-pattern>*/var/email/*</exclude-pattern>
+    <exclude-pattern>*/var/export/*</exclude-pattern>
+    <exclude-pattern>*/var/installer/*</exclude-pattern>
+    <exclude-pattern>*/var/log/*</exclude-pattern>
+    <exclude-pattern>*/var/logs/*</exclude-pattern>
+    <exclude-pattern>*/var/recyclebin/*</exclude-pattern>
+    <exclude-pattern>*/var/sessions/*</exclude-pattern>
+    <exclude-pattern>*/var/tmp/*</exclude-pattern>
+    <exclude-pattern>*/var/versions/*</exclude-pattern>
 </ruleset>

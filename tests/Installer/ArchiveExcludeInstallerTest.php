@@ -40,31 +40,31 @@ class ArchiveExcludeInstallerTest extends TestCase
         array $definition,
         array $expected,
     ): void {
-        $file       = $this->createMock(JsonFile::class);
-        $resolver   = $this->createMock(MappingResolver::class);
-        $io         = $this->createMock(IOInterface::class);
-        $reader     = $this->createReaderMock($files);
+        $fileMock = $this->createMock(JsonFile::class);
+        $resolverMock = $this->createMock(MappingResolver::class);
+        $ioMock = $this->createMock(IOInterface::class);
+        $readerMock = $this->createReaderMock($files);
         $filesystem = $this->createFilesystem($existingFiles);
 
-        $file
+        $fileMock
             ->expects(self::once())
             ->method('read')
             ->willReturn($definition);
 
-        $file
+        $fileMock
             ->expects(self::once())
             ->method('write')
             ->with($expected);
 
-        $resolver
+        $resolverMock
             ->expects(self::once())
             ->method('resolve')
-            ->willReturn($reader);
+            ->willReturn($readerMock);
 
         $installer = new ArchiveExcludeInstaller(
-            $resolver,
-            $io,
-            $file,
+            $resolverMock,
+            $ioMock,
+            $fileMock,
             $filesystem->url(),
             $defaults,
         );
@@ -118,7 +118,7 @@ class ArchiveExcludeInstallerTest extends TestCase
     {
         $mock = $this->createMock(FileMappingReaderInterface::class);
 
-        $valids   = array_fill(0, count($files), true);
+        $valids = array_fill(0, count($files), true);
         $valids[] = false;
 
         $mappings = array_map(
