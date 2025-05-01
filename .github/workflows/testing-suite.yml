@@ -4,13 +4,17 @@ jobs:
   PHP:
     strategy:
       matrix:
-        php-version: [8.1, 8.2, 8.3, 8.4]
+        php:
+          - {version: 8.1, tasks: 'composer,jsonlint,xmllint,yamllint,phpcs,phplint,phpmd,phpstan,securitychecker_enlightn'}
+          - {version: 8.2, tasks: 'composer,jsonlint,xmllint,yamllint,phpcs,phplint,phpmd,phpstan,securitychecker_enlightn'}
+          - {version: 8.3}
+          - {version: 8.4}
     runs-on: ubuntu-latest
     container:
-      image: ${{ matrix.php-version == '8.1' && 'srcoder/development-php:php81-fpm' ||
-        matrix.php-version == '8.2' && 'srcoder/development-php:php82-fpm' ||
-        matrix.php-version == '8.3' && 'srcoder/development-php:php83-fpm' ||
-        matrix.php-version == '8.4' && 'srcoder/development-php:php84-fpm' }}
+      image: ${{ matrix.php.version == '8.1' && 'srcoder/development-php:php81-fpm' ||
+        matrix.php.version == '8.2' && 'srcoder/development-php:php82-fpm' ||
+        matrix.php.version == '8.3' && 'srcoder/development-php:php83-fpm' ||
+        matrix.php.version == '8.4' && 'srcoder/development-php:php84-fpm' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,9 +27,9 @@ jobs:
 
       - name: Run GrumPHP Tasks
         run: |
-          if [[ "${{ matrix.php-version }}" == "8.1" || "${{ matrix.php-version }}" == "8.2" ]]; then
-            composer2 exec -v grumphp -- run --tasks=composer,jsonlint,xmllint,yamllint,phpcs,phplint,phpmd,phpstan,securitychecker_enlightn
-          else
-            composer2 exec -v grumphp -- run
+          runArguments=()
+          if [[ "${{ matrix.php.tasks }}" ]]; then
+            runArguments+=(--tasks="{{ matrix.php.tasks }}")
           fi
+          composer2 exec -v grumphp -- run "${runArguments[@]}"
         shell: bash
