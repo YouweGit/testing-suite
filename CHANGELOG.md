@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.0.0] - Unreleased
+## [3.0.0]
 ### Added
 - Added `phpunit/phpunit` to suggested dependencies in `composer.json`.
 - Added `youwe/coding-standard-phpstorm` to suggested dependencies in `composer.json`.
@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved existing project-type specific rulesets from inner dependencies to testing-suite package.
 - Simplified PHPMD rulesets with rationale behind rule changes.
 - Updated remote schema location URL for phpmd rulesets to prevent redirecting which may cause flaky builds.
+- Bumped phpro/grumphp-shim dependency from v1 to v2
 
 ### Removed
 - Removed support for EOL PHP versions. Projects running PHP < 8.1 can stick to version 2 of the testing-suite.
