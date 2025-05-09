@@ -22,7 +22,6 @@ use Youwe\TestingSuite\Composer\Installer\ConfigInstaller;
 class ConfigInstallerTest extends TestCase
 {
     /**
-     * @return void
      *
      * @covers ::__construct
      * @covers ::install
@@ -60,9 +59,6 @@ class ConfigInstallerTest extends TestCase
         $installer->install();
     }
 
-    /**
-     * @return array
-     */
     public function dataProvider(): array
     {
         return [

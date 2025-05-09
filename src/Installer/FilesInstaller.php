@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Installer;
 
+use Override;
 use Composer\IO\IOInterface;
 use Youwe\Composer\FileInstaller as ComposerFileInstaller;
 use Youwe\FileMapping\FileMappingInterface;
@@ -19,37 +20,17 @@ use Youwe\TestingSuite\Composer\MappingResolver;
  */
 class FilesInstaller implements InstallerInterface
 {
-    /** @var MappingResolver */
-    private $mappingResolver;
-
-    /** @var ComposerFileInstaller */
-    private $fileInstaller;
-
-    /** @var IOInterface */
-    private $io;
-
     /**
      * Constructor.
-     *
-     * @param MappingResolver       $mappingResolver
-     * @param ComposerFileInstaller $fileInstaller
-     * @param IOInterface           $io
      */
-    public function __construct(
-        MappingResolver $mappingResolver,
-        ComposerFileInstaller $fileInstaller,
-        IOInterface $io
-    ) {
-        $this->mappingResolver = $mappingResolver;
-        $this->fileInstaller   = $fileInstaller;
-        $this->io              = $io;
+    public function __construct(private readonly MappingResolver $mappingResolver, private readonly ComposerFileInstaller $fileInstaller, private readonly IOInterface $io)
+    {
     }
 
     /**
      * Install.
-     *
-     * @return void
      */
+    #[Override]
     public function install(): void
     {
         foreach ($this->mappingResolver->resolve() as $mapping) {
@@ -70,11 +51,9 @@ class FilesInstaller implements InstallerInterface
     }
 
     /**
-     * @param FileMappingInterface $unixFileMapping
      *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      *
-     * @return void
      */
     private function resolveYouwePathing(FileMappingInterface $unixFileMapping): void
     {
@@ -119,39 +98,31 @@ class FilesInstaller implements InstallerInterface
                     './vendor/youwe/coding-standard-magento1/src/Magento1'
                 );
             }
-        } else {
-            if ($name === "phpcs.xml") {
-                $this->updatePath(
-                    $unixFileMapping->getDestination(),
-                    ['./vendor/mediact/coding-standard/src/MediaCT'],
-                    './vendor/youwe/coding-standard/src/Global'
-                );
-            } elseif ($name === "phpmd.xml") {
-                $this->updatePath(
-                    $unixFileMapping->getDestination(),
-                    [
-                        './vendor/mediact/coding-standard/src/MediaCT/phpmd.xml',
-                        './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
-                    ],
-                    './vendor/youwe/coding-standard/src/Global/phpmd.xml'
-                );
-            } elseif ($name === "grumphp.yml") {
-                $this->updatePath(
-                    $unixFileMapping->getDestination(),
-                    ['vendor/mediact/testing-suite/config/default/grumphp.yml'],
-                    'vendor/youwe/testing-suite/config/default/grumphp.yml'
-                );
-            }
+        } elseif ($name === "phpcs.xml") {
+            $this->updatePath(
+                $unixFileMapping->getDestination(),
+                ['./vendor/mediact/coding-standard/src/MediaCT'],
+                './vendor/youwe/coding-standard/src/Global'
+            );
+        } elseif ($name === "phpmd.xml") {
+            $this->updatePath(
+                $unixFileMapping->getDestination(),
+                [
+                    './vendor/mediact/coding-standard/src/MediaCT/phpmd.xml',
+                    './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
+                ],
+                './vendor/youwe/coding-standard/src/Global/phpmd.xml'
+            );
+        } elseif ($name === "grumphp.yml") {
+            $this->updatePath(
+                $unixFileMapping->getDestination(),
+                ['vendor/mediact/testing-suite/config/default/grumphp.yml'],
+                'vendor/youwe/testing-suite/config/default/grumphp.yml'
+            );
         }
     }
 
-    /**
-     * @param string $destination
-     * @param array  $oldPaths
-     * @param string $newPath
-     *
-     * @return void
-     */
+    
     private function updatePath(
         string $destination,
         array $oldPaths,

@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Installer;
 
+use Override;
 use Composer\Composer;
 use Composer\IO\IOInterface;
 use Youwe\Composer\DependencyInstaller\DependencyInstaller;
@@ -20,18 +21,6 @@ use Youwe\TestingSuite\Composer\ProjectTypeResolver;
  */
 class PackagesInstaller implements InstallerInterface
 {
-    /** @var DependencyInstaller */
-    private $installer;
-
-    /** @var Composer */
-    private $composer;
-
-    /** @var ProjectTypeResolver */
-    private $typeResolver;
-
-    /** @var IOInterface */
-    private $io;
-
     /** @var array */
     private $mapping = [
         MappingResolver::DEFAULT_MAPPING_TYPE => [],
@@ -71,31 +60,23 @@ class PackagesInstaller implements InstallerInterface
     /**
      * Constructor.
      *
-     * @param Composer                 $composer
-     * @param ProjectTypeResolver      $typeResolver
-     * @param IOInterface              $io
      * @param DependencyInstaller|null $installer
      * @param array|null               $mapping
      */
     public function __construct(
-        Composer $composer,
-        ProjectTypeResolver $typeResolver,
-        IOInterface $io,
-        DependencyInstaller $installer = null,
-        array $mapping = null
+        private readonly Composer $composer,
+        private readonly ProjectTypeResolver $typeResolver,
+        private readonly IOInterface $io,
+        private readonly DependencyInstaller $installer = new DependencyInstaller(),
+        ?array $mapping = null
     ) {
-        $this->composer     = $composer;
-        $this->typeResolver = $typeResolver;
-        $this->io           = $io;
-        $this->installer    = $installer ?? new DependencyInstaller();
         $this->mapping      = $mapping ?? $this->mapping;
     }
 
     /**
      * Install.
-     *
-     * @return void
      */
+    #[Override]
     public function install(): void
     {
         $type = $this->typeResolver->resolve();
@@ -120,9 +101,7 @@ class PackagesInstaller implements InstallerInterface
     /**
      * Whether a package has been required.
      *
-     * @param string $packageName
      *
-     * @return bool
      */
     private function isPackageRequired(string $packageName, string $version): bool
     {

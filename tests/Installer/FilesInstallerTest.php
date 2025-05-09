@@ -27,11 +27,7 @@ use Youwe\TestingSuite\Composer\MappingResolver;
 class FilesInstallerTest extends TestCase
 {
     /**
-     * @param array $existingFiles
-     * @param array $files
-     * @param int   $expectedInstalls
      *
-     * @return void
      * @dataProvider dataProvider
      *
      * @covers ::__construct
@@ -41,7 +37,7 @@ class FilesInstallerTest extends TestCase
         array $existingFiles,
         array $files,
         int $expectedInstalls
-    ) {
+    ): void {
         $filesystem    = $this->createFilesystem($existingFiles);
         $reader        = $this->createReaderMock($files, $filesystem->url());
         $resolver      = $this->createMock(MappingResolver::class);
@@ -61,9 +57,6 @@ class FilesInstallerTest extends TestCase
         $installer->install();
     }
 
-    /**
-     * @return array
-     */
     public function dataProvider(): array
     {
         return [
@@ -81,12 +74,7 @@ class FilesInstallerTest extends TestCase
         ];
     }
 
-    /**
-     * @param array  $files
-     * @param string $destination
-     *
-     * @return FileMappingReaderInterface
-     */
+    
     private function createReaderMock(array $files, string $destination): FileMappingReaderInterface
     {
         /** @var FileMappingReaderInterface|MockObject $mock */
@@ -127,11 +115,7 @@ class FilesInstallerTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @param array $files
-     *
-     * @return vfsStreamDirectory
-     */
+    
     private function createFilesystem(array $files): vfsStreamDirectory
     {
         return vfsStream::setup(

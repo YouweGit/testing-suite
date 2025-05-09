@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Installer;
 
+use Override;
 use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
@@ -21,17 +22,9 @@ use Youwe\TestingSuite\Composer\MappingResolver;
  */
 class ArchiveExcludeInstaller implements InstallerInterface
 {
-    /** @var JsonFile */
-    private $file;
+    private readonly JsonFile $file;
 
-    /** @var MappingResolver */
-    private $resolver;
-
-    /** @var IOInterface */
-    private $io;
-
-    /** @var string */
-    private $destination;
+    private readonly string|bool $destination;
 
     /** @var array */
     private $defaults = [
@@ -47,21 +40,16 @@ class ArchiveExcludeInstaller implements InstallerInterface
     /**
      * Constructor.
      *
-     * @param MappingResolver $resolver
-     * @param IOInterface     $io
      * @param JsonFile|null   $file
-     * @param string          $destination
      * @param array|null      $defaults
      */
     public function __construct(
-        MappingResolver $resolver,
-        IOInterface $io,
-        JsonFile $file = null,
-        string $destination = null,
-        array $defaults = null
+        private readonly MappingResolver $resolver,
+        private readonly IOInterface $io,
+        ?JsonFile $file = null,
+        ?string $destination = null,
+        ?array $defaults = null
     ) {
-        $this->resolver    = $resolver;
-        $this->io          = $io;
         $this->file        = $file ?? new JsonFile(Factory::getComposerFile());
         $this->destination = $destination ?? getcwd();
         $this->defaults    = $defaults ?? $this->defaults;
@@ -69,29 +57,24 @@ class ArchiveExcludeInstaller implements InstallerInterface
 
     /**
      * Install.
-     *
-     * @return void
      */
+    #[Override]
     public function install(): void
     {
         $definition = $this->file->read();
         $excluded   = $definition['archive']['exclude'] ?? [];
 
         $excluded = array_map(
-            function (string $exclude): string {
-                return substr($exclude, 0, 1) !== '/'
-                    ? '/' . $exclude
-                    : $exclude;
-            },
+            fn(string $exclude): string => str_starts_with($exclude, '/')
+                ? $exclude
+                : '/' . $exclude,
             $excluded
         );
 
         $files = array_merge(
             $this->defaults,
             array_map(
-                function (FileMappingInterface $mapping): string {
-                    return '/' . $mapping->getRelativeDestination();
-                },
+                fn(FileMappingInterface $mapping): string => '/' . $mapping->getRelativeDestination(),
                 iterator_to_array(
                     $this->resolver->resolve()
                 )

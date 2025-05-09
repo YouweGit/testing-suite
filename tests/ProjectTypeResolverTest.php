@@ -21,10 +21,7 @@ use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 class ProjectTypeResolverTest extends TestCase
 {
     /**
-     * @param string $packageType
-     * @param string $expected
      *
-     * @return void
      *
      * @dataProvider dataProvider
      *
@@ -57,7 +54,6 @@ class ProjectTypeResolverTest extends TestCase
     }
 
     /**
-     * @return void
      *
      * @covers ::__construct
      * @covers ::resolve
@@ -92,9 +88,6 @@ class ProjectTypeResolverTest extends TestCase
         $this->assertEquals('magento2', $decider->resolve());
     }
 
-    /**
-     * @return array
-     */
     public function dataProvider(): array
     {
         return [

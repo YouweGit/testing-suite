@@ -13,8 +13,6 @@ interface InstallerInterface
 {
     /**
      * Install.
-     *
-     * @return void
      */
     public function install(): void;
 }

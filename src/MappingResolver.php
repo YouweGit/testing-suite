@@ -14,25 +14,17 @@ use Youwe\FileMapping\UnixFileMappingReader;
 
 class MappingResolver
 {
-    /** @var ProjectTypeResolver */
-    private $typeResolver;
-
     public const DEFAULT_MAPPING_TYPE = 'default';
 
     /**
      * Constructor.
-     *
-     * @param ProjectTypeResolver $typeResolver
      */
-    public function __construct(ProjectTypeResolver $typeResolver)
+    public function __construct(private readonly ProjectTypeResolver $typeResolver)
     {
-        $this->typeResolver = $typeResolver;
     }
 
     /**
      * Resolve mapping files.
-     *
-     * @return FileMappingReaderInterface
      */
     public function resolve(): FileMappingReaderInterface
     {

@@ -29,9 +29,6 @@ class ProjectTypeResolver
      */
     public const COMPOSER_CONFIG_TYPE_KEY = 'type';
 
-    /** @var Composer */
-    private $composer;
-
     /** @var array */
     private $mapping = [
         'magento2-module' => 'magento2',
@@ -48,19 +45,15 @@ class ProjectTypeResolver
     /**
      * Constructor.
      *
-     * @param Composer   $composer
      * @param array|null $mapping
      */
-    public function __construct(Composer $composer, array $mapping = null)
+    public function __construct(private readonly Composer $composer, ?array $mapping = null)
     {
-        $this->composer = $composer;
         $this->mapping  = $mapping ?? $this->mapping;
     }
 
     /**
      * Get the type.
-     *
-     * @return string
      */
     public function resolve(): string
     {

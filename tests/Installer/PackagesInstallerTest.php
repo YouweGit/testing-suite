@@ -25,11 +25,7 @@ use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 class PackagesInstallerTest extends TestCase
 {
     /**
-     * @param string     $type
-     * @param array      $requires
-     * @param array|null $expected
      *
-     * @return void
      * @dataProvider dataProvider
      *
      * @covers ::__construct
@@ -39,8 +35,8 @@ class PackagesInstallerTest extends TestCase
     public function testInstall(
         string $type,
         array $requires,
-        array $expected = null
-    ) {
+        ?array $expected = null
+    ): void {
         $composer     = $this->createMock(Composer::class);
         $typeResolver = $this->createMock(ProjectTypeResolver::class);
         $depInstaller = $this->createMock(DependencyInstaller::class);
@@ -72,9 +68,6 @@ class PackagesInstallerTest extends TestCase
         $installer->install();
     }
 
-    /**
-     * @return array
-     */
     public function dataProvider(): array
     {
         return [

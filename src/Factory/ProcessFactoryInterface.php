@@ -16,9 +16,7 @@ interface ProcessFactoryInterface
     /**
      * Create a new Process instance.
      *
-     * @param string $commandLine
      *
-     * @return Process
      */
     public function create(string $commandLine): Process;
 }

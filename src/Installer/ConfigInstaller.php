@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Installer;
 
+use Override;
 use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
@@ -20,31 +21,24 @@ use Youwe\TestingSuite\Composer\ConfigResolver;
  */
 class ConfigInstaller implements InstallerInterface
 {
-    /** @var JsonFile */
-    private $file;
-
-    /** @var ConfigResolver */
-    private $resolver;
+    private readonly JsonFile $file;
 
     /**
      * Constructor.
      *
-     * @param ConfigResolver $resolver
      * @param JsonFile|null  $file
      */
     public function __construct(
-        ConfigResolver $resolver,
-        JsonFile $file = null
+        private readonly ConfigResolver $resolver,
+        ?JsonFile $file = null
     ) {
-        $this->resolver = $resolver;
         $this->file     = $file ?? new JsonFile(Factory::getComposerFile());
     }
 
     /**
      * Install.
-     *
-     * @return void
      */
+    #[Override]
     public function install(): void
     {
         $definition = $this->file->read();

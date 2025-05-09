@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Factory;
 
+use Override;
 use Symfony\Component\Process\Process;
 
 class ProcessFactory implements ProcessFactoryInterface
@@ -16,10 +17,9 @@ class ProcessFactory implements ProcessFactoryInterface
     /**
      * Create a new Process instance.
      *
-     * @param string $commandLine
      *
-     * @return Process
      */
+    #[Override]
     public function create(string $commandLine): Process
     {
         // See https://github.com/composer/composer/blob/1.10.17/src/Composer/Util/ProcessExecutor.php#L68:L72

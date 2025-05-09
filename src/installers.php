@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Composer\IO\IOInterface;
 use Youwe\Composer\FileInstaller;
 use Youwe\FileMapping\UnixFileMappingReader;
 use Youwe\TestingSuite\Composer\ConfigResolver;
@@ -20,9 +21,8 @@ use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
 /**
  * @var Composer\Composer       $composer
- * @var Composer\IO\IOInterface $io
+ * @var IOInterface $io
  */
-
 $typeResolver    = new ProjectTypeResolver($composer);
 $mappingResolver = new MappingResolver($typeResolver);
 $configResolver  = new ConfigResolver($typeResolver);

@@ -27,13 +27,6 @@ use Youwe\TestingSuite\Composer\MappingResolver;
 class ArchiveExcludeInstallerTest extends TestCase
 {
     /**
-     * @param array $existingFiles
-     * @param array $files
-     * @param array $defaults
-     * @param array $definition
-     * @param array $expected
-     *
-     * @return void
      *
      * @dataProvider dataProvider
      *
@@ -46,7 +39,7 @@ class ArchiveExcludeInstallerTest extends TestCase
         array $defaults,
         array $definition,
         array $expected
-    ) {
+    ): void {
         $file       = $this->createMock(JsonFile::class);
         $resolver   = $this->createMock(MappingResolver::class);
         $io         = $this->createMock(IOInterface::class);
@@ -79,9 +72,6 @@ class ArchiveExcludeInstallerTest extends TestCase
         $installer->install();
     }
 
-    /**
-     * @return array
-     */
     public function dataProvider(): array
     {
         return [
@@ -121,11 +111,7 @@ class ArchiveExcludeInstallerTest extends TestCase
         ];
     }
 
-    /**
-     * @param array $files
-     *
-     * @return FileMappingReaderInterface
-     */
+    
     private function createReaderMock(array $files): FileMappingReaderInterface
     {
         /** @var FileMappingReaderInterface|MockObject $mock */
@@ -166,11 +152,7 @@ class ArchiveExcludeInstallerTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @param array $files
-     *
-     * @return vfsStreamDirectory
-     */
+    
     private function createFilesystem(array $files): vfsStreamDirectory
     {
         return vfsStream::setup(

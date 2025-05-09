@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer;
 
+use Override;
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
@@ -21,7 +22,7 @@ use Youwe\TestingSuite\Composer\Installer\InstallerInterface;
 class Plugin implements PluginInterface, EventSubscriberInterface
 {
     /** @var InstallerInterface[] */
-    private $installers;
+    private array $installers;
 
     /**
      * Constructor.
@@ -36,12 +37,10 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     /**
      * Apply plugin modifications to Composer.
      *
-     * @param Composer    $composer
-     * @param IOInterface $io
      *
-     * @return void
      */
-    public function activate(Composer $composer, IOInterface $io)
+    #[Override]
+    public function activate(Composer $composer, IOInterface $io): void
     {
         $this->addInstallers(
             ...include __DIR__ . '/installers.php'
@@ -51,11 +50,10 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     /**
      * Remove any hooks from Composer.
      *
-     * @param Composer    $composer
-     * @param IOInterface $io
      *
      * @return void
      */
+    #[Override]
     public function deactivate(Composer $composer, IOInterface $io)
     {
     }
@@ -63,11 +61,10 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     /**
      * Prepare the plugin to be uninstalled
      *
-     * @param Composer    $composer
-     * @param IOInterface $io
      *
      * @return void
      */
+    #[Override]
     public function uninstall(Composer $composer, IOInterface $io)
     {
     }
@@ -76,20 +73,16 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      * Add installers.
      *
      * @param InstallerInterface[] ...$installers
-     *
-     * @return void
      */
-    public function addInstallers(InstallerInterface ...$installers)
+    public function addInstallers(InstallerInterface ...$installers): void
     {
         $this->installers = array_merge($this->installers, $installers);
     }
 
     /**
      * Run the installers.
-     *
-     * @return void
      */
-    public function install()
+    public function install(): void
     {
         foreach ($this->installers as $installer) {
             $installer->install();
@@ -98,9 +91,8 @@ class Plugin implements PluginInterface, EventSubscriberInterface
 
     /**
      * Subscribe to post update and post install command.
-     *
-     * @return array
      */
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [

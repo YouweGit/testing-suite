@@ -19,11 +19,9 @@ use Youwe\TestingSuite\Composer\Factory\ProcessFactory;
 class ProcessFactoryTest extends TestCase
 {
     /**
-     * @return void
-     *
      * @covers ::create
      */
-    public function testCreate()
+    public function testCreate(): void
     {
         $factory = new ProcessFactory();
 

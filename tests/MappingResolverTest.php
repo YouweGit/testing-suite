@@ -20,12 +20,11 @@ use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 class MappingResolverTest extends TestCase
 {
     /**
-     * @return void
      *
      * @covers ::__construct
      * @covers ::resolve
      */
-    public function testResolve()
+    public function testResolve(): void
     {
         $typeResolver = $this->createMock(ProjectTypeResolver::class);
         $typeResolver

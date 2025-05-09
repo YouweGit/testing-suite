@@ -21,7 +21,6 @@ use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 class ConfigResolverTest extends TestCase
 {
     /**
-     * @return void
      *
      * @covers ::__construct
      * @covers ::resolve
