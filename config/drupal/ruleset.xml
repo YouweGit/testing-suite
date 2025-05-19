@@ -4,6 +4,7 @@
 
     <!-- Use default Youwe coding standards for PHP projects. -->
     <rule ref="../default" />
-    <!-- Additional Drupal-specific rulesets. -->
 
+    <!-- Additional Drupal-specific rulesets from drupal/coder, automatically installed upstream if not available -->
+    <rule ref="Drupal"/>
 </ruleset>

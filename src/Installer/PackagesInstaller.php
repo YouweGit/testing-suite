@@ -55,6 +55,14 @@ class PackagesInstaller implements InstallerInterface
                 'updateDependencies' => true,
             ]
         ],
+        'drupal' => [
+            'drupal/coder' => [
+                'version' => '@stable',
+                'dev' => true,
+                'updateDependencies' => true,
+                'allowVersionOverride' => false,
+            ]
+        ]
     ];
 
     /**

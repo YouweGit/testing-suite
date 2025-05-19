@@ -41,6 +41,7 @@ class ProjectTypeResolver
         'alumio-project'  => 'alumio',
         'laravel-project' => 'laravel',
         'pimcore-project' => 'pimcore',
+        'drupal-project'  => 'drupal',
     ];
 
     public const DEFAULT_PROJECT_TYPE = 'default';
