@@ -1,5 +1,5 @@
 # Project Type Detection
-The type for a project can be overridden in the composer.json `config` node by
+The type for a project can be overridden in the composer.json `extra` node by
 adding `testing-suite-type` to the configuration.
 This will allow the use of standards for a different type.
 
@@ -8,7 +8,7 @@ Full list of supported project types can be found [here](../../README.md#support
 The configurations can be set like this:
 ```json
 {
-  "config": {
+  "extra": {
     "youwe-testing-suite": {
       "type": "magento2"
     }
