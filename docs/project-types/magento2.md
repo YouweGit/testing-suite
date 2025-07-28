@@ -1,2 +1,0 @@
-- `magento2-project`: [Youwe Coding Standard Magento2](../../config/magento2)
-- `magento2-module`: [Youwe Coding Standard Magento2](../../config/magento2)

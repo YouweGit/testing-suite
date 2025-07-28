@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Migration docs for migration from v2 to v3 of the testing suite.
 
 ### Changed
+- [BREAKING] The composer.json configurations `config.youwe-testing-suite.type` and `config.mediact-testing-suite.type`
+  are now moved from the `config` section to the `extra` section. The old location was invalid as the `config` section 
+  belongs to configuration from Composer itself. Moving it to the `extra` section which is intended for this purpose 
+  (composer docs: "arbitrary extra data for consumption by scripts"). Only the single `extra.youwe-testing-suite.type` 
+  is supported now. Update your project `composer.json` accordingly.
 - Unit tests as part of the testing suite are rewritten for PHPUnit 12.
 - Updated GitHub Action workflows to support PHP 8.1, 8.2, 8.3, and 8.4
 - `composer.json`: Dropped support for PHP < 8.1.

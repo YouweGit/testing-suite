@@ -6,6 +6,36 @@ based on experiences with initial v3.0.0-rc1 tests.
 We use the project type to automatically update some ruleset mappings for PHPCS and PHPMD.
 
 For a list of supported project types, see the [readme](./README.md).
+
+If your project type was configured in `composer.json` within the `config` section, then move that to the `extra` 
+section:
+
+**Old:**
+```json
+{
+    "config": {
+        "youwe-testing-suite": { "type": "magento2" }
+    }
+}
+```
+
+**New:**
+```json
+{
+    "extra": {
+        "youwe-testing-suite": { "type": "magento2" }
+    }
+}
+```
+
+Otherwise, the project type is still taken from the `type` within `composer.json`.
+
+```json
+{
+    "type": "magento2-module"
+}
+```
+
 ### 2. Update to version 3
 ```bash
 composer require --dev youwe/testing-suite:^3.0 --no-update
