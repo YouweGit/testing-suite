@@ -8,4 +8,4 @@ If a PR is approved please ask one of the following maintainers to get it merged
 
 - [Igor Wulff](https://github.com/igorwulff)
 - [Leon Helmus](https://github.com/leonhelmus)
-- [Rutger Rademakers](https://github.com/rutgerrademaker)
+- [Rutger Rademaker](https://github.com/rutgerrademaker)
