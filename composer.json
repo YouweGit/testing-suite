@@ -34,7 +34,7 @@
         "phpro/grumphp-shim": "^2.12",
         "phpstan/phpstan": "@stable",
         "squizlabs/php_codesniffer": "^3.12.0",
-        "youwe/composer-dependency-installer": "^1.5.0",
+        "youwe/composer-dependency-installer": "^2.0",
         "youwe/composer-file-installer": "^1.2.0"
     },
     "suggest": {

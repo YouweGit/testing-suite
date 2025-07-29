@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Simplified PHPMD rulesets with rationale behind rule changes.
 - Updated remote schema location URL for phpmd rulesets to prevent redirecting which may cause flaky builds.
 - Bumped phpro/grumphp-shim dependency from v1 to v2
+- Bumped youwe/composer-dependency-installer from v1 to v2
 
 ### Removed
 - Removed support for EOL PHP versions. Projects running PHP < 8.1 can stick to version 2 of the testing-suite.
