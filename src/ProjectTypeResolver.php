@@ -17,30 +17,27 @@ use Composer\Composer;
 class ProjectTypeResolver
 {
     /**
-     * The key from the composer configuration which contains other configuration.
+     * The key from the composer extra section which contains other configuration.
      */
-    public const COMPOSER_CONFIG_KEYS = [
-        'youwe-testing-suite',
-        'mediact-testing-suite'
-    ];
+    public const COMPOSER_EXTRA_KEY = 'youwe-testing-suite';
 
     /**
      * The key in the configuration, which determines the overwrite for the type.
      */
-    public const COMPOSER_CONFIG_TYPE_KEY = 'type';
+    public const COMPOSER_EXTRA_TYPE_KEY = 'type';
 
     /** @var Composer */
     private $composer;
 
     /** @var array */
     private $mapping = [
-        'magento2-module' => 'magento2',
-        'magento-module'  => 'magento1',
-        'magento2-project' => 'magento2',
+        'drupal-bundle' => 'drupal',
+        'drupal-project' => 'drupal',
         'magento-project' => 'magento2',
-        'alumio-project'  => 'alumio',
-        'laravel-project' => 'laravel',
-        'pimcore-project' => 'pimcore'
+        'magento2-module' => 'magento2',
+        'magento2-project' => 'magento2',
+        'pimcore-bundle' => 'pimcore',
+        'pimcore-project' => 'pimcore',
     ];
 
     public const DEFAULT_PROJECT_TYPE = 'default';
@@ -51,7 +48,7 @@ class ProjectTypeResolver
      * @param Composer   $composer
      * @param array|null $mapping
      */
-    public function __construct(Composer $composer, array $mapping = null)
+    public function __construct(Composer $composer, ?array $mapping = null)
     {
         $this->composer = $composer;
         $this->mapping  = $mapping ?? $this->mapping;
@@ -64,15 +61,9 @@ class ProjectTypeResolver
      */
     public function resolve(): string
     {
-        $config = $this->composer->getConfig();
-
-        foreach (static::COMPOSER_CONFIG_KEYS as $key) {
-            if ($config->has($key)) {
-                $configNode = $config->get($key);
-                if (isset($configNode[static::COMPOSER_CONFIG_TYPE_KEY])) {
-                    return $configNode[static::COMPOSER_CONFIG_TYPE_KEY];
-                }
-            }
+        $extra = $this->composer->getPackage()->getExtra();
+        if (isset($extra[static::COMPOSER_EXTRA_KEY][static::COMPOSER_EXTRA_TYPE_KEY])) {
+            return $extra[static::COMPOSER_EXTRA_KEY][static::COMPOSER_EXTRA_TYPE_KEY];
         }
 
         $packageType = $this->composer->getPackage()->getType();

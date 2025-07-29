@@ -15,7 +15,7 @@ use Youwe\FileMapping\FileMappingInterface;
 use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
- * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings("PHPMD.ShortVariable")
  */
 class FilesInstaller implements InstallerInterface
 {
@@ -38,7 +38,7 @@ class FilesInstaller implements InstallerInterface
     public function __construct(
         MappingResolver $mappingResolver,
         ComposerFileInstaller $fileInstaller,
-        IOInterface $io
+        IOInterface $io,
     ) {
         $this->mappingResolver = $mappingResolver;
         $this->fileInstaller   = $fileInstaller;
@@ -63,7 +63,7 @@ class FilesInstaller implements InstallerInterface
             $this->io->write(
                 sprintf(
                     '<info>Installed:</info> %s',
-                    $mapping->getRelativeDestination()
+                    $mapping->getRelativeDestination(),
                 )
             );
         }
@@ -72,7 +72,7 @@ class FilesInstaller implements InstallerInterface
     /**
      * @param FileMappingInterface $unixFileMapping
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      *
      * @return void
      */
@@ -81,15 +81,17 @@ class FilesInstaller implements InstallerInterface
         $name = $unixFileMapping->getRelativeDestination();
 
         if ($this->mappingResolver->getTypeResolver()->resolve() === 'magento2') {
+            // Reference updates for Magento 2 projects
             if ($name === "phpcs.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     [
                         './vendor/mediact/coding-standard-magento2/src/MediactMagento2',
                         './vendor/mediact/coding-standard/src/MediaCT',
-                        './vendor/youwe/coding-standard-magento2/src/Magento2'
+                        './vendor/youwe/coding-standard-magento2/src/Magento2',
+                        'YouweMagento2'
                     ],
-                    'YouweMagento2'
+                    './vendor/youwe/testing-suite/config/magento2',
                 );
             } elseif ($name === "phpmd.xml") {
                 $this->updatePath(
@@ -97,49 +99,46 @@ class FilesInstaller implements InstallerInterface
                     [
                         './vendor/mediact/coding-standard-magento2/src/MediactMagento2/phpmd.xml',
                         './vendor/mediact/coding-standard/src/MediaCT/phpmd.xml',
-                        './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
+                        './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml',
+                        './vendor/youwe/coding-standard-magento2/src/YouweMagento2/phpmd.xml'
                     ],
-                    './vendor/youwe/coding-standard-magento2/src/YouweMagento2/phpmd.xml'
+                    './vendor/youwe/testing-suite/config/magento2/phpmd.xml',
                 );
             } elseif ($name === "grumphp.yml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     [
                         'vendor/mediact/testing-suite/config/default/grumphp.yml',
-                        'vendor/youwe/testing-suite/config/default/grumphp.yml'
+                        'vendor/youwe/testing-suite/config/default/grumphp.yml',
                     ],
-                    'vendor/youwe/testing-suite/config/magento2/grumphp.yml'
-                );
-            }
-        } elseif ($this->mappingResolver->getTypeResolver()->resolve() === 'magento') {
-            if ($name === "phpcs.xml") {
-                $this->updatePath(
-                    $unixFileMapping->getDestination(),
-                    ['./vendor/mediact/coding-standard-magento1/src/MediactMagento1'],
-                    './vendor/youwe/coding-standard-magento1/src/Magento1'
+                    'vendor/youwe/testing-suite/config/magento2/grumphp.yml',
                 );
             }
         } else {
             if ($name === "phpcs.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
-                    ['./vendor/mediact/coding-standard/src/MediaCT'],
-                    './vendor/youwe/coding-standard/src/Global'
+                    [
+                        './vendor/mediact/coding-standard/src/MediaCT',
+                    ],
+                    './vendor/youwe/coding-standard/src/Global',
                 );
             } elseif ($name === "phpmd.xml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
                     [
                         './vendor/mediact/coding-standard/src/MediaCT/phpmd.xml',
-                        './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml'
+                        './vendor/youwe/coding-standard-magento2/src/Magento2/phpmd.xml',
                     ],
-                    './vendor/youwe/coding-standard/src/Global/phpmd.xml'
+                    './vendor/youwe/coding-standard/src/Global/phpmd.xml',
                 );
             } elseif ($name === "grumphp.yml") {
                 $this->updatePath(
                     $unixFileMapping->getDestination(),
-                    ['vendor/mediact/testing-suite/config/default/grumphp.yml'],
-                    'vendor/youwe/testing-suite/config/default/grumphp.yml'
+                    [
+                        'vendor/mediact/testing-suite/config/default/grumphp.yml',
+                    ],
+                    'vendor/youwe/testing-suite/config/default/grumphp.yml',
                 );
             }
         }
@@ -155,13 +154,13 @@ class FilesInstaller implements InstallerInterface
     private function updatePath(
         string $destination,
         array $oldPaths,
-        string $newPath
+        string $newPath,
     ): void {
         $file    = file_get_contents($destination);
         $newFile = str_replace(
             $oldPaths,
             $newPath,
-            $file
+            $file,
         );
         file_put_contents($destination, $newFile);
     }

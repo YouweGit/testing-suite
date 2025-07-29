@@ -11,16 +11,37 @@ predefined default configurations per project type.
 
 ## Features
 
-- [Project Type detector](docs/features/project-type-detector.md)
+- [Project Type detector](docs/features/project-type-detection.md)
 - [PHP storm configuration](docs/features/php-storm-integration.md)
 
 ## Supported project types
 
-- Default (`default`)
-- Laravel (`laravel`)
-- [Magento 1](docs/project-types/magento1.md) (`magento1`)
-- [Magento 2](docs/project-types/magento2.md) (`magento2`)
-- Pimcore (`pimcore`)
+The Youwe Testing Suites offers pre-configured standards for the following project types.
+
+| Testing Suite Project Type | Detected based on Composer Project Type                                    |
+|----------------------------|----------------------------------------------------------------------------|
+| `drupal`                   | `drupal-bundle`, `drupal-project`                                          |
+| `magento2`                 | `magento-module`, `magento-project`, `magento2-module`, `magento2-project` |
+| `pimcore`                  | `pimcore-bundle`, `pimcore-project`                                        |
+| `default`                  | Any other                                                                  |
+
+This project type is either detected from `composer.json` via the section
+
+```json
+{
+    "extra": {
+        "youwe-testing-suite": { "type": "magento2" }
+    }
+}
+```
+
+or if no explicit setting was found for the Testing Suite, via
+
+```json
+{
+    "type": "magento2-module"
+}
+```
 
 ## Included analysis tools
 
@@ -37,6 +58,15 @@ predefined default configurations per project type.
 - [Enlighten Security Checker](docs/components/security-checker.md)
 
 ## Installation
+
+First, configure your project type (see the above list of supported types) via
+```
+composer config type magento2-project
+```
+or
+```
+composer config extra.youwe-testing-suite.type magento2
+```
 
 Testing suite is supposed to be installed as a composer `dev` dependency.
 Within any project just run the command below to install the package:

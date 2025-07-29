@@ -21,11 +21,11 @@ class ConfigResolver
      * Constructor.
      *
      * @param ProjectTypeResolver $typeResolver
-     * @param string              $template
+     * @param string|null         $template
      */
     public function __construct(
         ProjectTypeResolver $typeResolver,
-        string $template = null
+        ?string $template = null,
     ) {
         $this->typeResolver = $typeResolver;
         $this->template     = $template ?? $this->template;

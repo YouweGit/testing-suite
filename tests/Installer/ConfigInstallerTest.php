@@ -9,23 +9,22 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Tests\Installer;
 
-use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Youwe\TestingSuite\Composer\ConfigResolver;
 use Youwe\TestingSuite\Composer\Installer\ConfigInstaller;
 
 /**
- * @coversDefaultClass \Youwe\TestingSuite\Composer\Installer\ConfigInstaller
- * @SuppressWarnings(PHPMD)
+ * @phpcs:disable GlobalPhpUnit.Coverage.CoversTag.CoversTagMissing
  */
+#[CoversMethod(ConfigInstaller::class, '__construct')]
+#[CoversMethod(ConfigInstaller::class, 'install')]
 class ConfigInstallerTest extends TestCase
 {
     /**
-     * @return void
-     *
-     * @covers ::__construct
-     * @covers ::install
+     * @throws Exception
      */
     public function testInstall(): void
     {
@@ -35,11 +34,11 @@ class ConfigInstallerTest extends TestCase
         $installer = new ConfigInstaller($resolver, $file);
 
         $resolverOutput = [
-            'sort-packages' => true
+            'sort-packages' => true,
         ];
 
         $configWrite = [
-            'config' => $resolverOutput
+            'config' => $resolverOutput,
         ];
 
         $file
@@ -70,7 +69,7 @@ class ConfigInstallerTest extends TestCase
                 [],
                 [
                     'sort-packages' => true
-                ]
+                ],
             ],
             [
                 [],
@@ -78,10 +77,10 @@ class ConfigInstallerTest extends TestCase
                     'extra' => [
                         'grumphp' => [
                             'config-default-path' => 'vendor/youwe/testing-suite/config/default/grumphp.yml'
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 }

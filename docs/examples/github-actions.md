@@ -1,7 +1,7 @@
 # GitHub Actions
 
-The example below will run the testing-suite inside [github actions] (https://github.com/features/actions)
-for both PHP 7.4 and 8.1.
+The example below will run the testing-suite inside [github actions](https://github.com/features/actions)
+for PHP versions 8.1 through 8.4 and specify whether PHPUnit should also be run depending on PHP version.
 
 ```yml
 name: Testing Suite
@@ -9,25 +9,34 @@ on: [push]
 jobs:
   PHP:
     strategy:
-      # Test with multiple PHP versions  
       matrix:
-        image: [
-          'srcoder/development-php:php74-fpm',
-          'srcoder/development-php:php81-fpm'
-        ]
+        php:
+          - {version: 8.1, tasks: 'composer,jsonlint,xmllint,yamllint,phpcs,phplint,phpmd,phpstan,securitychecker_enlightn'}
+          - {version: 8.2, tasks: 'composer,jsonlint,xmllint,yamllint,phpcs,phplint,phpmd,phpstan,securitychecker_enlightn'}
+          - {version: 8.3}
+          - {version: 8.4}
     runs-on: ubuntu-latest
     container:
-      image: ${{ matrix.image }}
+      image: ${{ matrix.php.version == '8.1' && 'srcoder/development-php:php81-fpm' ||
+        matrix.php.version == '8.2' && 'srcoder/development-php:php82-fpm' ||
+        matrix.php.version == '8.3' && 'srcoder/development-php:php83-fpm' ||
+        matrix.php.version == '8.4' && 'srcoder/development-php:php84-fpm' }}
     steps:
-      # Checkout the repository
       - name: Checkout
         uses: actions/checkout@v2
-      # Run Testing Suite
-      - name: Testing Suite
+
+      - name: Install Dependencies
         run: |
           composer2 install --dev --prefer-dist --no-scripts --no-progress --optimize-autoloader --no-interaction -vvv
           composer2 show
-          composer2 exec -v grumphp run
         shell: bash
 
+      - name: Run GrumPHP Tasks
+        run: |
+          runArguments=()
+          if [[ "${{ matrix.php.tasks }}" ]]; then
+            runArguments+=(--tasks="{{ matrix.php.tasks }}")
+          fi
+          composer2 exec -v grumphp -- run "${runArguments[@]}"
+        shell: bash
 ```

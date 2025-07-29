@@ -9,3 +9,9 @@ parameters:
     - /^phpunit.xml$/
     - /^pdepend.xml$/
     - /^templates/
+
+grumphp:
+  # Disable ddev wrapper when running grumphp of testing-suite itself.
+  # Temp until testing-suite development is also wrapped by ddev, which is on the roadmap
+  git_hook_variables:
+    EXEC_GRUMPHP_COMMAND: exec

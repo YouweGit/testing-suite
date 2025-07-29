@@ -12,40 +12,41 @@ namespace Youwe\TestingSuite\Composer\Tests;
 use Composer\Composer;
 use Composer\Config;
 use Composer\Package\RootPackageInterface;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\TestWith;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 
-/**
- * @coversDefaultClass \Youwe\TestingSuite\Composer\ProjectTypeResolver
- */
+#[CoversMethod(ProjectTypeResolver::class, '__construct')]
+#[CoversMethod(ProjectTypeResolver::class, 'resolve')]
 class ProjectTypeResolverTest extends TestCase
 {
     /**
-     * @param string $packageType
-     * @param string $expected
-     *
-     * @return void
-     *
-     * @dataProvider dataProvider
-     *
-     * @covers ::__construct
-     * @covers ::resolve
+     * @throws Exception
      */
+    #[TestWith(data: ['some-type', 'default'], name: 'some-type')]
+    #[TestWith(data: ['drupal-bundle', 'drupal'], name: 'drupal-bundle')]
+    #[TestWith(data: ['drupal-project', 'drupal'], name: 'drupal-project')]
+    #[TestWith(data: ['magento-project', 'magento2'], name: 'magento-project')]
+    #[TestWith(data: ['magento2-module', 'magento2'], name: 'magento2-module')]
+    #[TestWith(data: ['magento2-project', 'magento2'], name: 'magento2-project')]
+    #[TestWith(data: ['pimcore-bundle', 'pimcore'], name: 'pimcore-bundle')]
+    #[TestWith(data: ['pimcore-project', 'pimcore'], name: 'pimcore-project')]
     public function testToString(string $packageType, string $expected): void
     {
         $composer = $this->createMock(Composer::class);
         $package  = $this->createMock(RootPackageInterface::class);
-        $config   = $this->createMock(Config::class);
 
         $composer
-            ->expects(self::once())
+            ->expects(self::atLeastOnce())
             ->method('getPackage')
             ->willReturn($package);
 
-        $composer
-            ->expects(self::once())
-            ->method('getConfig')
-            ->willReturn($config);
+        $package
+            ->expects(self::atLeastOnce())
+            ->method('getExtra')
+            ->willReturn([]);
 
         $package
             ->expects(self::once())
@@ -56,52 +57,25 @@ class ProjectTypeResolverTest extends TestCase
         $this->assertEquals($expected, $decider->resolve());
     }
 
-    /**
-     * @return void
-     *
-     * @covers ::__construct
-     * @covers ::resolve
-     */
-    public function testToStringOverwrite(): void
+    #[TestWith(data: ['drupal'], name: 'drupal')]
+    #[TestWith(data: ['magento2'], name: 'magento2')]
+    #[TestWith(data: ['pimcore'], name: 'pimcore')]
+    public function testToStringOverwrite($type): void
     {
         $composer = $this->createMock(Composer::class);
-        $config   = $this->createMock(Config::class);
+        $package = $this->createMock(RootPackageInterface::class);
 
         $composer
-            ->expects(self::never())
-            ->method('getPackage');
+            ->expects(self::any())
+            ->method('getPackage')
+            ->willReturn($package);
 
-        $composer
-            ->expects(self::once())
-            ->method('getConfig')
-            ->willReturn($config);
-
-        $config
-            ->expects(self::once())
-            ->method('has')
-            ->with('youwe-testing-suite')
-            ->willReturn(true);
-
-        $config
-            ->expects(self::once())
-            ->method('get')
-            ->with('youwe-testing-suite')
-            ->willReturn(['type' => 'magento2']);
+        $package
+            ->expects(self::any())
+            ->method('getExtra')
+            ->willReturn(['youwe-testing-suite' => ['type' => $type]]);
 
         $decider = new ProjectTypeResolver($composer);
-        $this->assertEquals('magento2', $decider->resolve());
-    }
-
-    /**
-     * @return array
-     */
-    public function dataProvider(): array
-    {
-        return [
-            ['some-type', 'default'],
-            ['magento-module', 'magento1'],
-            ['magento2-module', 'magento2'],
-            ['alumio-project', 'alumio'],
-        ];
+        $this->assertEquals($type, $decider->resolve());
     }
 }

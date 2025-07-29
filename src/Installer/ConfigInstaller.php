@@ -10,13 +10,13 @@ declare(strict_types=1);
 namespace Youwe\TestingSuite\Composer\Installer;
 
 use Composer\Factory;
-use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
+use Seld\JsonLint\ParsingException;
 use Youwe\TestingSuite\Composer\ConfigResolver;
 
 /**
- * @SuppressWarnings(PHPMD.ShortVariable)
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.ShortVariable")
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class ConfigInstaller implements InstallerInterface
 {
@@ -34,7 +34,7 @@ class ConfigInstaller implements InstallerInterface
      */
     public function __construct(
         ConfigResolver $resolver,
-        JsonFile $file = null
+        ?JsonFile $file = null,
     ) {
         $this->resolver = $resolver;
         $this->file     = $file ?? new JsonFile(Factory::getComposerFile());
@@ -44,6 +44,7 @@ class ConfigInstaller implements InstallerInterface
      * Install.
      *
      * @return void
+     * @throws ParsingException
      */
     public function install(): void
     {
@@ -52,7 +53,7 @@ class ConfigInstaller implements InstallerInterface
 
         $config = array_replace_recursive(
             $this->resolver->resolve(),
-            $config
+            $config,
         );
 
         $definition['config'] = $config;

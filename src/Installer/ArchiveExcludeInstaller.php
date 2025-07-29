@@ -12,12 +12,13 @@ namespace Youwe\TestingSuite\Composer\Installer;
 use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
+use Exception;
 use Youwe\FileMapping\FileMappingInterface;
 use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
- * @SuppressWarnings(PHPMD.ShortVariable)
- * @SuppressWarnings(PHPMD.StaticAccess)
+ * @SuppressWarnings("PHPMD.ShortVariable")
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class ArchiveExcludeInstaller implements InstallerInterface
 {
@@ -41,7 +42,7 @@ class ArchiveExcludeInstaller implements InstallerInterface
         '/.env.dev',
         '/.gitattributes',
         '/.gitignore',
-        '/tests'
+        '/tests',
     ];
 
     /**
@@ -50,15 +51,15 @@ class ArchiveExcludeInstaller implements InstallerInterface
      * @param MappingResolver $resolver
      * @param IOInterface     $io
      * @param JsonFile|null   $file
-     * @param string          $destination
+     * @param string |null    $destination
      * @param array|null      $defaults
      */
     public function __construct(
         MappingResolver $resolver,
         IOInterface $io,
-        JsonFile $file = null,
-        string $destination = null,
-        array $defaults = null
+        ?JsonFile $file = null,
+        ?string $destination = null,
+        ?array $defaults = null,
     ) {
         $this->resolver    = $resolver;
         $this->io          = $io;
@@ -71,6 +72,7 @@ class ArchiveExcludeInstaller implements InstallerInterface
      * Install.
      *
      * @return void
+     * @throws Exception
      */
     public function install(): void
     {
@@ -94,7 +96,7 @@ class ArchiveExcludeInstaller implements InstallerInterface
                 },
                 iterator_to_array(
                     $this->resolver->resolve()
-                )
+                ),
             )
         );
 
@@ -107,7 +109,7 @@ class ArchiveExcludeInstaller implements InstallerInterface
                 $this->io->write(
                     sprintf(
                         '<info>Added:</info> %s to archive exclude in composer.json',
-                        $file
+                        $file,
                     )
                 );
             }
