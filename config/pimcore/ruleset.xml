@@ -9,5 +9,4 @@
     <exclude-pattern>*/bin/*</exclude-pattern>
     <exclude-pattern>*/install-profiles/*</exclude-pattern>
     <exclude-pattern>*/public/*</exclude-pattern>
-    <exclude-pattern>*/var/*</exclude-pattern>
 </ruleset>
