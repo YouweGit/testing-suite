@@ -29,6 +29,7 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "enlightn/security-checker": "^1.5 || ^2.0",
         "kint-php/kint": "@stable",
+        "php-cs-fixer/shim": "@stable",
         "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpmd/phpmd": "^2.15",
         "phpro/grumphp-shim": "^2.12",
