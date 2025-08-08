@@ -4,5 +4,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 https://pmd.sourceforge.io/ruleset_xml_schema.xsd">
     <description>PHPMD</description>
-    <rule ref="./config/default/phpmd.xml" />
+    <rule ref="./config/default/phpmd.xml">
+        <exclude name="ShortVariable"/>
+    </rule>
+
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="io" />
+        </properties>
+    </rule>
 </ruleset>
