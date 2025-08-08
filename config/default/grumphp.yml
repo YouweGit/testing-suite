@@ -21,8 +21,15 @@ parameters:
   yamllint.whitelist_patterns: []
   yamllint.ignore_patterns: []
 
+  phpcs.enabled: true
   phpcs.standard: ./phpcs.xml
   phpcs.triggered_by: [php,phtml]
+
+  phpcsfixer.enabled: false
+  phpcsfixer.allow_risky: false
+  phpcsfixer.verbose: true
+  phpcsfixer.diff: true
+  phpcsfixer.triggered_by: ['php']
 
   phplint.exclude: ['vendor']
   phplint.jobs: ~
@@ -105,8 +112,18 @@ grumphp:
       ignore_patterns: '%yamllint.ignore_patterns%'
 
     phpcs:
+      metadata:
+        enabled: '%phpcs.enabled%'
       standard: '%phpcs.standard%'
       triggered_by: '%phpcs.triggered_by%'
+
+    phpcsfixer:
+      metadata:
+        enabled: '%phpcsfixer.enabled%'
+      allow_risky: '%phpcsfixer.allow_risky%'
+      verbose: '%phpcsfixer.verbose%'
+      diff: '%phpcsfixer.diff%'
+      triggered_by: '%phpcsfixer.triggered_by%'
 
     phplint:
       exclude: '%phplint.exclude%'

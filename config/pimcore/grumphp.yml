@@ -4,3 +4,7 @@ imports:
 # Extend git triggers with common pimcore constructs
 parameters:
   git_blacklist.triggered_by: [ 'php', 'js', 'twig' ]
+
+  # Disable PHPCS (which is enabled by default) in favour of PHP CS Fixer
+  phpcs.enabled: false
+  phpcsfixer.enabled: true

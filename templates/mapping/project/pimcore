@@ -1,3 +1,5 @@
-{pimcore/,}phpcs.xml
+{pimcore/,}.php-cs-fixer.php
+{pimcore/dot,.}gitignore
+{pimcore/,}grumphp.yml
 {pimcore/,}phpmd.xml
 {pimcore/,}phpstan.neon
