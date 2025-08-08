@@ -16,6 +16,7 @@ several keywords in your commits.
 ```yaml
 - "die("
 - "dd("
+- "dump("
 - "var_dump("
 - "console.log("
 - "alert("
