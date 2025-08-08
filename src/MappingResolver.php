@@ -37,11 +37,11 @@ class MappingResolver
     public function resolve(): FileMappingReaderInterface
     {
         $files = [
-            __DIR__ . '/../templates/mapping/files',
             sprintf(
                 __DIR__ . '/../templates/mapping/project/%s',
                 $this->typeResolver->resolve(),
             ),
+            __DIR__ . '/../templates/mapping/files',
         ];
 
         return new UnixFileMappingReader(
