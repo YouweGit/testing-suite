@@ -51,6 +51,7 @@ parameters:
 
   securitychecker.lockfile: ./composer.lock
   securitychecker.run_always: true
+  securitychecker.allow_list: []
 
   git_blacklist.keywords:
     - "die("
@@ -149,3 +150,4 @@ grumphp:
     securitychecker_enlightn:
       lockfile: '%securitychecker.lockfile%'
       run_always: '%securitychecker.run_always%'
+      allow_list: '%securitychecker.allow_list%'
