@@ -10,9 +10,12 @@ declare(strict_types=1);
 namespace Youwe\TestingSuite\Composer;
 
 use Composer\Composer;
+use Composer\DependencyResolver\Operation;
 use Composer\EventDispatcher\EventSubscriberInterface;
+use Composer\Installer\PackageEvent;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
+use UnexpectedValueException;
 use Youwe\TestingSuite\Composer\Installer\InstallerInterface;
 
 /**
@@ -21,8 +24,23 @@ use Youwe\TestingSuite\Composer\Installer\InstallerInterface;
  */
 class Plugin implements PluginInterface, EventSubscriberInterface
 {
+    public const PACKAGE_NAME = 'youwe/testing-suite';
+
     /** @var InstallerInterface[] */
-    private $installers;
+    private array $installers;
+
+    /**
+     * Subscribe to post update and post install command.
+     *
+     * @return array
+     */
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            'post-package-install' => [ 'onPackageChange' ],
+            'post-package-update' => [ 'onPackageChange' ],
+        ];
+    }
 
     /**
      * Constructor.
@@ -42,7 +60,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      *
      * @return void
      */
-    public function activate(Composer $composer, IOInterface $io)
+    public function activate(Composer $composer, IOInterface $io): void
     {
         $this->addInstallers(
             ...include __DIR__ . '/installers.php',
@@ -57,7 +75,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      *
      * @return void
      */
-    public function deactivate(Composer $composer, IOInterface $io)
+    public function deactivate(Composer $composer, IOInterface $io): void
     {
     }
 
@@ -69,7 +87,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      *
      * @return void
      */
-    public function uninstall(Composer $composer, IOInterface $io)
+    public function uninstall(Composer $composer, IOInterface $io): void
     {
     }
 
@@ -80,37 +98,34 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      *
      * @return void
      */
-    public function addInstallers(InstallerInterface ...$installers)
+    public function addInstallers(InstallerInterface ...$installers): void
     {
         $this->installers = array_merge($this->installers, $installers);
     }
 
     /**
-     * Run the installers.
+     * Run the installers when this package has been installed/updated
      *
+     * @param PackageEvent $event
      * @return void
      */
-    public function install()
+    public function onPackageChange(PackageEvent $event): void
     {
+        $operation = $event->getOperation();
+
+        $packageName = match (true) {
+            $operation instanceof Operation\InstallOperation => $operation->getPackage()->getName(),
+            $operation instanceof Operation\UpdateOperation => $operation->getTargetPackage()->getName(),
+            default => throw new UnexpectedValueException('Unexpected operation type: ' . $operation::class),
+        };
+
+        if ($packageName !== self::PACKAGE_NAME) {
+            return;
+        }
+
+        $event->getIO()->write('<info>Running Youwe Testing Suite installer</info>');
         foreach ($this->installers as $installer) {
             $installer->install();
         }
-    }
-
-    /**
-     * Subscribe to post update and post install command.
-     *
-     * @return array
-     */
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            'post-install-cmd' => [
-                'install',
-            ],
-            'post-update-cmd' => [
-                'install',
-            ],
-        ];
     }
 }
