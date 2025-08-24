@@ -12,6 +12,7 @@ namespace Youwe\TestingSuite\Composer\Installer;
 use Composer\IO\IOInterface;
 use Youwe\Composer\FileInstaller as ComposerFileInstaller;
 use Youwe\FileMapping\FileMappingInterface;
+use Youwe\FileMapping\FileMappingReaderInterface;
 use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
@@ -19,30 +20,16 @@ use Youwe\TestingSuite\Composer\MappingResolver;
  */
 class FilesInstaller implements InstallerInterface
 {
-    /** @var MappingResolver */
-    private $mappingResolver;
-
-    /** @var ComposerFileInstaller */
-    private $fileInstaller;
-
-    /** @var IOInterface */
-    private $io;
-
     /**
      * Constructor.
      *
      * @param MappingResolver       $mappingResolver
-     * @param ComposerFileInstaller $fileInstaller
      * @param IOInterface           $io
      */
     public function __construct(
-        MappingResolver $mappingResolver,
-        ComposerFileInstaller $fileInstaller,
-        IOInterface $io,
+        private readonly MappingResolver $mappingResolver,
+        private readonly IOInterface $io,
     ) {
-        $this->mappingResolver = $mappingResolver;
-        $this->fileInstaller   = $fileInstaller;
-        $this->io              = $io;
     }
 
     /**
@@ -52,21 +39,23 @@ class FilesInstaller implements InstallerInterface
      */
     public function install(): void
     {
-        foreach ($this->mappingResolver->resolve() as $mapping) {
+        $fileMappingReader = $this->mappingResolver->resolve();
+
+        // Rewrite old to new paths on existing files
+        foreach ($fileMappingReader as $mapping) {
             if (file_exists($mapping->getDestination())) {
                 $this->resolveYouwePathing($mapping);
-                continue;
             }
-
-            $this->fileInstaller->installFile($mapping);
-
-            $this->io->write(
-                sprintf(
-                    '<info>Installed:</info> %s',
-                    $mapping->getRelativeDestination(),
-                )
-            );
         }
+
+        // Install files via Composer File Installer
+        $this->getComposerFileInstaller($fileMappingReader)->install($this->io);
+    }
+
+    protected function getComposerFileInstaller(FileMappingReaderInterface $fileMappingReader): ComposerFileInstaller
+    {
+        // As separate method for testing/mocking purposes
+        return new ComposerFileInstaller($fileMappingReader);
     }
 
     /**

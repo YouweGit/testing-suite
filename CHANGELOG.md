@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Upstream projects not having phpunit installed will install phpunit with an @stable version.
 - Added support for Drupal configuration and templates.
 - Migration docs for migration from v2 to v3 of the testing suite.
+- Option to use PHP CS Fixer instead of PHPCS
+- Pimcore coding standards with [PER coding standards](https://www.php-fig.org/per/coding-style/)
 
 ### Changed
 - [BREAKING] The composer.json configurations `config.youwe-testing-suite.type` and `config.mediact-testing-suite.type`
@@ -35,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Testing Suite files are only installed in the project when the package itself is installed and/or updated, for example 
   when running `composer require youwe/testing-suite`, `composer update [youwe/testing-suite]` or `composer install`
   when the package was not installed (yet/anymore).
+- Default Pimcore coding standards disables PHPCS in favour of PHP CS Fixer
 
 ### Removed
 - Removed support for EOL PHP versions. Projects running PHP < 8.1 can stick to version 2 of the testing-suite.

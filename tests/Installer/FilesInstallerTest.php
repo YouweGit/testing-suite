@@ -15,6 +15,7 @@ use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\Exception;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Youwe\Composer\FileInstaller;
 use Youwe\FileMapping\FileMappingInterface;
@@ -36,7 +37,6 @@ class FilesInstallerTest extends TestCase
     public function testInstall(
         array $existingFiles,
         array $files,
-        int $expectedInstalls,
     ): void {
         $filesystem = $this->createFilesystem($existingFiles);
         $readerMock = $this->createReaderMock($files, $filesystem->url());
@@ -44,16 +44,27 @@ class FilesInstallerTest extends TestCase
         $ioMock = $this->createMock(IOInterface::class);
         $fileInstallerMock = $this->createMock(FileInstaller::class);
 
+        /** @var FilesInstaller&MockObject $installer */
+        $installer = $this->getMockBuilder(FilesInstaller::class)
+            ->setConstructorArgs([$resolverMock, $ioMock, $fileInstallerMock])
+            ->onlyMethods(['getComposerFileInstaller'])
+            ->getMock();
+
         $resolverMock
             ->expects(self::once())
             ->method('resolve')
             ->willReturn($readerMock);
 
-        $fileInstallerMock
-            ->expects(self::exactly($expectedInstalls))
-            ->method('installFile');
+        $installer->expects($this->once())
+            ->method('getComposerFileInstaller')
+            ->with($readerMock)
+            ->willReturn($fileInstallerMock);
 
-        $installer = new FilesInstaller($resolverMock, $fileInstallerMock, $ioMock);
+        $fileInstallerMock
+            ->expects($this->once())
+            ->method('install')
+            ->with($ioMock);
+
         $installer->install();
     }
 
@@ -69,7 +80,6 @@ class FilesInstallerTest extends TestCase
                     'bar-file.txt',
                     'baz-file.txt',
                 ],
-                2
             ],
         ];
     }

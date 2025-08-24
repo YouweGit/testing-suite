@@ -1,3 +1,5 @@
-{pimcore/,}phpcs.xml
+{pimcore/,}.php-cs-fixer.php
+{pimcore/merge-with-dot,.}gitignore:merge-line-by-line
+{pimcore/,}grumphp.yml
 {pimcore/,}phpmd.xml
 {pimcore/,}phpstan.neon
