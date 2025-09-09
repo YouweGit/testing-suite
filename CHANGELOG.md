@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pimcore coding standards with [PER coding standards](https://www.php-fig.org/per/coding-style/).
 - Added support for an Allow List within the Security Checker.
 - Pimcore PHPStan default config.
+- Pimcore PHP Mess Detector default config.
 
 ### Changed
 - [BREAKING] The composer.json configurations `config.youwe-testing-suite.type` and `config.mediact-testing-suite.type`
