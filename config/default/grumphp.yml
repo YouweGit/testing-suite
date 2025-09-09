@@ -3,6 +3,9 @@ parameters:
   composer.strict: true
 
   jsonlint.detect_key_conflicts: true
+  jsonlint.ignore_patterns:
+    - .ddev/
+    - tests/fixtures/
 
   xmllint.load_from_net: true
   xmllint.x_include: true
@@ -90,6 +93,7 @@ grumphp:
 
     jsonlint:
       detect_key_conflicts: '%jsonlint.detect_key_conflicts%'
+      ignore_patterns: '%jsonlint.ignore_patterns%'
 
     git_blacklist:
       keywords: '%git_blacklist.keywords%'

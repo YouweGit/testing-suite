@@ -38,7 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Testing Suite files are only installed in the project when the package itself is installed and/or updated, for example 
   when running `composer require youwe/testing-suite`, `composer update [youwe/testing-suite]` or `composer install`
   when the package was not installed (yet/anymore).
-- Default Pimcore coding standards disables PHPCS in favour of PHP CS Fixer
+- Default Pimcore coding standards disables PHPCS in favour of PHP CS Fixer.
+- JSON Lint will ignore folders `.ddev/` and `tests/fixtures/`.
 
 ### Removed
 - Removed support for EOL PHP versions. Projects running PHP < 8.1 can stick to version 2 of the testing-suite.
