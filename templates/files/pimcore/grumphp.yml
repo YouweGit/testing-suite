@@ -2,6 +2,12 @@ imports:
   - resource: 'vendor/youwe/testing-suite/config/pimcore/grumphp.yml'
 
 parameters:
+#  phpstan.level: 6 # The default PHPStan level for Pimcore is 6, but you might want to lower it for your project
+                    # when you're working towards stricter rules (and then increment it with every refactoring).
+                    # See https://phpstan.org/user-guide/rule-levels for more explanation about the different levels.
+                    # - For Pimcore 10.4 till 10.x: suggest to use level 5 maximum
+                    # - For Pimcore 10.0 till 10.3.x: suggest to use level 4 maximum
+
 #  securitychecker.allow_list:
 #    - CVE-2002-0121 # Add a jira ticket indicating when this vulnerability will be fixed (update/upgrade will be
                      #    performed). Within that ticket explain this (new) vulnerability.

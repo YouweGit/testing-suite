@@ -9,3 +9,4 @@ parameters:
   phpcs.enabled: false
   phpcsfixer.enabled: true
 
+  phpstan.level: 6

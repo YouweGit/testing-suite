@@ -15,9 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Upstream projects not having phpunit installed will install phpunit with an @stable version.
 - Added support for Drupal configuration and templates.
 - Migration docs for migration from v2 to v3 of the testing suite.
-- Option to use PHP CS Fixer instead of PHPCS
-- Pimcore coding standards with [PER coding standards](https://www.php-fig.org/per/coding-style/)
-- Added support for an Allow List within the Security Checker. 
+- Option to use PHP CS Fixer instead of PHPCS.
+- Pimcore coding standards with [PER coding standards](https://www.php-fig.org/per/coding-style/).
+- Added support for an Allow List within the Security Checker.
+- Pimcore PHPStan default config.
 
 ### Changed
 - [BREAKING] The composer.json configurations `config.youwe-testing-suite.type` and `config.mediact-testing-suite.type`
