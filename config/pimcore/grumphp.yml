@@ -9,6 +9,3 @@ parameters:
   phpcs.enabled: false
   phpcsfixer.enabled: true
 
-#  securitychecker.allow_list:
-#    - CVE-2002-0121 # Add a jira ticket indicating when this vulnerability will be fixed (update/upgrade will be
-                     #    performed). Within that ticket explain this (new) vulnerability.
