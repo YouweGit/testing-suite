@@ -21,7 +21,12 @@
     <rule ref="rulesets/codesize.xml" />
     <rule ref="rulesets/design.xml" />
     <rule ref="rulesets/unusedcode.xml" />
-    <rule ref="rulesets/naming.xml" />
+    <rule ref="rulesets/naming.xml">
+        <!-- For these rules we have exceptions configured below -->
+        <exclude name="LongVariable" />
+        <exclude name="ShortVariable" />
+        <exclude name="ShortMethodName" />
+    </rule>
 
     <rule ref="rulesets/naming.xml/LongVariable">
         <properties>
@@ -29,7 +34,13 @@
             <property name="maximum" value="30"/>
         </properties>
     </rule>
-    <!-- End of global ruleset -->
+
+    <!-- $id is a very common (and accepted) ShortVariable -->
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="id" />
+        </properties>
+    </rule>
 
     <!-- up() is required for doctrine migrations when implementing the interface. -->
     <rule ref="rulesets/naming.xml/ShortMethodName">
