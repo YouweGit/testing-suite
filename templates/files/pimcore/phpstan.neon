@@ -1,3 +1,23 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+
 parameters:
-  excludes_analyse:
-#    - %rootDir%/../../../path/to/exclude/*
+  excludePaths:
+    # Symfony files
+    - %rootDir%/../../../bin/console
+    - %rootDir%/../../../public/index.php
+    # Full var folder, contains all kind of auto-generated files (e.g. cache, generated Pimcore DataObject classes)
+    - %rootDir%/../../../var/*
+    # Configuration written by Pimcore (which is written either to var/ or to config/pimcore/ depending on settings)
+    - %rootDir%/../../../config/pimcore/*
+    # Unit tests
+    - %rootDir%/../../../tests/fixtures/*
+    # Deployer (which would be nice if it is correct too, but does need its own composer install, therefore excluding)
+    - %rootDir%/../../../build/deployer/*
+
+    # Custom excludes
+    # - %rootDir%/../../../path/to/exclude/*
+
+  # Point PHPStan to internal constants that are bootstrapped
+  bootstrapFiles:
+    - ./vendor/youwe/testing-suite/config/pimcore/phpstan-bootstrap.php
