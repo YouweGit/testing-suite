@@ -30,6 +30,8 @@ parameters:
 
   phpcsfixer.enabled: false
   phpcsfixer.allow_risky: false
+  phpcsfixer.config: .php-cs-fixer.php # Although we're using the default here, it should be explicitly specified
+                                       # because PhpCsFixer wants the --config=file indicated in the command line call
   phpcsfixer.verbose: true
   phpcsfixer.diff: true
   phpcsfixer.triggered_by: ['php']
@@ -126,6 +128,7 @@ grumphp:
       metadata:
         enabled: '%phpcsfixer.enabled%'
       allow_risky: '%phpcsfixer.allow_risky%'
+      config: '%phpcsfixer.config%'
       verbose: '%phpcsfixer.verbose%'
       diff: '%phpcsfixer.diff%'
       triggered_by: '%phpcsfixer.triggered_by%'
