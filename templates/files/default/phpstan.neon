@@ -1,3 +1,16 @@
+includes:
+  # To create a baseline run the following command and then uncomment the include below (make sure to run the baseline
+  # command with the same level as configured in Grumphp)
+  #      vendor/bin/phpstan analyse --configuration=./phpstan.neon --generate-baseline --level=4
+  # - phpstan-baseline.neon
+
 parameters:
+  paths:
+    # Configure the project folders containing source files, e.g.
+    - src
+
+    # Uncomment when your project has unit tests:
+    # - tests
+
   excludePaths:
-#    - %rootDir%/../../../path/to/exclude/*
+    # - tests/fixtures/*
