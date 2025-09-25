@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   when the package was not installed (yet/anymore).
 - Default Pimcore coding standards disables PHPCS in favour of PHP CS Fixer.
 - JSON Lint will ignore folders `.ddev/` and `tests/fixtures/`.
+- Added Symfony function `dump()` to the git blacklist for all project types
 
 ### Removed
 - Removed support for EOL PHP versions. Projects running PHP < 8.1 can stick to version 2 of the testing-suite.

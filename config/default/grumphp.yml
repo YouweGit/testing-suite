@@ -61,6 +61,7 @@ parameters:
   git_blacklist.keywords:
     - "die("
     - "dd("
+    - "dump("
     - "var_dump("
     - "console.log("
     - "print_r("
