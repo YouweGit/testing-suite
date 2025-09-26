@@ -3,3 +3,4 @@
 {pimcore/,}grumphp.yml
 {pimcore/,}phpmd.xml
 {pimcore/,}phpstan.neon
+{pimcore/tests/dot,tests/.}gitkeep

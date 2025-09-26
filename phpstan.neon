@@ -1,7 +1,3 @@
 parameters:
-  excludePaths:
-    - config/pimcore/phpstan-bootstrap.php
-    - src/installers.php
-    - tests/*
-  ignoreErrors:
-    - '#Property Mediact\\TestingSuite\\Composer\\Installer\\ConfigInstaller::\$io is never read, only written\.#'
+  paths:
+    - src

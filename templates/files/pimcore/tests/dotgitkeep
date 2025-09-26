@@ -1,0 +1,1 @@
+# Ensure `tests` folder to exist to avoid PHPStan complaining about a non-existing folder

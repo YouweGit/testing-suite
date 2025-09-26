@@ -51,6 +51,7 @@ parameters:
   phpstan.configuration: ./phpstan.neon
   phpstan.level: 4
   phpstan.triggered_by: [php]
+  phpstan.use_grumphp_paths: false # Always (also during commit hook), scan the full project as described in https://phpstan.org/blog/why-you-should-always-analyse-whole-project
 
   phpunit.config_file: ./phpunit.xml
 
@@ -151,6 +152,7 @@ grumphp:
       configuration: '%phpstan.configuration%'
       level: '%phpstan.level%'
       triggered_by: '%phpstan.triggered_by%'
+      use_grumphp_paths: '%phpstan.use_grumphp_paths%'
 
     phpunit:
       config_file: '%phpunit.config_file%'
