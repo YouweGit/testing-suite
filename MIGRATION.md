@@ -49,7 +49,38 @@ We use the @stable version constraint for this. If you want to install a specifi
 phpunit version in your project you are free to do so. Upstream phpunit versions
 are honored during installation.
 
-### 3. Sanity checks
+### 3. Change PHPStan configuration
+
+PHPStan is now configured to scan the full project, also during commit hooks. This will require to
+configure the `paths` setting in your projects `phpstan.neon.`.
+
+Example `phpstan.neon` file containing the `paths` parameter:
+```neon
+includes:
+  # To create a baseline run the following command and then uncomment the include below (make sure to run the baseline
+  # command with the same level as configured in Grumphp)
+  #      vendor/bin/phpstan analyse --configuration=./phpstan.neon --generate-baseline --level=4
+  # - phpstan-baseline.neon
+
+parameters:
+  paths:
+    - src
+    
+    # Uncomment when your project has unit tests:
+    # - tests
+
+    # Add any other project folder containing source files, e.g.
+    # - bundles
+
+  excludePaths:
+    # - tests/fixtures/*
+```
+
+As alternative, you can revert your project to the old behaviour by setting the `phpstan.use_grumphp_paths: true` 
+parameter in your `grumphp.yml`. Please read [Why you should always analyse the whole project](https://phpstan.org/blog/why-you-should-always-analyse-whole-project)
+before reverting to the old behaviour.
+
+### 4. Sanity checks
 Check the following
 
 1. The PHPCS file exists in your project root and points to the correct ruleset
@@ -59,7 +90,7 @@ configuration in youwe/testing-suite
 3. Run `ddev exec grumphp run` or `vendor/bin/grumphp run`
 4. Your git commit hook still functions as expected
 
-### 4. Refactor and/or update/regenerate exclusion rules
+### 5. Refactor and/or update/regenerate exclusion rules
 Some rulesets will have changed. In a general sense, the rulesets are less
 strict compared to what they were before.
 

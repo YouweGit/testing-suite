@@ -27,6 +27,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   belongs to configuration from Composer itself. Moving it to the `extra` section which is intended for this purpose 
   (composer docs: "arbitrary extra data for consumption by scripts"). Only the single `extra.youwe-testing-suite.type` 
   is supported now. Update your project `composer.json` accordingly.
+- [BREAKING] PHPStan is now configured to scan the full project, also during commit hooks. This will require to 
+  configure the `paths` setting in your projects `phpstan.neon.`. See the [migration notes](MIGRATION.md) for more
+  precise instructions. This behaviour can be modified with the `phpstan.use_grumphp_paths` parameter in `grumphp.yml`.
+  Please read [Why you should always analyse the whole project](https://phpstan.org/blog/why-you-should-always-analyse-whole-project)
+  before reverting to the old behaviour.
 - Unit tests as part of the testing suite are rewritten for PHPUnit 12.
 - Updated GitHub Action workflows to support PHP 8.1, 8.2, 8.3, and 8.4
 - `composer.json`: Dropped support for PHP < 8.1.
