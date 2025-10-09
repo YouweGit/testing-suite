@@ -10,6 +10,9 @@ parameters:
     - /^pdepend.xml$/
     - /^templates/
 
+  # Disable requirement for Jira ticket number in the commit message
+  git_commit_message.jira_matcher: '/.*/'
+
 grumphp:
   # Disable ddev wrapper when running grumphp of testing-suite itself.
   # Temp until testing-suite development is also wrapped by ddev, which is on the roadmap

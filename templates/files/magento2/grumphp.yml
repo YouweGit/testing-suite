@@ -1,5 +1,5 @@
 imports:
-  - resource: 'vendor/youwe/testing-suite/config/default/grumphp.yml'
+  - resource: 'vendor/youwe/testing-suite/config/magento2/grumphp.yml'
 
 parameters:
   # Configure your Jira Project codes as pipe-separated value:

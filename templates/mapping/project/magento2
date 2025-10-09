@@ -1,3 +1,4 @@
+{magento2/,}grumphp.yml
 {magento2/,}phpcs.xml
 {magento2/,}phpmd.xml
 {magento2/,}phpstan.neon

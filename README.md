@@ -46,6 +46,7 @@ or if no explicit setting was found for the Testing Suite, via
 ## Included analysis tools
 
 - [Git blacklist](docs/components/git-blacklist.md)
+- [Git commit message](docs/components/git-commit-message.md)
 - [Composer file validation](docs/components/composer.md)
 - [JSON Lint](docs/components/jsonlint.md)
 - [YamlLint](docs/components/yamllint.md)
