@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Youwe\TestingSuite\Composer\ComposerJsonWriter;
 use Youwe\TestingSuite\Composer\ConfigResolver;
 use Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
 use Youwe\TestingSuite\Composer\Installer\ConfigInstaller;
@@ -23,10 +24,11 @@ use Youwe\TestingSuite\Composer\ProjectTypeResolver;
 $typeResolver    = new ProjectTypeResolver($composer);
 $mappingResolver = new MappingResolver($typeResolver);
 $configResolver  = new ConfigResolver($typeResolver);
+$composerJsonWriter = new ComposerJsonWriter();
 
 return [
     new FilesInstaller($mappingResolver, $io),
-    new ArchiveExcludeInstaller($mappingResolver, $io),
+    new ArchiveExcludeInstaller($mappingResolver, $io, $composerJsonWriter),
     new PackagesInstaller($composer, $typeResolver, $io),
-    new ConfigInstaller($configResolver),
+    new ConfigInstaller($configResolver, $composerJsonWriter),
 ];

@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Youwe\TestingSuite\Composer\Tests\Installer;
 
 use Composer\IO\IOInterface;
-use Composer\Json\JsonFile;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\Attributes\CoversMethod;
@@ -19,6 +18,7 @@ use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Youwe\FileMapping\FileMappingInterface;
 use Youwe\FileMapping\FileMappingReaderInterface;
+use Youwe\TestingSuite\Composer\ComposerJsonWriter;
 use Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
 use Youwe\TestingSuite\Composer\MappingResolver;
 
@@ -37,23 +37,23 @@ class ArchiveExcludeInstallerTest extends TestCase
         array $existingFiles,
         array $files,
         array $defaults,
-        array $definition,
-        array $expected,
+        object $definition,
+        object $expected,
     ): void {
-        $fileMock = $this->createMock(JsonFile::class);
+        $composerJsonWriter = $this->createMock(ComposerJsonWriter::class);
         $resolverMock = $this->createMock(MappingResolver::class);
         $ioMock = $this->createMock(IOInterface::class);
         $readerMock = $this->createReaderMock($files);
         $filesystem = $this->createFilesystem($existingFiles);
 
-        $fileMock
+        $composerJsonWriter
             ->expects(self::once())
-            ->method('read')
+            ->method('getContents')
             ->willReturn($definition);
 
-        $fileMock
+        $composerJsonWriter
             ->expects(self::once())
-            ->method('write')
+            ->method('setContents')
             ->with($expected);
 
         $resolverMock
@@ -64,7 +64,7 @@ class ArchiveExcludeInstallerTest extends TestCase
         $installer = new ArchiveExcludeInstaller(
             $resolverMock,
             $ioMock,
-            $fileMock,
+            $composerJsonWriter,
             $filesystem->url(),
             $defaults,
         );
@@ -75,35 +75,57 @@ class ArchiveExcludeInstallerTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            [
-                [
+            'It merges files and defaults and only adds existing files' => [
+                'existingFiles' => [
                     'foo-file.txt',
                     'bar-file.txt',
                     'default.txt',
                 ],
-                [
+                'files' => [
                     'foo-file.txt',
                     'bar-file.txt',
                     'baz-file.txt',
                 ],
-                [
+                'defaults' => [
                     '/default.txt',
                     '/other-default.txt',
                 ],
-                [
-                    'archive' => [
+                'definition' => (object) [
+                    'name' => 'youwe/testing-suite',
+                    'archive' => (object) [
                         'exclude' => [
                             'existing.txt',
                         ],
                     ],
                 ],
-                [
-                    'archive' => [
+                'expected' => (object) [
+                    'name' => 'youwe/testing-suite',
+                    'archive' => (object) [
                         'exclude' => [
                             '/existing.txt',
                             '/default.txt',
                             '/foo-file.txt',
                             '/bar-file.txt',
+                        ],
+                    ],
+                ],
+            ],
+            'It works when the composer.json doesn\'t have an exclude section yet' => [
+                'existingFiles' => [
+                    'foo-file.txt',
+                ],
+                'files' => [
+                    'foo-file.txt',
+                ],
+                'defaults' => [],
+                'definition' => (object) [
+                    'name' => 'youwe/testing-suite',
+                ],
+                'expected' => (object) [
+                    'name' => 'youwe/testing-suite',
+                    'archive' => (object) [
+                        'exclude' => [
+                            '/foo-file.txt',
                         ],
                     ],
                 ],
@@ -131,7 +153,7 @@ class ArchiveExcludeInstallerTest extends TestCase
 
                 return $mapping;
             },
-            $files
+            $files,
         );
 
         $mock
@@ -157,7 +179,7 @@ class ArchiveExcludeInstallerTest extends TestCase
         return vfsStream::setup(
             sha1(__METHOD__),
             null,
-            array_map('strval', array_flip($files))
+            array_map('strval', array_flip($files)),
         );
     }
 }

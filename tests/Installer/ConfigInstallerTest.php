@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Tests\Installer;
 
-use Composer\Json\JsonFile;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
+use Youwe\TestingSuite\Composer\ComposerJsonWriter;
 use Youwe\TestingSuite\Composer\ConfigResolver;
 use Youwe\TestingSuite\Composer\Installer\ConfigInstaller;
 
@@ -29,9 +29,9 @@ class ConfigInstallerTest extends TestCase
     public function testInstall(): void
     {
         $resolver = $this->createMock(ConfigResolver::class);
-        $file     = $this->createMock(JsonFile::class);
+        $composerJsonWriter = $this->createMock(ComposerJsonWriter::class);
 
-        $installer = new ConfigInstaller($resolver, $file);
+        $installer = new ConfigInstaller($resolver, $composerJsonWriter);
 
         $resolverOutput = [
             'sort-packages' => true,
@@ -41,20 +41,15 @@ class ConfigInstallerTest extends TestCase
             'config' => $resolverOutput,
         ];
 
-        $file
+        $composerJsonWriter
             ->expects(self::once())
-            ->method('read')
-            ->willReturn([]);
+            ->method('mergeContents')
+            ->with($configWrite, false);
 
         $resolver
             ->expects(self::once())
             ->method('resolve')
             ->willReturn($resolverOutput);
-
-        $file
-            ->expects(self::once())
-            ->method('write')
-            ->with($configWrite);
 
         $installer->install();
     }
@@ -68,7 +63,7 @@ class ConfigInstallerTest extends TestCase
             [
                 [],
                 [
-                    'sort-packages' => true
+                    'sort-packages' => true,
                 ],
             ],
             [
@@ -76,7 +71,7 @@ class ConfigInstallerTest extends TestCase
                 [
                     'extra' => [
                         'grumphp' => [
-                            'config-default-path' => 'vendor/youwe/testing-suite/config/default/grumphp.yml'
+                            'config-default-path' => 'vendor/youwe/testing-suite/config/default/grumphp.yml',
                         ],
                     ],
                 ],
