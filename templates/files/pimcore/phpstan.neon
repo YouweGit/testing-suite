@@ -1,3 +1,25 @@
+includes:
+  - vendor/phpstan/phpstan-symfony/extension.neon
+
+  # To create a baseline run the following command and then uncomment the include below (make sure to run the baseline
+  # command with the same level as configured in Grumphp)
+  #      vendor/bin/phpstan analyse --configuration=./phpstan.neon --generate-baseline --level=6
+  # - phpstan-baseline.neon
+
 parameters:
-  excludes_analyse:
-#    - %rootDir%/../../../path/to/exclude/*
+  paths:
+    - src
+    - var/classes/DataObject # Include DataObject generated classes, otherwise PHPStan will complain about class not found
+
+    # Uncomment when your project has unit tests:
+    # - tests
+
+    # Add any other project folder containing source files, e.g.
+    # - bundles
+
+  excludePaths:
+    # - tests/fixtures/*
+
+  # Point PHPStan to internal constants that are bootstrapped
+  bootstrapFiles:
+    - ./vendor/youwe/testing-suite/config/pimcore/phpstan-bootstrap.php

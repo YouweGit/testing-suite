@@ -1,10 +1,18 @@
 <?xml version="1.0"?>
-<ruleset name="PHPCS"
+<ruleset name="YouweMagento2"
          xmlns="http://pmd.sf.net/ruleset/1.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
          xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
     <description>PHPCS</description>
-    <!--<exclude-pattern>path/to/exclude/*</exclude-pattern>-->
-    <rule ref="YouweMagento2"/>
+    <rule ref="./vendor/youwe/testing-suite/config/magento2"/>
+    <!-- Append arg -s to phpcs to display the name of failed sniffs -->
+    <arg value="s"/>
+
+    <!-- Magento specific file exclusions -->
+    <exclude-pattern>app/etc/config.php</exclude-pattern>
+    <exclude-pattern>env-dev.php</exclude-pattern>
+    <exclude-pattern>deploy.php</exclude-pattern>
+    <exclude-pattern>pub/errors/*</exclude-pattern>
+    <exclude-pattern>.ddev</exclude-pattern>
 </ruleset>

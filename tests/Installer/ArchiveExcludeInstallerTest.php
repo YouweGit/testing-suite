@@ -13,7 +13,9 @@ use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Youwe\FileMapping\FileMappingInterface;
 use Youwe\FileMapping\FileMappingReaderInterface;
@@ -21,91 +23,79 @@ use Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller;
 use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
- * @coversDefaultClass \Youwe\TestingSuite\Composer\Installer\ArchiveExcludeInstaller
- * @SuppressWarnings(PHPMD)
+ * @phpcs:disable GlobalPhpUnit.Coverage.CoversTag.CoversTagMissing
  */
+#[CoversMethod(ArchiveExcludeInstaller::class, '__construct')]
+#[CoversMethod(ArchiveExcludeInstaller::class, 'install')]
 class ArchiveExcludeInstallerTest extends TestCase
 {
     /**
-     * @param array $existingFiles
-     * @param array $files
-     * @param array $defaults
-     * @param array $definition
-     * @param array $expected
-     *
-     * @return void
-     *
-     * @dataProvider dataProvider
-     *
-     * @covers ::__construct
-     * @covers ::install
+     * @throws Exception
      */
+    #[DataProvider('dataProvider')]
     public function testInstall(
         array $existingFiles,
         array $files,
         array $defaults,
         array $definition,
-        array $expected
-    ) {
-        $file       = $this->createMock(JsonFile::class);
-        $resolver   = $this->createMock(MappingResolver::class);
-        $io         = $this->createMock(IOInterface::class);
-        $reader     = $this->createReaderMock($files);
+        array $expected,
+    ): void {
+        $fileMock = $this->createMock(JsonFile::class);
+        $resolverMock = $this->createMock(MappingResolver::class);
+        $ioMock = $this->createMock(IOInterface::class);
+        $readerMock = $this->createReaderMock($files);
         $filesystem = $this->createFilesystem($existingFiles);
 
-        $file
+        $fileMock
             ->expects(self::once())
             ->method('read')
             ->willReturn($definition);
 
-        $file
+        $fileMock
             ->expects(self::once())
             ->method('write')
             ->with($expected);
 
-        $resolver
+        $resolverMock
             ->expects(self::once())
             ->method('resolve')
-            ->willReturn($reader);
+            ->willReturn($readerMock);
 
         $installer = new ArchiveExcludeInstaller(
-            $resolver,
-            $io,
-            $file,
+            $resolverMock,
+            $ioMock,
+            $fileMock,
             $filesystem->url(),
-            $defaults
+            $defaults,
         );
 
         $installer->install();
     }
 
-    /**
-     * @return array
-     */
-    public function dataProvider(): array
+    public static function dataProvider(): array
     {
         return [
             [
                 [
                     'foo-file.txt',
                     'bar-file.txt',
-                    'default.txt'
+                    'default.txt',
                 ],
                 [
                     'foo-file.txt',
                     'bar-file.txt',
-                    'baz-file.txt'
+                    'baz-file.txt',
                 ],
                 [
                     '/default.txt',
-                    '/other-default.txt'
+                    '/other-default.txt',
                 ],
                 [
                     'archive' => [
                         'exclude' => [
-                            'existing.txt'
-                        ]
-                    ]
+                            'existing.txt',
+                        ],
+                    ],
                 ],
                 [
                     'archive' => [
@@ -113,30 +103,26 @@ class ArchiveExcludeInstallerTest extends TestCase
                             '/existing.txt',
                             '/default.txt',
                             '/foo-file.txt',
-                            '/bar-file.txt'
-                        ]
-                    ]
-                ]
-            ]
+                            '/bar-file.txt',
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 
     /**
-     * @param array $files
-     *
-     * @return FileMappingReaderInterface
+     * @throws Exception
      */
     private function createReaderMock(array $files): FileMappingReaderInterface
     {
-        /** @var FileMappingReaderInterface|MockObject $mock */
         $mock = $this->createMock(FileMappingReaderInterface::class);
 
-        $valids   = array_fill(0, count($files), true);
+        $valids = array_fill(0, count($files), true);
         $valids[] = false;
 
         $mappings = array_map(
             function (string $file): FileMappingInterface {
-                /** @var FileMappingInterface|MockObject $mapping */
                 $mapping = $this->createMock(FileMappingInterface::class);
                 $mapping
                     ->expects(self::any())
@@ -166,11 +152,6 @@ class ArchiveExcludeInstallerTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @param array $files
-     *
-     * @return vfsStreamDirectory
-     */
     private function createFilesystem(array $files): vfsStreamDirectory
     {
         return vfsStream::setup(

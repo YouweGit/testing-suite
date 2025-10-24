@@ -6,11 +6,11 @@ includes:
 
 parameters:
   paths:
-    # Configure the project folders containing source files, e.g.
-    - src
+    - web
 
-    # Uncomment when your project has unit tests:
+    # Add any other project folder containing source files, e.g.
     # - tests
 
   excludePaths:
+    # Add any path you want to exclude (note, only files/folders within the configured `paths` are relevant to note here), e.g.:
     # - tests/fixtures/*

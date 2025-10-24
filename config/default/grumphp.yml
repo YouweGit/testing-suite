@@ -3,6 +3,9 @@ parameters:
   composer.strict: true
 
   jsonlint.detect_key_conflicts: true
+  jsonlint.ignore_patterns:
+    - .ddev/
+    - tests/fixtures/
 
   xmllint.load_from_net: true
   xmllint.x_include: true
@@ -21,8 +24,17 @@ parameters:
   yamllint.whitelist_patterns: []
   yamllint.ignore_patterns: []
 
+  phpcs.enabled: true
   phpcs.standard: ./phpcs.xml
   phpcs.triggered_by: [php,phtml]
+
+  phpcsfixer.enabled: false
+  phpcsfixer.allow_risky: false
+  phpcsfixer.config: .php-cs-fixer.php # Although we're using the default here, it should be explicitly specified
+                                       # because PhpCsFixer wants the --config=file indicated in the command line call
+  phpcsfixer.verbose: true
+  phpcsfixer.diff: true
+  phpcsfixer.triggered_by: ['php']
 
   phplint.exclude: ['vendor']
   phplint.jobs: ~
@@ -39,15 +51,18 @@ parameters:
   phpstan.configuration: ./phpstan.neon
   phpstan.level: 4
   phpstan.triggered_by: [php]
+  phpstan.use_grumphp_paths: false # Always (also during commit hook), scan the full project as described in https://phpstan.org/blog/why-you-should-always-analyse-whole-project
 
   phpunit.config_file: ./phpunit.xml
 
   securitychecker.lockfile: ./composer.lock
   securitychecker.run_always: true
+  securitychecker.allow_list: []
 
   git_blacklist.keywords:
     - "die("
     - "dd("
+    - "dump("
     - "var_dump("
     - "console.log("
     - "print_r("
@@ -82,6 +97,7 @@ grumphp:
 
     jsonlint:
       detect_key_conflicts: '%jsonlint.detect_key_conflicts%'
+      ignore_patterns: '%jsonlint.ignore_patterns%'
 
     git_blacklist:
       keywords: '%git_blacklist.keywords%'
@@ -105,8 +121,19 @@ grumphp:
       ignore_patterns: '%yamllint.ignore_patterns%'
 
     phpcs:
+      metadata:
+        enabled: '%phpcs.enabled%'
       standard: '%phpcs.standard%'
       triggered_by: '%phpcs.triggered_by%'
+
+    phpcsfixer:
+      metadata:
+        enabled: '%phpcsfixer.enabled%'
+      allow_risky: '%phpcsfixer.allow_risky%'
+      config: '%phpcsfixer.config%'
+      verbose: '%phpcsfixer.verbose%'
+      diff: '%phpcsfixer.diff%'
+      triggered_by: '%phpcsfixer.triggered_by%'
 
     phplint:
       exclude: '%phplint.exclude%'
@@ -125,6 +152,7 @@ grumphp:
       configuration: '%phpstan.configuration%'
       level: '%phpstan.level%'
       triggered_by: '%phpstan.triggered_by%'
+      use_grumphp_paths: '%phpstan.use_grumphp_paths%'
 
     phpunit:
       config_file: '%phpunit.config_file%'
@@ -132,3 +160,4 @@ grumphp:
     securitychecker_enlightn:
       lockfile: '%securitychecker.lockfile%'
       run_always: '%securitychecker.run_always%'
+      allow_list: '%securitychecker.allow_list%'

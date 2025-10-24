@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Youwe/Magento2">
+    <description>Youwe coding standard extensions for sniffing code in Magento 2 projects.</description>
+
+    <!-- Use default Youwe coding standards for PHP projects. -->
+    <rule ref="../default" />
+    <!-- Magento coding standards -->
+    <rule ref="Magento2" />
+</ruleset>

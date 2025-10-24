@@ -24,22 +24,28 @@
         }
     ],
     "require": {
-        "php": "^7.2 || ^8.0",
-        "composer-plugin-api": "^1.1 || ^2.0",
+        "php": "^8.1",
+        "composer-plugin-api": "^2.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "enlightn/security-checker": "^1.5 || ^2.0",
         "kint-php/kint": "@stable",
-        "php-parallel-lint/php-parallel-lint": "^1.2",
-        "phpro/grumphp-shim": "^1.13",
+        "php-cs-fixer/shim": "@stable",
+        "php-parallel-lint/php-parallel-lint": "^1.4",
+        "phpmd/phpmd": "^2.15",
+        "phpro/grumphp-shim": "^2.15",
         "phpstan/phpstan": "@stable",
-        "phpunit/phpunit": "@stable",
-        "youwe/coding-standard": "^3.5.0",
-        "youwe/coding-standard-phpstorm": "^2.3.0",
-        "youwe/composer-dependency-installer": "^1.4.0",
-        "youwe/composer-file-installer": "^1.2.0"
+        "squizlabs/php_codesniffer": "^3.12.0",
+        "youwe/composer-dependency-installer": "^2.0",
+        "youwe/composer-file-installer": "^2.0.0"
+    },
+    "suggest": {
+        "phpunit/phpunit": ">= 9.6",
+        "youwe/coding-standard-phpstorm": "^2.3.0"
     },
     "require-dev": {
         "composer/composer": "@stable",
-        "mikey179/vfsstream": "@stable"
+        "mikey179/vfsstream": "@stable",
+        "phpunit/phpunit": "@stable"
     },
     "replace": {
         "sensiolabs/security-checker": "*"

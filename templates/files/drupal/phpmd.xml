@@ -5,5 +5,5 @@
          xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 https://pmd.sourceforge.io/ruleset_xml_schema.xsd">
     <description>PHPMD</description>
     <!--<exclude-pattern>path/to/exclude/*</exclude-pattern>-->
-    <rule ref="./vendor/youwe/testing-suite/config/pimcore/phpmd.xml" />
+    <rule ref="./vendor/youwe/testing-suite/config/drupal/phpmd.xml" />
 </ruleset>
