@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added support for an Allow List within the Security Checker.
 - Pimcore PHPStan default config.
 - Pimcore PHP Mess Detector default config.
+- Added constraint for `PHPMD`, since Magento 2.4.8 requires version `3.x-dev`. 
 
 ### Changed
 - [BREAKING] The composer.json configurations `config.youwe-testing-suite.type` and `config.mediact-testing-suite.type`
