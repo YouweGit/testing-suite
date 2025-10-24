@@ -9,11 +9,10 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Installer;
 
-use Composer\Factory;
 use Composer\IO\IOInterface;
-use Composer\Json\JsonFile;
 use Exception;
 use Youwe\FileMapping\FileMappingInterface;
+use Youwe\TestingSuite\Composer\ComposerJsonWriter;
 use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
@@ -22,20 +21,7 @@ use Youwe\TestingSuite\Composer\MappingResolver;
  */
 class ArchiveExcludeInstaller implements InstallerInterface
 {
-    /** @var JsonFile */
-    private $file;
-
-    /** @var MappingResolver */
-    private $resolver;
-
-    /** @var IOInterface */
-    private $io;
-
-    /** @var string */
-    private $destination;
-
-    /** @var array */
-    private $defaults = [
+    private const DEFAULTS = [
         '/docker-compose.yml',
         '/examples',
         '/example',
@@ -45,27 +31,27 @@ class ArchiveExcludeInstaller implements InstallerInterface
         '/tests',
     ];
 
+    private readonly string $destination;
+    private readonly array $defaults;
+
     /**
      * Constructor.
      *
      * @param MappingResolver $resolver
-     * @param IOInterface     $io
-     * @param JsonFile|null   $file
-     * @param string |null    $destination
-     * @param array|null      $defaults
+     * @param IOInterface $io
+     * @param ComposerJsonWriter $composerJsonWriter
+     * @param string |null $destination
+     * @param array|null $defaults
      */
     public function __construct(
-        MappingResolver $resolver,
-        IOInterface $io,
-        ?JsonFile $file = null,
+        private readonly MappingResolver $resolver,
+        private readonly IOInterface $io,
+        private readonly ComposerJsonWriter $composerJsonWriter,
         ?string $destination = null,
         ?array $defaults = null,
     ) {
-        $this->resolver    = $resolver;
-        $this->io          = $io;
-        $this->file        = $file ?? new JsonFile(Factory::getComposerFile());
         $this->destination = $destination ?? getcwd();
-        $this->defaults    = $defaults ?? $this->defaults;
+        $this->defaults = $defaults ?? self::DEFAULTS;
     }
 
     /**
@@ -76,8 +62,8 @@ class ArchiveExcludeInstaller implements InstallerInterface
      */
     public function install(): void
     {
-        $definition = $this->file->read();
-        $excluded   = $definition['archive']['exclude'] ?? [];
+        $definition = $this->composerJsonWriter->getContents();
+        $excluded = $definition->archive->exclude ?? [];
 
         $excluded = array_map(
             function (string $exclude): string {
@@ -85,7 +71,7 @@ class ArchiveExcludeInstaller implements InstallerInterface
                     ? '/' . $exclude
                     : $exclude;
             },
-            $excluded
+            $excluded,
         );
 
         $files = array_merge(
@@ -95,27 +81,37 @@ class ArchiveExcludeInstaller implements InstallerInterface
                     return '/' . $mapping->getRelativeDestination();
                 },
                 iterator_to_array(
-                    $this->resolver->resolve()
+                    $this->resolver->resolve(),
                 ),
-            )
+            ),
         );
 
+        $hasChanges = false;
         foreach ($files as $file) {
             if (
                 !in_array($file, $excluded)
                 && file_exists($this->destination . $file)
             ) {
                 $excluded[] = $file;
+                $hasChanges = true;
                 $this->io->write(
                     sprintf(
                         '<info>Added:</info> %s to archive exclude in composer.json',
                         $file,
-                    )
+                    ),
                 );
             }
         }
 
-        $definition['archive']['exclude'] = $excluded;
-        $this->file->write($definition);
+        if (!$hasChanges) {
+            return;
+        }
+
+        if (!isset($definition->archive)) {
+            $definition->archive = (object) [];
+        }
+        $definition->archive->exclude = $excluded;
+
+        $this->composerJsonWriter->setContents($definition);
     }
 }

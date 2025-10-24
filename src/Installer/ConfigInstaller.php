@@ -9,9 +9,7 @@ declare(strict_types=1);
 
 namespace Youwe\TestingSuite\Composer\Installer;
 
-use Composer\Factory;
-use Composer\Json\JsonFile;
-use Seld\JsonLint\ParsingException;
+use Youwe\TestingSuite\Composer\ComposerJsonWriter;
 use Youwe\TestingSuite\Composer\ConfigResolver;
 
 /**
@@ -20,43 +18,28 @@ use Youwe\TestingSuite\Composer\ConfigResolver;
  */
 class ConfigInstaller implements InstallerInterface
 {
-    /** @var JsonFile */
-    private $file;
-
-    /** @var ConfigResolver */
-    private $resolver;
-
     /**
      * Constructor.
      *
      * @param ConfigResolver $resolver
-     * @param JsonFile|null  $file
+     * @param ComposerJsonWriter $composerJsonWriter
      */
     public function __construct(
-        ConfigResolver $resolver,
-        ?JsonFile $file = null,
+        private readonly ConfigResolver $resolver,
+        private readonly ComposerJsonWriter $composerJsonWriter,
     ) {
-        $this->resolver = $resolver;
-        $this->file     = $file ?? new JsonFile(Factory::getComposerFile());
     }
 
     /**
      * Install.
      *
      * @return void
-     * @throws ParsingException
      */
     public function install(): void
     {
-        $definition = $this->file->read();
-        $config     = $definition['config'] ?? [];
-
-        $config = array_replace_recursive(
-            $this->resolver->resolve(),
-            $config,
+        $this->composerJsonWriter->mergeContents(
+            settings: ['config' => $this->resolver->resolve()],
+            overwrite: false,
         );
-
-        $definition['config'] = $config;
-        $this->file->write($definition);
     }
 }

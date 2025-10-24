@@ -59,6 +59,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dropped support for Laravel and Magento 1.
 - Dropped inner dependencies on coding-standard, coding-standard-magento2, and coding-standard-phpstorm packages.
 
+### Fixed
+- The Composer Config Installer changed empty objects (e.g. a `"autoload-dev": {"psr-4": {}}`) into an empty array
+  (for previous example: `"autoload-dev": {"psr-4": []}`) causing an invalid `composer.json` file (followed by other
+  composer operations not being able to be performed). This is now fixed.
+
 ## 2.19.1
 ### Changed
 - `^0.30` restricts updates to only versions within the `0.30.x` range, preventing upgrades to 0.32.0 for
