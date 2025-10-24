@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pimcore PHPStan default config.
 - Pimcore PHP Mess Detector default config.
 - Added constraint for `PHPMD`, since Magento 2.4.8 requires version `3.x-dev`. 
+- Commit Message validator to validate the commit message adheres to the 
+  [Conventional Commit Message structure](https://cheatography.com/albelop/cheat-sheets/conventional-commits/)
+  and that the commit message contains a Jira ticket number it relates to.
 
 ### Changed
 - [BREAKING] The composer.json configurations `config.youwe-testing-suite.type` and `config.mediact-testing-suite.type`

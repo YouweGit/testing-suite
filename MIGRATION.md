@@ -80,7 +80,21 @@ As alternative, you can revert your project to the old behaviour by setting the 
 parameter in your `grumphp.yml`. Please read [Why you should always analyse the whole project](https://phpstan.org/blog/why-you-should-always-analyse-whole-project)
 before reverting to the old behaviour.
 
-### 4. Sanity checks
+### 4. Commit Message Jira project configuration
+
+Configure the Jira project(s) for which ticket numbers should be included in your commit messages.
+Add the following configuration to the `grumphp.yml`:
+
+```yaml
+parameters:
+  # Configure your Jira Project codes as pipe-separated value:
+  git_commit_message.jira_projects: 'PIMBBBBABC|MAGBBBBDEF|P012345'
+
+  # Or to disable the requirement for a Jira ticket number in the commit message:
+  # git_commit_message.jira_matcher: '/.*/'
+```
+
+### 5. Sanity checks
 Check the following
 
 1. The PHPCS file exists in your project root and points to the correct ruleset
@@ -90,7 +104,7 @@ configuration in youwe/testing-suite
 3. Run `ddev exec grumphp run` or `vendor/bin/grumphp run`
 4. Your git commit hook still functions as expected
 
-### 5. Refactor and/or update/regenerate exclusion rules
+### 6. Refactor and/or update/regenerate exclusion rules
 Some rulesets will have changed. In a general sense, the rulesets are less
 strict compared to what they were before.
 

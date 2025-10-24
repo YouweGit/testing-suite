@@ -79,6 +79,33 @@ parameters:
   git_blacklist.match_word: true
   git_blacklist.ignore_patterns: []
 
+  git_commit_message.type_scope_conventions:
+    types:
+      - build
+      - chore
+      - ci
+      - cleanup
+      - config
+      - docs
+      - feat
+      - fix
+      - merge
+      - perf
+      - refactor
+      - release
+      - revert
+      - style
+      - test
+  git_commit_message.enforce_capitalized_subject: false # Not to be used in combination with type_scope_conventions
+  git_commit_message.max_body_width: 72 # To disable this setting, use a value of 0
+  git_commit_message.max_subject_width: 72
+  # The available Jira Projects should be configured in your project repository. Multiple projects can be configured pipe-separated
+  git_commit_message.jira_projects: 'YOU_SHOULD_CONFIGURE_YOUR|JIRA_PROJECT_CODES|IN_YOUR_GRUMP_YML'
+  git_commit_message.jira_matcher: '/\n.+ (%git_commit_message.jira_projects%)-\d+/'
+  git_commit_message.matchers:
+    'Must contain JIRA issue number within the message body (e.g. "Resolves PROJECT-1234")': '%git_commit_message.jira_matcher%'
+  git_commit_message.case_insensitive: false
+
 grumphp:
   ascii:
     failed: ~
@@ -106,6 +133,14 @@ grumphp:
       regexp_type: '%git_blacklist.regexp_type%'
       match_word: '%git_blacklist.match_word%'
       ignore_patterns: '%git_blacklist.ignore_patterns%'
+
+    git_commit_message:
+        enforce_capitalized_subject: '%git_commit_message.enforce_capitalized_subject%'
+        type_scope_conventions: '%git_commit_message.type_scope_conventions%'
+        max_body_width: '%git_commit_message.max_body_width%'
+        max_subject_width: '%git_commit_message.max_subject_width%'
+        matchers: '%git_commit_message.matchers%'
+        case_insensitive: '%git_commit_message.case_insensitive%'
 
     xmllint:
       load_from_net: '%xmllint.load_from_net%'
