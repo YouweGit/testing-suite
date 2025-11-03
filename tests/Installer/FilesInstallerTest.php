@@ -65,7 +65,7 @@ class FilesInstallerTest extends TestCase
             ->method('install')
             ->with($ioMock);
 
-        $installer->install();
+        $installer->installPostPackageChange();
     }
 
     public static function dataProvider(): array

@@ -16,9 +16,12 @@ use Youwe\FileMapping\FileMappingReaderInterface;
 use Youwe\TestingSuite\Composer\MappingResolver;
 
 /**
+ * Add configuration files on package-change to avoid GrumPHP installation asking to do the same (which will run
+ * post-install-cmd)
+ *
  * @SuppressWarnings("PHPMD.ShortVariable")
  */
-class FilesInstaller implements InstallerInterface
+class FilesInstaller implements PostPackageChangeInstallerInterface
 {
     /**
      * Constructor.
@@ -37,7 +40,7 @@ class FilesInstaller implements InstallerInterface
      *
      * @return void
      */
-    public function install(): void
+    public function installPostPackageChange(): void
     {
         $fileMappingReader = $this->mappingResolver->resolve();
 

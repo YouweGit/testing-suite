@@ -15,8 +15,10 @@ use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Installer\PackageEvent;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
+use Composer\Script\Event;
 use UnexpectedValueException;
 use Youwe\TestingSuite\Composer\Installer\InstallerInterface;
+use Youwe\TestingSuite\Composer\Installer\PostPackageChangeInstallerInterface;
 
 /**
  * @SuppressWarnings("PHPMD.ShortVariable")
@@ -26,7 +28,9 @@ class Plugin implements PluginInterface, EventSubscriberInterface
 {
     public const PACKAGE_NAME = 'youwe/testing-suite';
 
-    /** @var InstallerInterface[] */
+    private bool $isThisPackageChanged = false;
+
+    /** @var list<InstallerInterface|PostPackageChangeInstallerInterface> */
     private array $installers;
 
     /**
@@ -39,15 +43,17 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         return [
             'post-package-install' => [ 'onPackageChange' ],
             'post-package-update' => [ 'onPackageChange' ],
+            'post-install-cmd' => [ 'onPostInstall' ],
+            'post-update-cmd' => [ 'onPostInstall' ],
         ];
     }
 
     /**
      * Constructor.
      *
-     * @param InstallerInterface[] ...$installers
+     * @param InstallerInterface|PostPackageChangeInstallerInterface ...$installers
      */
-    public function __construct(InstallerInterface ...$installers)
+    public function __construct(InstallerInterface|PostPackageChangeInstallerInterface ...$installers)
     {
         $this->installers = $installers;
     }
@@ -94,20 +100,18 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     /**
      * Add installers.
      *
-     * @param InstallerInterface[] ...$installers
+     * @param InstallerInterface|PostPackageChangeInstallerInterface ...$installers
      *
      * @return void
      */
-    public function addInstallers(InstallerInterface ...$installers): void
+    public function addInstallers(InstallerInterface|PostPackageChangeInstallerInterface ...$installers): void
     {
         $this->installers = array_merge($this->installers, $installers);
     }
 
     /**
-     * Run the installers when this package has been installed/updated
-     *
-     * @param PackageEvent $event
-     * @return void
+     * Register whether the `youwe/testing-suite` is actually changed during this composer operation and run all the
+     * post-package-change installers (installers implementing PostPackageChangeInstallerInterface)
      */
     public function onPackageChange(PackageEvent $event): void
     {
@@ -123,9 +127,30 @@ class Plugin implements PluginInterface, EventSubscriberInterface
             return;
         }
 
+        $this->isThisPackageChanged = true;
+
+        $event->getIO()->write('<info>Running Youwe Testing Suite pre-installer</info>');
+        foreach ($this->installers as $installer) {
+            if ($installer instanceof PostPackageChangeInstallerInterface) {
+                $installer->installPostPackageChange();
+            }
+        }
+    }
+
+    /**
+     * Run the installers when this package has been installed/updated
+     */
+    public function onPostInstall(Event $event): void
+    {
+        if (!$this->isThisPackageChanged) {
+            return;
+        }
+
         $event->getIO()->write('<info>Running Youwe Testing Suite installer</info>');
         foreach ($this->installers as $installer) {
-            $installer->install();
+            if ($installer instanceof InstallerInterface) {
+                $installer->install();
+            }
         }
     }
 }
