@@ -56,6 +56,10 @@ class PackagesInstaller implements InstallerInterface
             ]
         ],
         'pimcore' => [
+            'phpstan/phpstan' => [
+                'version' => '>=2.0',
+                'updateDependencies' => true,
+            ],
             'phpstan/phpstan-symfony' => [
                 'version' => '@stable',
                 'updateDependencies' => true,

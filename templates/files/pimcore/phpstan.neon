@@ -9,7 +9,6 @@ includes:
 parameters:
   paths:
     - src
-    - var/classes/DataObject # Include DataObject generated classes, otherwise PHPStan will complain about class not found
 
     # Uncomment when your project has unit tests:
     # - tests
@@ -23,3 +22,9 @@ parameters:
   # Point PHPStan to internal constants that are bootstrapped
   bootstrapFiles:
     - ./vendor/youwe/testing-suite/config/pimcore/phpstan-bootstrap.php
+
+  ignoreErrors:
+    # PHPStan won't correctly recognize "@var Pimcore\Model\DataObject\ClassName $this", something we often use in
+    # abstract models. The "varTag.nativeType" rule has been added recently to PHPStan and apparently is not stable
+    # enough yet. Disable this check completely.
+    - { identifier: varTag.nativeType }
