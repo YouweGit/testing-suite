@@ -8,6 +8,8 @@
     <rule ref="Magento2" >
         <!-- Not all functions require doc blocks -->
         <exclude name="Magento2.Annotation.MethodAnnotationStructure.NoCommentBlock"/>
+        <!-- Not all functions require a short description (Missing short description) -->
+        <exclude name="Magento2.Annotation.MethodAnnotationStructure.MethodAnnotation" />
         <!-- Not all class properties require doc blocks -->
         <exclude name="Magento2.Commenting.ClassPropertyPHPDocFormatting.Missing"/>
         <!--
