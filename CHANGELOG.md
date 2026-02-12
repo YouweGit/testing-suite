@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `drupal/coder`
 ### Fixed
 - Mapping for drupal was added to prevent error that file is missing in `templates/mapping/project/drupal`.
+### Fixed
+- Magento 2 makes use of `phtml` moved triggered by for phpcs from default to magento2 scope.
 
 ## [3.0.3]
 ### Fixed
