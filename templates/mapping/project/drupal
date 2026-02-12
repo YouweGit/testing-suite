@@ -1,0 +1,4 @@
+{drupal/,}grumphp.yml
+{drupal/,}phpcs.xml
+{drupal/,}phpmd.xml
+{drupal/,}phpstan.neon

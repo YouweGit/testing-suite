@@ -5,7 +5,7 @@ parameters:
   composer.strict: false
   xmllint.ignore_patterns:
     - /^phpcs.xml$/
-    - /^phpmd.xml$/
+    - /(^|\/)phpmd\.xml$/
     - /^phpunit.xml$/
     - /^pdepend.xml$/
     - /^templates/

@@ -31,7 +31,7 @@ class ProjectTypeResolver
 
     /** @var array */
     private $mapping = [
-        'drupal-bundle' => 'drupal',
+        'drupal-module' => 'drupal',
         'drupal-project' => 'drupal',
         'magento-project' => 'magento2',
         'magento2-module' => 'magento2',

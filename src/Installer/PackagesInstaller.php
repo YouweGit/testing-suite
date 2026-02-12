@@ -55,6 +55,28 @@ class PackagesInstaller implements InstallerInterface
                 'updateDependencies' => true,
             ]
         ],
+        'drupal' => [
+            'drupal/coder' => [
+                'version' => '@stable',
+                'updateDependencies' => true,
+            ],
+            'phpstan/phpstan' => [
+                'version' => '@stable',
+                'updateDependencies' => true,
+            ],
+            'phpstan/extension-installer' => [
+                'version' => '@stable',
+                'updateDependencies' => true,
+            ],
+            'mglaman/phpstan-drupal' => [
+                'version' => '@stable',
+                'updateDependencies' => true,
+            ],
+            'phpstan/phpstan-deprecation-rules' => [
+                'version' => '@stable',
+                'updateDependencies' => true,
+            ],
+        ],
         'pimcore' => [
             'phpstan/phpstan' => [
                 'version' => '>=2.0',
