@@ -5,12 +5,6 @@ includes:
   # - phpstan-baseline.neon
 
 parameters:
+  level: 1
   paths:
-    - web
-
-    # Add any other project folder containing source files, e.g.
-    # - tests
-
-  excludePaths:
-    # Add any path you want to exclude (note, only files/folders within the configured `paths` are relevant to note here), e.g.:
-    # - tests/fixtures/*
+    - web/modules/custom

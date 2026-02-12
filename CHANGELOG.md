@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0]
+### Added
+- Added coding standards for `drupal`.
+- Added packages for `phpstan` for drupal based on [this documentation](https://www.drupal.org/docs/develop/development-tools/phpstan/getting-startedhttps://www.drupal.org/docs/develop/development-tools/phpstan/getting-started)
+  - `phpstan/phpstan`
+  - `phpstan/extension-installer`
+  - `mglaman/phpstan-drupal`
+  - `phpstan/phpstan-deprecation-rules`
+- Added package for `phpcs` based on (this documentation)[https://www.drupal.org/docs/extending-drupal/contributed-modules/contributed-module-documentation/coder/installing-coder]
+  - `drupal/coder`
+### Fixed
+- Mapping for drupal was added to prevent error that file is missing in `templates/mapping/project/drupal`.
+### Fixed
+- Magento 2 makes use of `phtml` moved triggered by for phpcs from default to magento2 scope.
+
 ## [3.0.3]
 ### Fixed
 - When running GrumPHP on an environment with the Redis PHP extension installed, it errored with `The package 

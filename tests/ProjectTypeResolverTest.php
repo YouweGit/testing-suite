@@ -26,7 +26,7 @@ class ProjectTypeResolverTest extends TestCase
      * @throws Exception
      */
     #[TestWith(data: ['some-type', 'default'], name: 'some-type')]
-    #[TestWith(data: ['drupal-bundle', 'drupal'], name: 'drupal-bundle')]
+    #[TestWith(data: ['drupal-module', 'drupal'], name: 'drupal-module')]
     #[TestWith(data: ['drupal-project', 'drupal'], name: 'drupal-project')]
     #[TestWith(data: ['magento-project', 'magento2'], name: 'magento-project')]
     #[TestWith(data: ['magento2-module', 'magento2'], name: 'magento2-module')]

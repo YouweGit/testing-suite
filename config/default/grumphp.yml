@@ -26,7 +26,7 @@ parameters:
 
   phpcs.enabled: true
   phpcs.standard: ./phpcs.xml
-  phpcs.triggered_by: [php,phtml]
+  phpcs.triggered_by: [php]
 
   phpcsfixer.enabled: false
   phpcsfixer.allow_risky: false
