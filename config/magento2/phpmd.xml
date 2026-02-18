@@ -21,7 +21,6 @@
     <rule ref="rulesets/design.xml" />
     <rule ref="rulesets/unusedcode.xml">
         <!-- In Magento unused parameters are common, for example in plugins, $subject is required, but often not used. -->
-        <exclude name="UnusedLocalVariable" />
         <exclude name="UnusedFormalParameter" />
 
     </rule>

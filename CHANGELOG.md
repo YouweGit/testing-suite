@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.0.3]
 ### Changed
 - Magento phpmd.xml loosened some rules to be more inline with what is 'normal' in Magento.
+  - Added exclude patterns for *.phtml
+  - Added exclude for UnusedFormalParameter to allow unused parameters in a function
+  - Added exception for short variable name for $id
+ - PHPCS Excluded Magento2.Annotation.MethodAnnotationStructure.MethodAnnotation
+### Fixed
+- Updated property for LongVariable did not work.
 
 ## [3.0.2]
 ### Changed
