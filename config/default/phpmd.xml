@@ -16,8 +16,6 @@
         <!-- Boolean flags are sometimes needed to preserve e.g. backwards compatibility. We don't want to enforce this in a blanket
          statement / default rule but if projects want to enforce this they are free to do so. -->
         <exclude name="BooleanArgumentFlag"/>
-
-        <exclude name="LongVariable"/>
     </rule>
 
     <rule ref="rulesets/codesize.xml" />
