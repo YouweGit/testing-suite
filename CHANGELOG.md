@@ -4,15 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.0.3]
+## [3.0.4]
 ### Changed
 - Magento phpmd.xml loosened some rules to be more inline with what is 'normal' in Magento.
-  - Added exclude patterns for *.phtml
-  - Added exclude for UnusedFormalParameter to allow unused parameters in a function
-  - Added exception for short variable name for $id
- - PHPCS Excluded Magento2.Annotation.MethodAnnotationStructure.MethodAnnotation
+    - Added exclude patterns for *.phtml
+    - Added exclude for UnusedFormalParameter to allow unused parameters in a function
+    - Added exception for short variable name for $id
+- PHPCS Excluded Magento2.Annotation.MethodAnnotationStructure.MethodAnnotation
 ### Fixed
 - Updated property for LongVariable did not work.
+
+## [3.0.3]
+### Fixed
+- When running GrumPHP on an environment with the Redis PHP extension installed, it errored with `The package 
+  "symfony/cache" conflicts with the extension "redis"`. This has been resolved by disallowing all GrumPHP versions 2.18
+  and higher (latest version that worked was 2.17). This should be revisited as soon as the issue is resolved upstream, 
+  see the GitHub issue https://github.com/box-project/box/issues/1578 for more details.
 
 ## [3.0.2]
 ### Changed
