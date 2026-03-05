@@ -21,6 +21,7 @@ parameters:
     - /^pdepend.xml$/
 
   yamllint.parse_constant: true
+  yamllint.parse_custom_tags: false
   yamllint.whitelist_patterns: []
   yamllint.ignore_patterns: []
 
@@ -152,6 +153,7 @@ grumphp:
 
     yamllint:
       parse_constant: '%yamllint.parse_constant%'
+      parse_custom_tags: '%yamllint.parse_custom_tags%'
       whitelist_patterns: '%yamllint.whitelist_patterns%'
       ignore_patterns: '%yamllint.ignore_patterns%'
 
