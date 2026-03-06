@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="PHPMD"
-         xmlns="https://pmd.sf.net/ruleset/1.0.0"
-         xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 https://pmd.sourceforge.io/ruleset_xml_schema.xsd">
+<ruleset name="PHPMD" xmlns="https://pmd.sf.net/ruleset/1.0.0">
     <description>PHPMD rules for Pimcore projects.</description>
 
     <!-- Taken from Global ruleset since we can't modify a referenced rule without overwriting it completely.
