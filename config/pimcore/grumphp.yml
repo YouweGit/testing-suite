@@ -5,6 +5,8 @@ imports:
 parameters:
   git_blacklist.triggered_by: [ 'php', 'js', 'twig' ]
 
+  yamllint.parse_custom_tags: true
+
   # Disable PHPCS (which is enabled by default) in favour of PHP CS Fixer
   phpcs.enabled: false
   phpcsfixer.enabled: true

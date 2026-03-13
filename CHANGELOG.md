@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.4]
+### Added
+- Support for `yamllint.parse_custom_tags` in the GrumPHP yamllint task configuration to allow parsing Symfony/Pimcore YAML custom tags (e.g. `!tagged_iterator`).
+
 ## [3.0.3]
 ### Fixed
 - When running GrumPHP on an environment with the Redis PHP extension installed, it errored with `The package 
