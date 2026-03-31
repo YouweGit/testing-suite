@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.0.4]
+## [3.0.5]
 ### Changed
 - Magento phpmd.xml loosened some rules to be more inline with what is 'normal' in Magento.
     - Added exclude patterns for *.phtml
@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHPCS Excluded Magento2.Annotation.MethodAnnotationStructure.MethodAnnotation
 ### Fixed
 - Updated property for LongVariable did not work.
+
+## [3.0.4]
+### Added
+- Support for `yamllint.parse_custom_tags` in the GrumPHP yamllint task configuration to allow parsing Symfony/Pimcore YAML custom tags (e.g. `!tagged_iterator`).
 
 ## [3.0.3]
 ### Fixed
