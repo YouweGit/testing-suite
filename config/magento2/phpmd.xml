@@ -18,10 +18,17 @@
         <exclude name="BooleanArgumentFlag"/>
     </rule>
 
-    <rule ref="rulesets/codesize.xml" />
     <rule ref="rulesets/design.xml" />
-    <rule ref="rulesets/unusedcode.xml" />
-    <rule ref="rulesets/naming.xml" />
+    <rule ref="rulesets/unusedcode.xml">
+        <!-- In Magento unused parameters are common, for example in plugins, $subject is required, but often not used. -->
+        <exclude name="UnusedFormalParameter" />
+
+    </rule>
+    <rule ref="rulesets/naming.xml">
+        <!-- For these rules we have exceptions configured below -->
+        <exclude name="LongVariable" />
+        <exclude name="ShortVariable" />
+    </rule>
 
     <rule ref="rulesets/naming.xml/LongVariable">
         <properties>
@@ -29,13 +36,16 @@
             <property name="maximum" value="30"/>
         </properties>
     </rule>
+
+    <!-- $id is a very common (and accepted) ShortVariable -->
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="id" />
+        </properties>
+    </rule>
     <!-- End of global ruleset -->
 
-    <!-- Increase maximum amount of coupling, because magento constructor injection can become quite extreme and is mostly an adobe issue to fix -->
-    <rule ref="rulesets/design.xml">
-        <exclude name="CouplingBetweenObjects"/>
-    </rule>
-
+    <!-- Increase maximum amount of coupling, because Magento constructor injection can become quite extreme and is mostly an adobe issue to fix -->
     <rule ref="rulesets/design.xml/CouplingBetweenObjects">
         <properties>
             <property name="maximum" value="20"/>

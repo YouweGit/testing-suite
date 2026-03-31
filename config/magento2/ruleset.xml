@@ -2,12 +2,18 @@
 <ruleset name="Youwe/Magento2">
     <description>Youwe coding standard extensions for sniffing code in Magento 2 projects.</description>
 
+    <exclude-pattern>./app/etc/config.php</exclude-pattern>
+    <exclude-pattern>/.ddev/*</exclude-pattern>
+    <exclude-pattern>./tests/*</exclude-pattern>
+
     <!-- Use default Youwe coding standards for PHP projects. -->
     <rule ref="../default" />
     <!-- Magento coding standards -->
     <rule ref="Magento2" >
         <!-- Not all functions require doc blocks -->
         <exclude name="Magento2.Annotation.MethodAnnotationStructure.NoCommentBlock"/>
+        <!-- Not all functions require a short description (Missing short description) -->
+        <exclude name="Magento2.Annotation.MethodAnnotationStructure.MethodAnnotation" />
         <!-- Not all class properties require doc blocks -->
         <exclude name="Magento2.Commenting.ClassPropertyPHPDocFormatting.Missing"/>
         <!--
