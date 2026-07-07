@@ -20,7 +20,7 @@ The Youwe Testing Suites offers pre-configured standards for the following proje
 
 | Testing Suite Project Type | Detected based on Composer Project Type                                    |
 |----------------------------|----------------------------------------------------------------------------|
-| `drupal`                   | `drupal-bundle`, `drupal-project`                                          |
+| `drupal`                   | `drupal-module`, `drupal-project`                                          |
 | `magento2`                 | `magento-module`, `magento-project`, `magento2-module`, `magento2-project` |
 | `pimcore`                  | `pimcore-bundle`, `pimcore-project`                                        |
 | `default`                  | Any other                                                                  |
