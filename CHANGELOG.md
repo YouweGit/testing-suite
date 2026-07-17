@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0]
+### Added
+- Option `security_checker.blocking` which defaults to `true`, but can be configured as `false` within libraries and 
+  bundles. Setting to `false` will still warn about security issues, but will not block the commit or merge. This 
+  setting should not be overridden in applications and projects.
+
 ## [3.0.5]
 ### Changed
 - Magento phpmd.xml loosened some rules to be more inline with what is 'normal' in Magento.

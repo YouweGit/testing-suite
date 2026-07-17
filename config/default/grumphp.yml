@@ -58,6 +58,12 @@ parameters:
 
   securitychecker.lockfile: ./composer.lock
   securitychecker.run_always: true
+  securitychecker.blocking: true # This value should be true for all applications/projects and is only allowed to be
+                                 # overridden in libraries/bundles. Set to false if you want to allow commits even when
+                                 # vulnerabilities are found. This is useful for libraries and bundles, where the
+                                 # composer.lock file is excluded from git and thus the developer has less control over
+                                 # which exact version is installed during automated tests. The system will still warn
+                                 # about vulnerabilities found.
   securitychecker.allow_list: []
 
   git_blacklist.keywords:
@@ -195,6 +201,8 @@ grumphp:
       config_file: '%phpunit.config_file%'
 
     securitychecker_enlightn:
+      metadata:
+        blocking: '%securitychecker.blocking%'
       lockfile: '%securitychecker.lockfile%'
       run_always: '%securitychecker.run_always%'
       allow_list: '%securitychecker.allow_list%'
