@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- Magento 2 `phpmd.xml` incorrectly overrode `CouplingBetweenObjects`: the design ruleset was included twice, causing
+  the check to run with conflicting maximum values. The original rule is now excluded so the custom override (20)
+  takes effect.
+
 ## [3.1.0]
 ### Added
 - Option `security_checker.blocking` which defaults to `true`, but can be configured as `false` within libraries and 
