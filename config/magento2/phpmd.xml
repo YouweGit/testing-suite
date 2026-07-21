@@ -19,6 +19,7 @@
     </rule>
 
     <rule ref="rulesets/design.xml">
+        <!-- For this rule we have exceptions configured below -->
         <exclude name="CouplingBetweenObjects"/>
     </rule>
     <rule ref="rulesets/unusedcode.xml">
