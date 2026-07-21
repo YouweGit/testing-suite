@@ -124,6 +124,10 @@ grumphp:
   parallel:
     enabled: true
 
+  environment:
+    paths:
+      - './vendor/youwe/testing-suite/command-wrappers'
+
   # Default tasks for testing suite
   tasks:
     composer:
