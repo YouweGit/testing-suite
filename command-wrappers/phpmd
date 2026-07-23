@@ -1,0 +1,39 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * Grumphp calls PHPMD with the version 2.x set of arguments and doesn't have compatibility yet with the 3.x-dev
+ * argument notation. This script detects the PHPMD version and rewrites the arguments to match
+ */
+
+$pathToPhpmd = getcwd() . '/vendor/bin/phpmd';
+
+exec(escapeshellarg($pathToPhpmd) . ' --version', $versionOutput);
+
+if (stripos($versionOutput[0] ?? '', 'PHPMD 3') === 0) {
+    // PHPMD 3.x installed, rewrite arguments
+
+    array_shift($argv); // Shift command
+    $filesCommaSeparated = array_shift($argv);
+    $format = array_shift($argv);
+    $ruleset = array_shift($argv);
+
+    // Rewrite
+    // phpmd 'file1.php,file2.php' 'text' 'ruleset1.xml' --original-option-1 --original-option-2
+    // to
+    // $pathToPhpmd analyze --threads=1 --format=text --ruleset='ruleset1.xml'  --original-option-1 --original-option-2 -- file1.php file2.php
+    $argv = [
+        $pathToPhpmd,
+        'analyze',
+        '--threads=1', // Note: Multithreading doesn't work good (yet) and it doesn't report errors if we don't force it to single thread
+        '--format=' . $format,
+        '--ruleset=' . $ruleset,
+        ...$argv,
+        '--',
+        ...explode(',', $filesCommaSeparated),
+    ];
+
+    $_SERVER['argv'] = $argv;
+}
+
+include $pathToPhpmd;
