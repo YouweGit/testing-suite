@@ -6,9 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.1.0]
 ### Added
-- Option `security_checker.blocking` which defaults to `true`, but can be configured as `false` within libraries and 
-  bundles. Setting to `false` will still warn about security issues, but will not block the commit or merge. This 
-  setting should not be overridden in applications and projects.
+- Added coding standards for `drupal`.
+- Added packages for `phpstan` for drupal based on [this documentation](https://www.drupal.org/docs/develop/development-tools/phpstan/getting-startedhttps://www.drupal.org/docs/develop/development-tools/phpstan/getting-started)
+  - `phpstan/phpstan`
+  - `phpstan/extension-installer`
+  - `mglaman/phpstan-drupal`
+  - `phpstan/phpstan-deprecation-rules`
+- Added package for `phpcs` based on (this documentation)[https://www.drupal.org/docs/extending-drupal/contributed-modules/contributed-module-documentation/coder/installing-coder]
+  - `drupal/coder`
+### Fixed
+- Mapping for drupal was added to prevent error that file is missing in `templates/mapping/project/drupal`.
 
 ## [3.0.5]
 ### Changed

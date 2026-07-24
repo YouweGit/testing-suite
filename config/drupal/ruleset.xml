@@ -2,8 +2,6 @@
 <ruleset name="Youwe/Drupal">
     <description>Youwe coding standard extensions for sniffing code in Drupal projects.</description>
 
-    <!-- Use default Youwe coding standards for PHP projects. -->
-    <rule ref="../default" />
     <!-- Additional Drupal-specific rulesets. -->
-
+    <rule ref="Drupal" />
 </ruleset>
