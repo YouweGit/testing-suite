@@ -4,3 +4,11 @@ imports:
 # Extend git triggers with common Drupal constructs
 parameters:
   phpcs.triggered_by: [ 'php' , 'module' ]
+
+grumphp:
+  tasks:
+    phpcs:
+      ignore_patterns:
+        - /^build\//
+        - /^drush\//
+        - /^\.ddev\//

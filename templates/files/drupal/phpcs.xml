@@ -8,8 +8,4 @@
     <rule ref="./vendor/youwe/testing-suite/config/drupal"/>
     <!-- Append arg -s to phpcs to display the name of failed sniffs -->
     <arg value="s"/>
-
-    <exclude-pattern>build</exclude-pattern>
-    <exclude-pattern>drush</exclude-pattern>
-    <exclude-pattern>.ddev</exclude-pattern>
 </ruleset>
