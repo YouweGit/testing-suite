@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Risky rules are now allowed to be used in PHP CS Fixer.
 - PHP CS Fixer within Pimcore will now add the `declare(strict_types=1);` automatically. Add a `strict_types=0` 
   explicitly if your file doesn't support strict type checking.
+- PHP CS Fixer within Pimcore will now clean up redundant blank lines.
 
 ## [3.2.3]
 ### Fixed
