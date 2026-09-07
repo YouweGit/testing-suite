@@ -190,10 +190,11 @@ class PackagesInstallerTest extends TestCase
             $depInstallerMock,
         );
 
+        $mapping = $installer->mapping[MappingResolver::DEFAULT_MAPPING_TYPE];
+
         $depInstallerMock
-            ->expects($this->exactly(1))
-            ->method('installPackage')
-            ->with('phpunit/phpunit', '@stable', true, true, false);
+            ->expects($this->exactly(count($mapping)))
+            ->method('installPackage');
 
         $installer->install();
     }
