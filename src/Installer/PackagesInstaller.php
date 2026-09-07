@@ -40,6 +40,31 @@ class PackagesInstaller implements InstallerInterface
                 'updateDependencies' => true,
                 'allowVersionOverride' => false,
             ],
+            'enlightn/security-checker' => [
+                'version' => '@stable',
+                'updateDependencies' => true,
+                'allowVersionOverride' => false,
+            ],
+            'phpstan/phpstan' => [
+                'version' => '@stable',
+                'updateDependencies' => true,
+                'allowVersionOverride' => false,
+            ],
+            'php-cs-fixer/shim' => [
+                'version' => '^1.0',
+                'updateDependencies' => true,
+                'allowVersionOverride' => false,
+            ],
+            'phpmd/phpmd' => [
+                'version' => '^2.15 || 3.x-dev',
+                'updateDependencies' => true,
+                'allowVersionOverride' => false,
+            ],
+            'squizlabs/php_codesniffer' => [
+                'version' => '^3.12.0 || ^4.0',
+                'updateDependencies' => true,
+                'allowVersionOverride' => false,
+            ],
         ],
         'magento2' => [
             'phpstan/extension-installer' => [
@@ -90,6 +115,11 @@ class PackagesInstaller implements InstallerInterface
             'phpstan/phpstan-symfony' => [
                 'version' => '@stable',
                 'updateDependencies' => true,
+            ],
+            'php-cs-fixer/shim' => [
+                'version' => '^1.0',
+                'updateDependencies' => true,
+                'allowVersionOverride' => false,
             ],
         ],
     ];
