@@ -2,6 +2,11 @@ parameters:
   # Default settings for php testing suite tasks
   composer.strict: true
 
+  # Checks whether the same class is ever defined in multiple files. It is set to false by default, as enabling it can
+  # result in false positives -- especially in the common case where polyfill packages are present in the vendor
+  # directory.
+  composer_validate_autoload.strict_ambiguous: false
+
   jsonlint.detect_key_conflicts: true
   jsonlint.ignore_patterns:
     - .ddev/
@@ -132,6 +137,9 @@ grumphp:
   tasks:
     composer:
       strict: '%composer.strict%'
+
+    composer_validate_autoload:
+      strict_ambiguous: '%composer_validate_autoload.strict_ambiguous%'
 
     jsonlint:
       detect_key_conflicts: '%jsonlint.detect_key_conflicts%'
