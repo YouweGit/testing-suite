@@ -6,7 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.3.2]
+## [3.4.0]
+### Added
+- Enabled GrumPHP task `composer_validate_autoload` to validate PSR-4 autoloading is correctly applied (e.g. block
+  files where the filename doesn't match the class name).
+
+### Changed
+- Updated GrumPHP minimal version to ^2.16 (from ^2.15)
+
 ### Fixed
 - Drupal `grumphp.yml` is using drupal defaults instead of pimcore defaults.
 
