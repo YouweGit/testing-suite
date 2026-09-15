@@ -39,7 +39,7 @@
         "youwe/composer-file-installer": "^2.0.0"
     },
     "conflict": {
-        "phpro/grumphp-shim": ">= 2.18.0"
+        "phpro/grumphp-shim": ">= 2.18.0 <2.21.0"
     },
     "suggest": {
         "phpunit/phpunit": ">= 9.6",
