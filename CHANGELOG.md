@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0]
+### Changed
+- Risky rules are now allowed to be used in PHP CS Fixer.
+- PHP CS Fixer within Pimcore will now add the `declare(strict_types=1);` automatically. Add a `strict_types=0` 
+  explicitly if your file doesn't support strict type checking.
+- PHP CS Fixer within Pimcore will now clean up redundant blank lines.
+
 ## [3.2.3]
 ### Fixed
 - Allow newer versions of GrumPHP to be installed. In version 3.0.3 of this library we had to restrict version 2.18 or
