@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.1]
+### Fixed
+- Expanded PHPStan 2.3.0 blacklist to include newer versions
+
 ## [3.4.0]
 ### Added
 - Enabled GrumPHP task `composer_validate_autoload` to validate PSR-4 autoloading is correctly applied (e.g. block
