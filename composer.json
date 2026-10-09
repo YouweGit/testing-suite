@@ -40,7 +40,7 @@
     },
     "conflict": {
         "phpro/grumphp-shim": ">= 2.18.0 <2.21.0",
-        "phpstan/phpstan": "2.3.0"
+        "phpstan/phpstan": ">= 2.3.0"
     },
     "suggest": {
         "phpunit/phpunit": ">= 9.6",
