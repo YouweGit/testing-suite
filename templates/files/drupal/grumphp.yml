@@ -1,5 +1,5 @@
 imports:
-  - resource: 'vendor/youwe/testing-suite/config/pimcore/grumphp.yml'
+  - resource: 'vendor/youwe/testing-suite/config/drupal/grumphp.yml'
 
 parameters:
   # Configure your Jira Project codes as pipe-separated value:

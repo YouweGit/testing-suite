@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.2]
+### Fixed
+- Drupal `grumphp.yml` is using drupal defaults instead of pimcore defaults.
+
 ## [3.3.1]
 ### Fixed
 - Blacklisted phpstan 2.3.0 due to bug within package for php8.3 on certain environments
