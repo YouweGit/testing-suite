@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.2]
+### Fixed
+- Disabled `composer_validate_autoload` task by default, as it requires a Composer >=2.6 runtime. It can be enabled in 
+  the `grumphp.yml` configuration if your project with the `composer_validate_autoload.enabled` parameter.
+
+### Added
+- Added missing documentation for the `composer_validate_autoload` task.
+
 ## [3.4.1]
 ### Fixed
 - Expanded PHPStan 2.3.0 blacklist to include newer versions

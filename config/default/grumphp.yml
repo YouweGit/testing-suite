@@ -2,6 +2,9 @@ parameters:
   # Default settings for php testing suite tasks
   composer.strict: true
 
+  # Disable Composer Validate Autoload by default because it only works with Composer 2.6 and higher and not with
+  # Composer 2.2 which might be used in pipelines because it's an LTS version.
+  composer_validate_autoload.enabled: false
   # Checks whether the same class is ever defined in multiple files. It is set to false by default, as enabling it can
   # result in false positives -- especially in the common case where polyfill packages are present in the vendor
   # directory.
@@ -139,6 +142,8 @@ grumphp:
       strict: '%composer.strict%'
 
     composer_validate_autoload:
+      metadata:
+        enabled: '%composer_validate_autoload.enabled%'
       strict_ambiguous: '%composer_validate_autoload.strict_ambiguous%'
 
     jsonlint:
@@ -154,12 +159,12 @@ grumphp:
       ignore_patterns: '%git_blacklist.ignore_patterns%'
 
     git_commit_message:
-        enforce_capitalized_subject: '%git_commit_message.enforce_capitalized_subject%'
-        type_scope_conventions: '%git_commit_message.type_scope_conventions%'
-        max_body_width: '%git_commit_message.max_body_width%'
-        max_subject_width: '%git_commit_message.max_subject_width%'
-        matchers: '%git_commit_message.matchers%'
-        case_insensitive: '%git_commit_message.case_insensitive%'
+      enforce_capitalized_subject: '%git_commit_message.enforce_capitalized_subject%'
+      type_scope_conventions: '%git_commit_message.type_scope_conventions%'
+      max_body_width: '%git_commit_message.max_body_width%'
+      max_subject_width: '%git_commit_message.max_subject_width%'
+      matchers: '%git_commit_message.matchers%'
+      case_insensitive: '%git_commit_message.case_insensitive%'
 
     xmllint:
       load_from_net: '%xmllint.load_from_net%'
