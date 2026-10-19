@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.3]
+### Fixed
+- Ignore Symfony created file 'config/reference.php' in PHP-CS-Fixer.
+
 ## [3.4.2]
 ### Fixed
 - Disabled `composer_validate_autoload` task by default, as it requires a Composer >=2.6 runtime. It can be enabled in 

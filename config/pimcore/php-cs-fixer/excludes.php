@@ -5,6 +5,7 @@ declare(strict_types=1);
 return [
     // Symfony files
     'bin/console',
+    'config/reference.php',
     'public/index.php',
     'public/bundles',
     // Full var folder, contains all kind of auto-generated files (e.g. cache, generated Pimcore DataObject classes)
