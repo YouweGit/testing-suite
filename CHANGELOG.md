@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.4]
+### Fixed
+- Allow stable PHP Mess Detector 3.x releases.
+
 ## [3.4.3]
 ### Fixed
 - File path excludes were not functioning for Pimcore projects. Directory and file paths now have a separate file.
