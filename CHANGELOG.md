@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.4]
+### Fixed
+- Limit PHPStan conflict range to >=2.3.0 <2.3.2 as [the original issue](https://github.com/phpstan/phpstan/issues/15407) has been fixed in PHPStan 2.3.2
+
 ## [3.4.3]
 ### Fixed
 - File path excludes were not functioning for Pimcore projects. Directory and file paths now have a separate file.
