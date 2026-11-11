@@ -54,7 +54,7 @@ class PackagesInstallerTest extends TestCase
     /**
      * @throws Exception
      */
-    public function testCanMergeDefaultPackagesWhenInstalling(): void
+    public function testCanMergeDefaultPackages(): void
     {
         $composerMock = $this->createMock(Composer::class);
         $typeResolverMock = $this->createMock(ProjectTypeResolver::class);
@@ -172,7 +172,7 @@ class PackagesInstallerTest extends TestCase
         $installer->install();
     }
 
-    public function testPhpUnitIsInstalledForUnknownProjectType(): void
+    public function testInstallsPhpUnitForUnknownType(): void
     {
         $composerMock = $this->createMock(Composer::class);
         $typeResolverMock = $this->createMock(ProjectTypeResolver::class);
