@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0]
+### Changed
+- [BREAKING] The default/grumphp.yml securitychecker has been changed from Enlightn to Composer Audit.
+  The securitychecker now has `no_dev` which is enabled by default. When enabled it will show vulnerability issues
+  from all packages, but vulnerabilities from dev-only packages will not block the commit.
+- Changed `securitychecker.allow_list` from grumphp.yml files to `securitychecker.ignore_list`.
+- Minimal Composer version is changed to 2.8
+
 ## [3.4.6]
 ### Fixed
 - Require a minimum version of PHP CS Fixer 3.95 to avoid issues with the `declare_strict_types` fixer, which was introduced in our `3.3.0` release.
