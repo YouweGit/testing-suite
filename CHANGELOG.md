@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.6]
+### Fixed
+- Require a minimum version of PHP CS Fixer 3.95 to avoid issues with the `declare_strict_types` fixer, which was introduced in our `3.3.0` release.
+
 ## [3.4.5]
 ### Fixed
 - Allow stable PHP Mess Detector 3.x releases.
