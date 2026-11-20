@@ -1,0 +1,7 @@
+"config": {
+    "policy": {
+        "advisories": {
+            "ignore-id": '%securitychecker.ignore_list%'
+        }
+    }
+}
